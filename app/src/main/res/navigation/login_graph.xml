@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_graph"
+    app:startDestination="@id/userLoginFragment">
+    <fragment
+        android:id="@+id/adminLoginFragment"
+        android:name="com.example.itservice.admin.login.AdminLoginFragment"
+        android:label="fragment_admin_login"
+        tools:layout="@layout/fragment_admin_login" >
+        <action
+            android:id="@+id/action_adminLoginFragment_to_adminRegistrationFragment"
+            app:destination="@id/adminRegistrationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/engineerLoginFragment"
+        android:name="com.example.itservice.engineer.login_fragment.EngineerLoginFragment"
+        android:label="fragment_engineer_login"
+        tools:layout="@layout/fragment_engineer_login" >
+        <action
+            android:id="@+id/action_engineerLoginFragment_to_engineerRegistationFragment"
+            app:destination="@id/engineerRegistationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/enterpriseUserFragment"
+        android:name="com.example.itservice.enterprise_user.enterprise_user_login.EnterpriseUserFragment"
+        android:label="fragment_enterprise_user_login"
+        tools:layout="@layout/fragment_enterprise_user_login" >
+        <action
+            android:id="@+id/action_enterpriseUserFragment_to_enterpriseUserRegistationFragment"
+            app:destination="@id/enterpriseUserRegistationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userLoginFragment"
+        android:name="com.example.itservice.user.login.UserLoginFragment"
+        android:label="fragment_user_login"
+        tools:layout="@layout/fragment_user_login" >
+        <action
+            android:id="@+id/action_userLoginFragment_to_userRegistationFragment"
+            app:destination="@id/userRegistationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userRegistationFragment"
+        android:name="com.example.itservice.user.registation.UserRegistationFragment"
+        android:label="fragment_user_registation"
+        tools:layout="@layout/fragment_user_registation" >
+        <action
+            android:id="@+id/action_userRegistationFragment_to_userLoginFragment"
+            app:destination="@id/userLoginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminRegistrationFragment"
+        android:name="com.example.itservice.admin.registration.AdminRegistrationFragment"
+        android:label="fragment_admin_registration"
+        tools:layout="@layout/fragment_admin_registration" >
+        <action
+            android:id="@+id/action_adminRegistrationFragment_to_adminLoginFragment"
+            app:destination="@id/adminLoginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/engineerRegistationFragment"
+        android:name="com.example.itservice.engineer.registration.EngineerRegistationFragment"
+        android:label="fragment_engineer_registation"
+        tools:layout="@layout/fragment_engineer_registation" >
+        <action
+            android:id="@+id/action_engineerRegistationFragment_to_engineerLoginFragment"
+            app:destination="@id/engineerLoginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/enterpriseUserRegistationFragment"
+        android:name="com.example.itservice.enterprise_user.registation.EnterpriseenterpriseUserRegistationFragment"
+        android:label="fragment_enterprise_user_registation"
+        tools:layout="@layout/fragment_enterprise_user_registation" >
+        <action
+            android:id="@+id/action_enterpriseUserRegistationFragment_to_enterpriseUserFragment"
+            app:destination="@id/enterpriseUserFragment" />
+    </fragment>
+</navigation>

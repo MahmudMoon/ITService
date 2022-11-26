@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@id/userLoginFragment"
+        android:icon="@drawable/user_icon"
+        android:title="User"
+       />
+
+    <item
+        android:id="@id/engineerLoginFragment"
+        android:icon="@drawable/engineer"
+        android:title="Engineer"
+        />
+    <item
+        android:id="@id/enterpriseUserFragment"
+        android:icon="@drawable/enterprise"
+        android:title="Enterprise" />
+
+    <item
+        android:id="@id/adminLoginFragment"
+        android:icon="@drawable/admin"
+        android:title="Admin" />
+
+</menu>

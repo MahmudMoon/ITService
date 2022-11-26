@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp"
+    tools:context=".user.ask_service_catagory.ask_for_service.AskServiceActivity">
+
+    <TextView
+        android:id="@+id/tv_select_brand_ask_Service"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/select_brand_name"
+        android:textStyle="bold"
+        android:letterSpacing="0.12"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/spn_select_brand"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_select_brand_ask_Service"
+        android:layout_marginTop="8dp"
+        />
+
+
+    <TextView
+        android:id="@+id/tv_select_model_ask_Service"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/select_model_name"
+        android:textStyle="bold"
+        android:letterSpacing="0.12"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintTop_toBottomOf="@id/spn_select_brand"/>
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/spn_select_model"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_select_model_ask_Service"
+        android:layout_marginTop="8dp"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/et_layer_write_problem_ask_Service"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/btn_submit_problem_ask_service"
+        app:layout_constraintTop_toBottomOf="@id/spn_select_model"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="16dp"
+     >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_write_problem_ask_Service"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textEmailAddress"
+            android:gravity="top|left"
+            android:hint="@string/write_about_your_problem" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/btn_submit_problem_ask_service"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/submit_problem"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        android:padding="8dp"
+        android:letterSpacing="0.12"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
