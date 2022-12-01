@@ -1,5 +1,6 @@
-package com.example.itservice.engineer.registration
+package com.example.itservice.enterprise_user.enterprise_user_login.engineer.registration
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -9,15 +10,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.lifecycle.ViewModelProvider
 import com.example.itservice.R
+import com.example.itservice.admin.admin_dashboard.AdminDashBoardActivity
 import com.example.itservice.application.TAG
 import com.example.itservice.common.LoginActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.utils.ContextExtentions
 import com.example.itservice.databinding.FragmentEngineerRegistationBinding
+import com.example.itservice.enterprise_user.enterprise_user_login.engineer.dashboard.EngineerDashBoardActivity
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -51,6 +56,8 @@ class EngineerRegistationFragment : Fragment(), TextWatcher {
     private var engineerEmployeeID: String? = null
     private var engineerContactNumber: String? = null
     private var engineerNID: String? = null
+    private var progressBar: ProgressBar? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,6 +91,8 @@ class EngineerRegistationFragment : Fragment(), TextWatcher {
         etengineerEmployeeID = binding.etEmployeeIdEngineerRegistation
         etengineerContactNumber = binding.etContactNumberEngineerRegistation
         etengineerNID = binding.etNidEngineerRegistation
+        progressBar = binding.pbEngineerRegistration
+
         btnSignUp.setOnClickListener {
             ContextExtentions.hideKeyboard(it, requireContext())
             engineerName = setErrorMessage(etengineerName, "Enter Valid Name")
@@ -99,6 +108,21 @@ class EngineerRegistationFragment : Fragment(), TextWatcher {
                 && engineerContactNumber != "" && engineerNID != ""
             ) {
                 Log.d(TAG, "onViewCreated: READY for registation")
+                progressBar?.visibility = View.VISIBLE
+                viewModel.registerUserWithEmailPassword(engineerName!!, engineerEmail!!,
+                    engineerPassword!!, engineerCompanyName!!, engineerEmployeeID!!, engineerNID!! )
+
+            }
+        }
+
+        viewModel.engineerAuthResult.observe(viewLifecycleOwner){
+            if(it.isSuccess){
+                progressBar?.visibility = View.GONE
+                Toast.makeText(requireContext(), "Registration successful", Toast.LENGTH_SHORT).show()
+                requireActivity().startActivity(Intent(requireContext(), EngineerDashBoardActivity::class.java))
+            }else{
+                Toast.makeText(requireContext(), "Registration failed", Toast.LENGTH_SHORT).show()
+                progressBar?.visibility = View.GONE
             }
         }
         

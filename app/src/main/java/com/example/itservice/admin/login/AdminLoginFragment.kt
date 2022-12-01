@@ -1,5 +1,6 @@
 package com.example.itservice.admin.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -9,28 +10,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.lifecycle.ViewModelProvider
 import com.example.itservice.R
+import com.example.itservice.admin.admin_dashboard.AdminDashBoardActivity
 import com.example.itservice.application.TAG
 import com.example.itservice.common.LoginActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.utils.ContextExtentions
 import com.example.itservice.databinding.FragmentAdminLoginBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [AdminLoginFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AdminLoginFragment : Fragment(), TextWatcher {
-    // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var binding: FragmentAdminLoginBinding
@@ -41,6 +37,8 @@ class AdminLoginFragment : Fragment(), TextWatcher {
     private var etadminPassword: AppCompatEditText? = null
     private var adminEmail: String? = null
     private var adminPassword: String? = null
+    private var progressBar: ProgressBar? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,6 +63,8 @@ class AdminLoginFragment : Fragment(), TextWatcher {
         btnSignIN = binding.btnSignInAdmin
         etadminEmail = binding.etEmailAdminLogin
         etadminPassword = binding.etPasswordAdminLogin
+        progressBar = binding.pbAdminLogin
+
         viewModel = ViewModelProvider(this, ViewModelProviderFactory()).get(AdminLoginViewModel::class.java)
         btnSignIN.setOnClickListener {
             ContextExtentions.hideKeyboard(it, requireContext())
@@ -73,9 +73,22 @@ class AdminLoginFragment : Fragment(), TextWatcher {
 
             if (adminEmail != "" && adminPassword != ""
             ) {
+                progressBar?.visibility = View.VISIBLE
                 Log.d(TAG, "onViewCreated: READY for login")
+                viewModel.signInUserWithEmailPassword(adminEmail!!, adminPassword!!)
             }
         }
+        viewModel.adminAuthResult.observe(viewLifecycleOwner){
+            if(it.isSuccess){
+                progressBar?.visibility = View.GONE
+                Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_SHORT).show()
+                requireActivity().startActivity(Intent(requireContext(), AdminDashBoardActivity::class.java))
+            }else{
+                progressBar?.visibility = View.GONE
+                Toast.makeText(requireContext(), "Login Failed", Toast.LENGTH_SHORT).show()
+            }
+        }
+
         tvSignUp.setOnClickListener {
             try {
                 (requireActivity() as LoginActivity).navController.navigate(R.id.action_adminLoginFragment_to_adminRegistrationFragment)
@@ -127,15 +140,6 @@ class AdminLoginFragment : Fragment(), TextWatcher {
 
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AdminLoginFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             AdminLoginFragment().apply {

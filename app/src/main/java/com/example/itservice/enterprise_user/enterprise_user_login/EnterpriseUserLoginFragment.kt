@@ -1,5 +1,6 @@
 package com.example.itservice.enterprise_user.enterprise_user_login
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -9,7 +10,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.lifecycle.ViewModelProvider
 import com.example.itservice.R
@@ -18,6 +21,8 @@ import com.example.itservice.common.LoginActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.utils.ContextExtentions
 import com.example.itservice.databinding.FragmentEnterpriseUserLoginBinding
+import com.example.itservice.enterprise_user.enterprise_user_login.engineer.dashboard.EngineerDashBoardActivity
+import com.example.itservice.user.user_dash_board.UserdashboardActivity
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,6 +46,8 @@ class EnterpriseUserFragment : Fragment(), TextWatcher {
     private var etenterpriseuserPassword: AppCompatEditText? = null
     private var enterpriseuserEmail: String? = null
     private var enterpriseuserPassword: String? = null
+    private var progressBar: ProgressBar? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,6 +76,8 @@ class EnterpriseUserFragment : Fragment(), TextWatcher {
         btnSignIN = binding.btnSignInEnterpriseUser
         etenterpriseuserEmail = binding.etEmailEnterpriseUserLogin
         etenterpriseuserPassword = binding.etPasswordEnterpriseUserLogin
+        progressBar = binding.pbEnterpriseUserLogin
+
         btnSignIN.setOnClickListener {
             ContextExtentions.hideKeyboard(it, requireContext())
             enterpriseuserEmail = setErrorMessage(etenterpriseuserEmail, "Enter Valid email")
@@ -76,7 +85,19 @@ class EnterpriseUserFragment : Fragment(), TextWatcher {
 
             if (enterpriseuserEmail != "" && enterpriseuserPassword != ""
             ) {
-                Log.d(TAG, "onViewCreated: READY for Login")
+                Log.d(TAG, "onViewCreated: READY for login")
+                progressBar?.visibility = View.VISIBLE
+                viewModel.signInUserWithEmailPassword(enterpriseuserEmail!!, enterpriseuserPassword!!)
+            }
+        }
+        viewModel.enterpriseuserAuthResult.observe(viewLifecycleOwner){
+            if(it.isSuccess){
+                progressBar?.visibility = View.GONE
+                Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_SHORT).show()
+                requireActivity().startActivity(Intent(requireContext(), UserdashboardActivity::class.java))
+            }else{
+                progressBar?.visibility = View.GONE
+                Toast.makeText(requireContext(), "Login failed", Toast.LENGTH_SHORT).show()
             }
         }
         tvSignUp.setOnClickListener {

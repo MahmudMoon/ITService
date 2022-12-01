@@ -1,5 +1,6 @@
 package com.example.itservice.enterprise_user.registation
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,7 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -18,7 +21,9 @@ import com.example.itservice.common.LoginActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.utils.ContextExtentions
 import com.example.itservice.databinding.FragmentEnterpriseUserRegistationBinding
+import com.example.itservice.enterprise_user.enterprise_user_login.engineer.dashboard.EngineerDashBoardActivity
 import com.example.itservice.enterprise_user.registation.EnterpriseUserRegistrationViewModel
+import com.example.itservice.user.user_dash_board.UserdashboardActivity
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -50,6 +55,8 @@ class EnterpriseenterpriseUserRegistationFragment : Fragment(), TextWatcher {
     private var enterpriseUserCompanyAddress: String? = null
     private var enterpriseUserTIN: String? = null
     private var enterpriseUserContactNumber: String? = null
+    private var progressBar: ProgressBar? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,6 +88,8 @@ class EnterpriseenterpriseUserRegistationFragment : Fragment(), TextWatcher {
         etenterpriseUserCompanyAddress = binding.etCompanyAddressEnterpriseUserRegistation
         etenterpriseUserTIN = binding.etTinEnterpriseUserRegistation
         etenterpriseUserContactNumber = binding.etContactNumberEnterpriseUserRegistation
+        progressBar = binding.pbEnterpriseUserRegistration
+
         btnSignUp.setOnClickListener {
             ContextExtentions.hideKeyboard(it, requireContext())
             enterpriseUserEmail = setErrorMessage(etenterpriseUserEmail, "Enter Valid email")
@@ -94,7 +103,25 @@ class EnterpriseenterpriseUserRegistationFragment : Fragment(), TextWatcher {
                 && enterpriseUserPassword != "" && enterpriseUserCompanyName != "" && enterpriseUserCompanyAddress != null && enterpriseUserTIN != ""
                 && enterpriseUserContactNumber != ""
             ) {
-                Log.d(TAG, "onViewCreated: READY for registation")
+                progressBar?.visibility = View.VISIBLE
+                viewModel.registerUserWithEmailPassword(
+                    enterpriseUserEmail!!,
+                    enterpriseUserPassword!!,
+                    enterpriseUserTIN!!,
+                    enterpriseUserCompanyName!!,
+                    enterpriseUserCompanyAddress!!,
+                    enterpriseUserContactNumber!!)
+            }
+        }
+
+        viewModel.enterprise_userAuthResult.observe(viewLifecycleOwner){
+            if(it.isSuccess){
+                progressBar?.visibility = View.GONE
+                Toast.makeText(requireContext(), "Registration successful", Toast.LENGTH_SHORT).show()
+                requireActivity().startActivity(Intent(requireContext(), UserdashboardActivity::class.java))
+            }else{
+                progressBar?.visibility = View.GONE
+                Toast.makeText(requireContext(), "Registration failed", Toast.LENGTH_SHORT).show()
             }
         }
 

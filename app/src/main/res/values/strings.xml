@@ -29,4 +29,14 @@
     <string name="submit_problem">Submit Problem</string>
     <string name="write_about_your_problem">Write about your problem</string>
     <string name="completed_service">Completed service</string>
+    <string name="channel_name">It_service_channel</string>
+    <string name="channel_description">it will be used to local notification</string>
+    <string name="task_analysis">Task Analysis</string>
+    <string name="product_name">Product Name</string>
+    <string name="select_catagory">Select Catagory</string>
+    <string name="about_product">About Product</string>
+    <string name="part_name">Part Name</string>
+    <string name="part_price">Part Price</string>
+    <string name="offer_name">Offer Title</string>
+    <string name="offer_price">Offer Price</string>
 </resources>

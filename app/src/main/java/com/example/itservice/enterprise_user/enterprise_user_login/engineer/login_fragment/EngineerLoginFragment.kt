@@ -1,5 +1,6 @@
-package com.example.itservice.engineer.login_fragment
+package com.example.itservice.enterprise_user.enterprise_user_login.engineer.login_fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -9,15 +10,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.lifecycle.ViewModelProvider
 import com.example.itservice.R
+import com.example.itservice.admin.admin_dashboard.AdminDashBoardActivity
 import com.example.itservice.application.TAG
 import com.example.itservice.common.LoginActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.utils.ContextExtentions
 import com.example.itservice.databinding.FragmentEngineerLoginBinding
+import com.example.itservice.enterprise_user.enterprise_user_login.engineer.dashboard.EngineerDashBoardActivity
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,6 +46,7 @@ class EngineerLoginFragment : Fragment(), TextWatcher {
     private var etengineerPassword: AppCompatEditText? = null
     private var engineerEmail: String? = null
     private var engineerPassword: String? = null
+    private var progressBar: ProgressBar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,6 +75,8 @@ class EngineerLoginFragment : Fragment(), TextWatcher {
         btnSignIN = binding.btnSignInEngineer
         etengineerEmail = binding.etEmailEngineerLogin
         etengineerPassword = binding.etPasswordEngineerLogin
+        progressBar = binding.pbEngineerLogin
+
         btnSignIN.setOnClickListener {
             ContextExtentions.hideKeyboard(it, requireContext())
             engineerEmail = setErrorMessage(etengineerEmail, "Enter Valid email")
@@ -77,6 +85,18 @@ class EngineerLoginFragment : Fragment(), TextWatcher {
             if (engineerEmail != "" && engineerPassword != ""
             ) {
                 Log.d(TAG, "onViewCreated: READY for login")
+                progressBar?.visibility = View.VISIBLE
+                viewModel.signInUserWithEmailPassword(engineerEmail!!, engineerPassword!!)
+            }
+        }
+        viewModel.engineerAuthResult.observe(viewLifecycleOwner){
+            if(it.isSuccess){
+                progressBar?.visibility = View.GONE
+                Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_SHORT).show()
+                requireActivity().startActivity(Intent(requireContext(), EngineerDashBoardActivity::class.java))
+            }else{
+                progressBar?.visibility = View.GONE
+                Toast.makeText(requireContext(), "Login failed", Toast.LENGTH_SHORT).show()
             }
         }
         tvSignUp.setOnClickListener {

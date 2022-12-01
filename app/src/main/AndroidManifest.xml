@@ -14,70 +14,119 @@
         android:theme="@style/Theme.ITService"
         tools:targetApi="31">
         <activity
-            android:name=".ServiceListActivity"
+            android:name=".enterprise_user.enterprise_user_login.engineer.dashboard.EngineerDashBoardActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".TakenServiceCatagoryActivity"
+            android:name=".admin.modify_parts.ModifyPartsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ServiceDetailActivity"
+            android:name=".admin.offer_modify.OfferModifyActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".AskServiceActivity"
+            android:name=".admin.service_modify.ServiceModifyActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".SelectServiceCatagoryActivity"
+            android:name=".admin.modify_products.ProductModifyActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".CartActivity"
+            android:name=".admin.all_list_display.ListDisplayActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ProductDetailActivity"
+            android:name=".admin.admin_dashboard.AdminDashBoardActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ProductListActivity"
+            android:name=".user.taken_service_catagory.service_list.ServiceListActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".BuyOurProductsActivity"
+            android:name=".user.taken_service_catagory.TakenServiceCatagoryActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".UserdashboardActivity"
+            android:name=".user.service_detail.ServiceDetailActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".user.ask_service_catagory.ask_for_service.AskServiceActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".user.ask_service_catagory.SelectServiceCatagoryActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".user.product_catagory.product_list.product_details.buy_product.CartActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".user.product_catagory.product_list.product_details.ProductDetailActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".user.product_catagory.product_list.ProductListActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".user.product_catagory.BuyOurProductsActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".user.user_dash_board.UserdashboardActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

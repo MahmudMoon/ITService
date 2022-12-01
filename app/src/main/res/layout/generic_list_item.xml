@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    app:cardElevation="6dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:padding="8dp">
+        <TextView
+            android:id="@+id/tv_id_generic_list_adapter"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text=""
+            android:layout_weight="0.5"/>
+
+        <TextView
+            android:id="@+id/tv_name_generic_list_adapter"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text=""
+            android:layout_weight="0.5"/>
+
+        <TextView
+            android:id="@+id/tv_assigned_to_or_catagory_generic_list_adapter"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text=""
+            android:layout_weight="0.5"/>
+        <TextView
+            android:id="@+id/tv_status_generic_or_price_list_adapter"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text=""
+            android:layout_weight="0.5"/>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

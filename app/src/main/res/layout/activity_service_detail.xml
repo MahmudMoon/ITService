@@ -20,29 +20,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="ID: dfafasfdasfdsafadf2326"/>
-                />
+                android:text="ID: dfafasfdasfdsafadf2326" />
+            />
 
             <TextView
                 android:id="@+id/tv_assigned_engineer_service_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Engr. ABS"/>
+                android:text="Engr. ABS" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Status: Assigned" />
 
             <TextView
                 android:id="@+id/tv_service_status_service_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Problem statement: "/>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Status: Assigned"/>
+                android:text="Problem statement: " />
 
 
             <TextView
@@ -56,13 +55,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Parts Required: "/>
+                android:text="Parts Required: " />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_parts_requried_service_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"/>
+                android:layout_marginTop="4dp" />
 
         </LinearLayout>
     </ScrollView>

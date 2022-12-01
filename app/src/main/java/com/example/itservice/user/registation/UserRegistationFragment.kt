@@ -1,5 +1,6 @@
 package com.example.itservice.user.registation
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -9,7 +10,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.lifecycle.ViewModelProvider
 import com.example.itservice.R
@@ -18,6 +21,7 @@ import com.example.itservice.common.LoginActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.utils.ContextExtentions
 import com.example.itservice.databinding.FragmentUserRegistationBinding
+import com.example.itservice.user.user_dash_board.UserdashboardActivity
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -53,6 +57,8 @@ class UserRegistationFragment : Fragment(), TextWatcher {
     private var userTIN: String? = null
     private var userContactNumber: String? = null
     private var userNID: String? = null
+    private var progressBar: ProgressBar? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,6 +93,8 @@ class UserRegistationFragment : Fragment(), TextWatcher {
         etuserTIN = binding.etTinUserRegistation
         etuserContactNumber = binding.etContactNumberUserRegistation
         etuserNID = binding.etNidUserRegistation
+        progressBar = binding.pbUserRegistration
+        
         btnSignUp.setOnClickListener {
             ContextExtentions.hideKeyboard(it, requireContext())
             userName = setErrorMessage(etuserName, "Enter Valid Name")
@@ -102,7 +110,27 @@ class UserRegistationFragment : Fragment(), TextWatcher {
                 && userPassword != "" && userCompanyName != "" && userCompanyAddress != null && userTIN != ""
                 && userContactNumber != "" && userNID != ""
             ) {
-                Log.d(TAG, "onViewCreated: READY for registation")
+                progressBar?.visibility = View.VISIBLE
+                viewModel.registerUserWithEmailPassword(
+                    userName!!,
+                    userEmail!!,
+                    userPassword!!,
+                    userTIN!!,
+                    userNID!!,
+                    userCompanyName!!,
+                    userCompanyAddress!!,
+                    userContactNumber!!)
+            }
+        }
+
+        viewModel.userAuthResult.observe(viewLifecycleOwner){
+            if(it.isSuccess){
+                progressBar?.visibility = View.GONE
+                Toast.makeText(requireContext(), "Registration successful", Toast.LENGTH_SHORT).show()
+                requireActivity().startActivity(Intent(requireContext(), UserdashboardActivity::class.java))
+            }else{
+                progressBar?.visibility = View.GONE
+                Toast.makeText(requireContext(), "Registration failed", Toast.LENGTH_SHORT).show()
             }
         }
         

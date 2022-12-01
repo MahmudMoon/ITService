@@ -1,5 +1,6 @@
 package com.example.itservice.admin.registration
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -9,14 +10,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.lifecycle.ViewModelProvider
 import com.example.itservice.R
+import com.example.itservice.admin.admin_dashboard.AdminDashBoardActivity
 import com.example.itservice.application.TAG
 import com.example.itservice.common.LoginActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.utils.ContextExtentions
+import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.databinding.FragmentAdminRegistrationBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -43,6 +48,7 @@ class AdminRegistrationFragment : Fragment(), TextWatcher {
     private var adminName: String? = null
     private var adminEmail: String? = null
     private var adminPassword: String? = null
+    private var progressBar: ProgressBar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,6 +74,8 @@ class AdminRegistrationFragment : Fragment(), TextWatcher {
         etadminName = binding.etFullnameAdminRegistation
         etadminEmail = binding.etEmailAdminRegistation
         etadminPassword = binding.etPasswordAdminRegistation
+        progressBar = binding.pbAdminRegistration
+
         viewModel = ViewModelProvider(
             this,
             ViewModelProviderFactory()
@@ -81,8 +89,22 @@ class AdminRegistrationFragment : Fragment(), TextWatcher {
             if (adminName != "" && adminEmail != "" && adminPassword != ""
             ) {
                 Log.d(TAG, "onViewCreated: READY for registation")
+                progressBar?.visibility = View.VISIBLE
+                viewModel.registerUserWithEmailPassword(adminName!!, adminEmail!!, adminPassword!!)
             }
         }
+        viewModel.adminAuthResult.observe(viewLifecycleOwner){
+            if(it.isSuccess){
+                progressBar?.visibility = View.GONE
+                Toast.makeText(requireContext(), "Registaration successful", Toast.LENGTH_SHORT).show()
+                requireActivity().startActivity(Intent
+                    (requireContext(), AdminDashBoardActivity::class.java))
+            }else{
+                progressBar?.visibility = View.GONE
+                Toast.makeText(requireContext(), "Registaration failed", Toast.LENGTH_SHORT).show()
+            }
+        }
+
         tvSignIn.setOnClickListener {
             try {
                 (requireActivity() as LoginActivity).navController.navigate(R.id.action_adminRegistrationFragment_to_adminLoginFragment)
