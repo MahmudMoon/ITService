@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/engineerLoginFragment"
-        android:name="com.example.itservice.enterprise_user.enterprise_user_login.engineer.login_fragment.EngineerLoginFragment"
+        android:name="com.example.itservice.engineer.login_fragment.EngineerLoginFragment"
         android:label="fragment_engineer_login"
         tools:layout="@layout/fragment_engineer_login" >
         <action
@@ -60,7 +60,7 @@
     </fragment>
     <fragment
         android:id="@+id/engineerRegistationFragment"
-        android:name="com.example.itservice.enterprise_user.enterprise_user_login.engineer.registration.EngineerRegistationFragment"
+        android:name="com.example.itservice.engineer.registration.EngineerRegistationFragment"
         android:label="fragment_engineer_registation"
         tools:layout="@layout/fragment_engineer_registation" >
         <action

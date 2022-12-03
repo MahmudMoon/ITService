@@ -16,6 +16,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:visibility="gone"/>
 
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -226,6 +228,161 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
+            <!--Parts query -->
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Picks Qeury:"
+                android:layout_marginTop="20dp"
+                android:clickable="false"/>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.33"
+                    android:background="@drawable/shape_edittext"
+                    android:padding="3dip"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:text="@string/part_name" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.33"
+                    android:background="@drawable/shape_edittext"
+                    android:padding="3dip"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:text="@string/part_price" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.33"
+                    android:background="@drawable/shape_edittext"
+                    android:padding="3dip"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:text="@string/quantity" />
+                <TextView
+                    android:id="@+id/tv_accept_if_admin"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:background="@drawable/shape_edittext"
+                    android:padding="3dip"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:text="Accept"
+                    android:visibility="gone"
+                    />
+                <TextView
+                    android:id="@+id/tv_decline_if_admin"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:background="@drawable/shape_edittext"
+                    android:padding="3dip"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:text="Decline"
+                    android:visibility="gone"/>
+
+
+            </TableRow>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_parts_required"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:id="@+id/lly_confirmation_dialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:orientation="vertical"
+                android:background="#7E64AC"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="How many unit do you need?"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+                <EditText
+                    android:id="@+id/et_unit_quantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:maxLines="1"
+                    android:inputType="number"
+                    android:hint="Enter Unit Quantity"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/btnAddConfirm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Add"
+                        android:layout_weight="0.5"
+                        android:layout_margin="4dp"
+                        />
+                    <Button
+                        android:id="@+id/btnCancelConfirm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cancel"
+                        android:layout_weight="0.5"
+                        android:layout_margin="4dp"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"/>
+
+
+
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_pick_a_part"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Pick a part"/>
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/available_parts_containerFragmentContainer"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintTop_toTopOf="parent"
+                app:defaultNavHost="true"
+                app:navGraph="@navigation/parts_fragment_map"
+                />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSubmitservice_service_modify"

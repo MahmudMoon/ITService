@@ -14,6 +14,20 @@
         android:theme="@style/Theme.ITService"
         tools:targetApi="31">
         <activity
+            android:name=".common.parts_pack.add_part.AddPartActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".common.display_parts.DisplayPartsActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".common.service_pack.display_service_catagory.display_brand_list.display_service.show_service.ShowServiceActivity"
             android:exported="false">
             <meta-data
@@ -70,7 +84,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".admin.modify_parts.ModifyPartsActivity"
+            android:name=".common.parts_pack.modify_parts.ModifyPartsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -92,13 +106,6 @@
         </activity>
         <activity
             android:name=".admin.modify_products.ProductModifyActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".admin.all_list_display.ListDisplayActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -132,7 +139,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".user.ask_service_catagory.UserServiceActivity"
             android:exported="false">

@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:stretchColumns="0.99">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".common.parts_pack.display_parts.available_parts_fragment.PartsFragment">
 
     <TableRow
+        android:id="@+id/tb_row_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="0.99"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/tv_partName"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.33"
             android:background="@drawable/shape_edittext_for_partsavailable"
             android:padding="3dip"
             android:gravity="center"
-            android:text="Mother Board" />
+            android:text="Parts Name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/tv_partPrice"
@@ -30,7 +33,9 @@
             android:background="@drawable/shape_edittext_for_partsavailable"
             android:padding="3dip"
             android:gravity="center"
-            android:text="25000" />
+            android:text="Price"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/tv_partSelectedQuantity"
@@ -40,9 +45,16 @@
             android:background="@drawable/shape_edittext_for_partsavailable"
             android:padding="3dip"
             android:gravity="center"
-            android:text="25" />
+            android:text="Quantity"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textStyle="bold"/>
 
 
     </TableRow>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_display_parts_available"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/tb_row_1"/>
 
-</TableLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

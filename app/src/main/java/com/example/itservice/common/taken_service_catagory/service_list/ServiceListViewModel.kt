@@ -60,36 +60,23 @@ class ServiceListViewModel: ViewModel() {
             pendingTaskList.clear()
             assignedTaskList.clear()
             completedTaskList.clear()
-            snapshot.children.forEach { uid ->
-                val uid = uid.key.toString()
-                Log.d(TAG, "onDataChange: ${uid}")
-                snapshot.ref.child(uid).addValueEventListener(object: ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        snapshot.children.forEach { firstChild ->
-                            val takenService = firstChild.getValue<ServicesTaken>()
-                            Log.d(TAG, "onDataChange: ${takenService?.serviceID}")
-                            if(takenService?.status == Constants.ServiceStatus.Pending.name){
-                                pendingTaskList.add(takenService)
-                            }else if(takenService?.status == Constants.ServiceStatus.Assigned.name){
-                                assignedTaskList.add(takenService)
-                            }else if(takenService?.status == Constants.ServiceStatus.Completed.name){
-                                completedTaskList.add(takenService)
-                            }
-                            listOfServices.add(takenService!!)
-                        }
-                        _allServiceData.postValue(listOfServices)
-                    }
-
-                    override fun onCancelled(error: DatabaseError) {
-                        Log.d(TAG, "onCancelled: ${error.message}")
-                    }
-
-                })
-
+            snapshot.children.forEach { firstChild ->
+                val takenService = firstChild.getValue<ServicesTaken>()
+                Log.d(TAG, "onDataChange: ${takenService?.serviceID}")
+                if(takenService?.status == Constants.ServiceStatus.Pending.name){
+                    pendingTaskList.add(takenService)
+                }else if(takenService?.status == Constants.ServiceStatus.Assigned.name){
+                    assignedTaskList.add(takenService)
+                }else if(takenService?.status == Constants.ServiceStatus.Completed.name){
+                    completedTaskList.add(takenService)
+                }
+                listOfServices.add(takenService!!)
             }
+            _allServiceData.postValue(listOfServices)
         }
 
         override fun onCancelled(error: DatabaseError) {
+            Log.d(TAG, "onCancelled: ${error.message}")
         }
 
     }
@@ -106,7 +93,6 @@ class ServiceListViewModel: ViewModel() {
 
         var path = getRootRef()
         if(uid != null) {
-            path = path.child(uid)
             getServiceTakenObjcets(path)
         }else {
             path.addValueEventListener(userUidListListener)

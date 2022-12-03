@@ -96,10 +96,8 @@ class ShowServiceViewModel: ViewModel() {
     }
 
     fun addNewServiceTakenRequest(takenService: ServicesTaken) {
-        val uid = takenService.createdByID!!
         val rootRef = DbInstance.getDbInstance().reference
             .child(Constants.TakenSericeRoot)
-            .child(uid)
         val key = rootRef.push().key
         takenService.id = key
         rootRef.child(key!!)

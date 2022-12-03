@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".admin.modify_parts.ModifyPartsActivity">
+    tools:context=".common.parts_pack.modify_parts.ModifyPartsActivity">
 
     <ScrollView
         android:layout_width="match_parent"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".admin.service_pack.add_service.add_catagories.AddCatagoryActivity">
+    tools:context=".common.service_pack.add_catagories.AddCatagoryActivity">
 
     <ProgressBar
         android:id="@+id/pbAddCatagory"

@@ -1,9 +1,8 @@
-package com.example.itservice.admin.modify_parts
+package com.example.itservice.common.parts_pack.modify_parts
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.example.itservice.R
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.databinding.ActivityModifyPartsBinding
 

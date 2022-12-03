@@ -51,9 +51,25 @@ class ServiceListActivity : AppCompatActivity() {
         viewModel.allServiceData.observe(this){
             Log.d(TAG, "onCreate: ${it.size}")
             val list = viewModel.getDataForList(statusType)
-            Log.d(TAG, "onCreate: ${list?.size}")
             aryList?.clear()
-            aryList?.addAll(list!!)
+            if(DbInstance.getLastLoginAs(this@ServiceListActivity).equals(Constants.user)){
+                val uid = DbInstance.getUserUid(this@ServiceListActivity)
+               list?.forEach { item ->
+                   if(item.createdByID == uid){
+                       aryList?.add(item)
+                   }
+               }
+            }else if(DbInstance.getLastLoginAs(this@ServiceListActivity).equals(Constants.engineer)) {
+                val uid = DbInstance.getUserUid(this@ServiceListActivity)
+                list?.forEach { item ->
+                    if(item.assignedEngineerID == uid){
+                        aryList?.add(item)
+                    }
+                }
+            } else if(DbInstance.getLastLoginAs(this@ServiceListActivity).equals(Constants.admin)){
+                aryList?.addAll(list!!)
+            }
+
             rvAdapter.notifyDataSetChanged()
         }
 

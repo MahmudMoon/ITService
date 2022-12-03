@@ -1,17 +1,22 @@
 package com.example.itservice.common.taken_service_catagory.service_list.service_modify
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.itservice.application.TAG
 import com.example.itservice.common.models.DbUpdateResult
 import com.example.itservice.common.models.Engineer
+import com.example.itservice.common.models.Parts
 import com.example.itservice.common.models.ServicesTaken
 import com.example.itservice.common.utils.Constants
+import com.example.itservice.common.utils.Constants.partQuantity
 import com.example.itservice.common.utils.DbInstance
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.getValue
+import kotlin.math.log
 
 class ServiceModifyViewModel: ViewModel() {
     private var _takenObject = MutableLiveData<ServicesTaken>()
@@ -25,6 +30,17 @@ class ServiceModifyViewModel: ViewModel() {
     private val _engData = MutableLiveData<Engineer>()
     val engData: LiveData<Engineer>
         get() = _engData
+
+    private val listenerForPartList = object : ValueEventListener{
+        override fun onDataChange(snapshot: DataSnapshot) {
+           val list = snapshot.getValue<List<Parts>>()
+            val size = list?.size
+        }
+
+        override fun onCancelled(error: DatabaseError) {
+        }
+
+    }
 
     private val engineerDataListener = object: ValueEventListener{
         override fun onDataChange(snapshot: DataSnapshot) {
@@ -50,14 +66,12 @@ class ServiceModifyViewModel: ViewModel() {
 
     fun getTakenServiceObject(createrId: String?, takeServiceId: String?) {
         DbInstance.getDbInstance().reference.child(Constants.TakenSericeRoot)
-            .child(createrId!!)
             .child(takeServiceId!!)
             .addValueEventListener(takenServiceListener)
     }
 
     fun updateTakenService(takenService: ServicesTaken) {
         DbInstance.getDbInstance().reference.child(Constants.TakenSericeRoot)
-            .child(takenService.createdByID!!)
             .child(takenService.id!!)
             .setValue(takenService)
             .addOnCompleteListener {
@@ -73,6 +87,35 @@ class ServiceModifyViewModel: ViewModel() {
         DbInstance.getDbInstance().reference.child(Constants.engineer)
             .child(engineerUid)
             .addValueEventListener(engineerDataListener)
+    }
+
+    fun updateValueOfpartsInRootTable(newlyAddedPart: Parts) {
+        newlyAddedPart.partAvailbleAfterRequest = null
+        DbInstance.getDbInstance().reference.child(Constants.PartsRoot)
+            .child(newlyAddedPart.partID!!)
+            .child(Constants.partQuantity)
+            .setValue(newlyAddedPart.partQuantity)
+    }
+
+    fun updatePartData(discardParts: HashMap<String, Int>) {
+        val roofRef = DbInstance.getDbInstance().reference.child(Constants.PartsRoot)
+        val iterator =  discardParts.iterator()
+        iterator.forEach { data ->
+           val res = roofRef.child(data.key).child(partQuantity).addListenerForSingleValueEvent(object : ValueEventListener{
+               override fun onDataChange(snapshot: DataSnapshot) {
+                   var q = snapshot.getValue<Int>()!!
+                   q+=data.value
+                   roofRef.child(data.key).child(partQuantity).setValue(q)
+               }
+
+               override fun onCancelled(error: DatabaseError) {
+
+               }
+
+           })
+
+        }
+
     }
 
 }

@@ -14,5 +14,6 @@ data class ServicesTaken(var id: String? = null,
                          var modelName: String? = null,
                          var catagoryName: String? = null,
                          var serviceCost: String? = null,
-                         var problemStatement: String? = null
+                         var problemStatement: String? = null,
+                         var parts: ArrayList<Parts>? = null
                     )

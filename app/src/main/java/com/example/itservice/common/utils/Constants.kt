@@ -21,6 +21,10 @@ object Constants {
     const val takenServiceId = "takenServiceId"
     const val userID = "userID"
     const val ProblemStatement = "problemStatement"
+    const val PartsRoot = "Parts"
+    const val partQuantity = "partQuantity"
+    const val partID = "partID"
+    const val parts = "parts"
 
     enum class ServiceStatus{
         Pending,

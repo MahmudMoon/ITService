@@ -44,4 +44,5 @@
     <string name="service_id">Service ID</string>
     <string name="service_name">Service Name</string>
     <string name="service_catagory">Service Catagory</string>
+    <string name="quantity">Quantity</string>
 </resources>

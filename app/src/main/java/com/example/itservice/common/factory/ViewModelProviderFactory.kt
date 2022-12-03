@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.itservice.admin.admin_dashboard.AdminDashBoradViewModel
 import com.example.itservice.admin.login.AdminLoginViewModel
-import com.example.itservice.admin.modify_parts.PartsModifyViewModel
+import com.example.itservice.common.parts_pack.modify_parts.PartsModifyViewModel
 import com.example.itservice.admin.modify_products.ProductModifyViewModel
 import com.example.itservice.admin.offer_modify.OfferModifyViewModel
 import com.example.itservice.admin.registration.AdminRegistrationViewModel
@@ -15,6 +15,9 @@ import com.example.itservice.admin.service_pack.add_service.add_brandes.add_bran
 import com.example.itservice.common.service_pack.display_service_catagory.DisplayServiceCatagoryViewModel
 import com.example.itservice.common.service_pack.display_service_catagory.display_brand_list.BrandListDisplayViewModel
 import com.example.itservice.admin.service_pack.display_service_catagory.display_service_list.display_service.DisplayServiceListViewModel
+import com.example.itservice.common.display_parts.DisplayPartViewModel
+import com.example.itservice.common.parts_pack.add_part.AddPartViewModel
+import com.example.itservice.common.parts_pack.display_parts.available_parts_fragment.PartsViewModel
 import com.example.itservice.common.service_pack.display_service_catagory.display_brand_list.display_service.show_service.ShowServiceViewModel
 import com.example.itservice.common.splash.SplashViewModel
 import com.example.itservice.engineer.dashboard.EngineerDashBoradViewModel
@@ -66,6 +69,9 @@ class ViewModelProviderFactory @Inject constructor(): ViewModelProvider.Factory 
         if(modelClass.isAssignableFrom(DisplayServiceListViewModel::class.java)) return DisplayServiceListViewModel() as T
         if(modelClass.isAssignableFrom(ShowServiceViewModel::class.java)) return ShowServiceViewModel() as T
         if(modelClass.isAssignableFrom(SearchForViewModel::class.java)) return SearchForViewModel() as T
+        if(modelClass.isAssignableFrom(PartsViewModel::class.java)) return PartsViewModel() as T
+        if(modelClass.isAssignableFrom(DisplayPartViewModel::class.java)) return DisplayPartViewModel() as T
+        if(modelClass.isAssignableFrom(AddPartViewModel::class.java)) return AddPartViewModel() as T
         return super.create(modelClass)
     }
 }

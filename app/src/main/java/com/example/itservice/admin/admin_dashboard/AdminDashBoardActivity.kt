@@ -1,15 +1,15 @@
 package com.example.itservice.admin.admin_dashboard
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.itservice.R
 import com.example.itservice.common.LoginActivity
+import com.example.itservice.common.display_parts.DisplayPartsActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.service_pack.display_service_catagory.DisplayServiceCatagoryActivity
 import com.example.itservice.common.taken_service_catagory.TakenServiceCatagoryActivity
@@ -24,6 +24,7 @@ class AdminDashBoardActivity : AppCompatActivity() {
     private lateinit var llyProductsModify: LinearLayout
     private lateinit var llyServiceModify: LinearLayout
     private lateinit var llyOffersModify: LinearLayout
+    private lateinit var llyPartsModify: LinearLayout
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +37,7 @@ class AdminDashBoardActivity : AppCompatActivity() {
         llyOffersModify = binding.llyEditOffer
         llyProductsModify = binding.llyEditProduct
         llyServiceModify = binding.llyEditService
+        llyPartsModify = binding.llyEditParts
 
         viewModel = ViewModelProvider(this, ViewModelProviderFactory()).get(AdminDashBoradViewModel::class.java)
 
@@ -50,6 +52,10 @@ class AdminDashBoardActivity : AppCompatActivity() {
         }
         llyProductsModify.setOnClickListener {
 
+        }
+
+        llyPartsModify.setOnClickListener {
+            startActivity(Intent(this@AdminDashBoardActivity, DisplayPartsActivity::class.java))
         }
 
     }

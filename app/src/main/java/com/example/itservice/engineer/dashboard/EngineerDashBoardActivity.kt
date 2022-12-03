@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.itservice.R
 import com.example.itservice.common.LoginActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
+import com.example.itservice.common.taken_service_catagory.service_list.ServiceListActivity
 import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.databinding.ActivityEngineerDashBoardBinding
@@ -24,6 +25,16 @@ class EngineerDashBoardActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this, ViewModelProviderFactory()).get(
             EngineerDashBoradViewModel::class.java)
         DbInstance.setLastLoginAs(this@EngineerDashBoardActivity, Constants.engineer)
+
+        binding.llyAssignedTasksView.setOnClickListener {
+            startActivity(Intent(this@EngineerDashBoardActivity, ServiceListActivity::class.java)
+                .putExtra(Constants.statusType, Constants.ServiceStatus.Assigned.name))
+        }
+
+        binding.llyCompletedTasksView.setOnClickListener {
+            startActivity(Intent(this@EngineerDashBoardActivity, ServiceListActivity::class.java)
+                .putExtra(Constants.statusType, Constants.ServiceStatus.Completed.name))
+        }
 
     }
 

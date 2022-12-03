@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parts_fragment_map"
+    app:startDestination="@id/partsFragment">
+
+
+    <fragment
+        android:id="@+id/partsFragment"
+        android:name="com.example.itservice.common.parts_pack.display_parts.available_parts_fragment.PartsFragment"
+        android:label="fragment_parts"
+        tools:layout="@layout/fragment_parts" />
+</navigation>
