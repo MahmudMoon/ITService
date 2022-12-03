@@ -17,7 +17,7 @@ import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.databinding.ActivitySlpashBinding
-import com.example.itservice.enterprise_user.enterprise_user_login.engineer.dashboard.EngineerDashBoardActivity
+import com.example.itservice.engineer.dashboard.EngineerDashBoardActivity
 import com.example.itservice.user.user_dash_board.UserdashboardActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

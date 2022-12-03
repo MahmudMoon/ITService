@@ -4,11 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".admin.service_modify.ServiceModifyActivity">
+    tools:context=".common.taken_service_catagory.service_list.service_modify.ServiceModifyActivity">
+
+    <ProgressBar
+        android:id="@+id/pb_modifiy_taken_service"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"/>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -19,39 +29,65 @@
                 android:layout_height="wrap_content"
                 android:background="@color/purple_700"
                 android:gravity="center"
-                android:text="Add a new service"
+                android:text="Modify a service"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/et_layer_serviceName_modify_services"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_serviceName_modify_services"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Service Name"
-                    android:inputType="textEmailAddress" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/et_layer_service_catagory_modify_services"
+                android:id="@+id/et_layer_service_quantity_service_modify"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_service_catagory_modify_services"
+                    android:id="@+id/et_service_model_service_modify"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Service Catagory"
-                    android:inputType="numberDecimal" />
+                    android:hint="Model Name"
+                    android:inputType="numberSigned" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/et_layer_serviceID_modify_services"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_marginTop="16dp"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_serviceID_modify_services"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/service_id"
+                    android:inputType="textEmailAddress" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="  Select Status"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/spn_layer_select_catagory_service_modify"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/select_catagory"
+                android:minHeight="60dp">
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spn_select_status_service_modify"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -72,6 +108,89 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/et_layer_serviceAssignedTo_modify_services"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.8"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_serviceAssignedTo_modify_services"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Assigned To"
+                        android:inputType="none" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+                <androidx.constraintlayout.utils.widget.ImageFilterButton
+                    android:id="@+id/ibtn_search_eng"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.2"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="8dp"
+                    android:src="@drawable/ic_baseline_supervised_user_circle_24"
+                    android:scaleType="fitCenter"
+                    android:background="@null"/>
+            </LinearLayout>
+
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/assignedEngineerSearchFragmentContainer"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintTop_toTopOf="parent"
+                app:defaultNavHost="true"
+                app:navGraph="@navigation/search_engineer"
+                />
+
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/et_layer_serviceCreatedBy_modify_services"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_serviceCreatedBy_modify_services"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Created By"
+                    android:inputType="numberDecimal" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/et_layer_service_catagory_modify_services"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_service_catagory_modify_services"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/service_catagory"
+                    android:inputType="numberDecimal" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/et_layer_brand_name_service_modify"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -88,51 +207,13 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/et_layer_service_quantity_service_modify"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_service_quantity_service_modify"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Model Name"
-                    android:inputType="numberSigned" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="  Select Status"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/spn_layer_select_catagory_service_modify"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/select_catagory"
-                android:minHeight="60dp">
-
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/spn_select_catagory_service_modify"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/et_layer_problem_statement_service_service_modify"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:minHeight="250dp">
+                android:layout_marginTop="16dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_problem_statement_service_service_modify"
@@ -144,6 +225,8 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSubmitservice_service_modify"
                 android:layout_width="match_parent"
@@ -154,7 +237,7 @@
                 android:background="@color/purple_700"
                 android:letterSpacing="0.15"
                 android:padding="6dp"
-                android:text="Add service"
+                android:text="Modify service"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 

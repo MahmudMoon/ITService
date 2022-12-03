@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/search_engineer"
+    app:startDestination="@id/searchForFragment">
+
+    <fragment
+        android:id="@+id/searchForFragment"
+        android:name="com.example.itservice.common.taken_service_catagory.service_list.service_modify.search_eng_frag.SearchForFragment"
+        android:label="fragment_search_for"
+        tools:layout="@layout/fragment_search_for" />
+</navigation>

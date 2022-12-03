@@ -17,8 +17,9 @@ class AdminLoginViewModel: ViewModel() {
         DbInstance.getAuthInstance().signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task->
                 if(task.isSuccessful){
+                    val uid = task.result.user?.uid
                     //save data in realtime db
-                    _adminAuthResult.postValue(AuthResult(Constants.success,null))
+                    _adminAuthResult.postValue(AuthResult(Constants.success,uid))
                 }else{
                     //failed to register
                     _adminAuthResult.postValue(AuthResult(Constants.failure,null))

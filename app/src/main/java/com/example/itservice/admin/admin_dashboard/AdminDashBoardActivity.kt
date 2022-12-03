@@ -11,6 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.itservice.R
 import com.example.itservice.common.LoginActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
+import com.example.itservice.common.service_pack.display_service_catagory.DisplayServiceCatagoryActivity
+import com.example.itservice.common.taken_service_catagory.TakenServiceCatagoryActivity
 import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.databinding.ActivityAdminDashBoardBinding
@@ -18,9 +20,7 @@ import com.example.itservice.databinding.ActivityAdminDashBoardBinding
 class AdminDashBoardActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAdminDashBoardBinding
     private lateinit var viewModel: AdminDashBoradViewModel
-    private lateinit var llyPendingTasks: LinearLayout
-    private lateinit var llyAssignedTasks: LinearLayout
-    private lateinit var llyCompletedTasks: LinearLayout
+    private lateinit var llyAnalysisServiceTakenTasks: LinearLayout
     private lateinit var llyProductsModify: LinearLayout
     private lateinit var llyServiceModify: LinearLayout
     private lateinit var llyOffersModify: LinearLayout
@@ -32,30 +32,21 @@ class AdminDashBoardActivity : AppCompatActivity() {
         setContentView(binding.root)
         DbInstance.setLastLoginAs(this@AdminDashBoardActivity, Constants.admin)
 
-        llyAssignedTasks = binding.llyAssignedTasksView
-        llyCompletedTasks = binding.llyCompletedTasksView
-        llyPendingTasks = binding.llyPendingTasksView
+        llyAnalysisServiceTakenTasks = binding.llyCheckServicesView
         llyOffersModify = binding.llyEditOffer
         llyProductsModify = binding.llyEditProduct
         llyServiceModify = binding.llyEditService
 
         viewModel = ViewModelProvider(this, ViewModelProviderFactory()).get(AdminDashBoradViewModel::class.java)
 
-
-        llyAssignedTasks.setOnClickListener {
-
-        }
-        llyPendingTasks.setOnClickListener {
-
-        }
-        llyCompletedTasks.setOnClickListener {
-
+        llyAnalysisServiceTakenTasks.setOnClickListener {
+            startActivity(Intent(this@AdminDashBoardActivity, TakenServiceCatagoryActivity::class.java))
         }
         llyOffersModify.setOnClickListener {
 
         }
         llyServiceModify.setOnClickListener {
-
+            startActivity(Intent(this@AdminDashBoardActivity, DisplayServiceCatagoryActivity::class.java))
         }
         llyProductsModify.setOnClickListener {
 

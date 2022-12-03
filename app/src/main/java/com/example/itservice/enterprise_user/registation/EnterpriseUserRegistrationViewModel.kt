@@ -33,7 +33,7 @@ class EnterpriseUserRegistrationViewModel: ViewModel() {
                         .addOnCompleteListener{task->
                             if(task.isSuccessful){
                                 // stored in db
-                                _enterprise_userAuthResult.postValue(AuthResult(Constants.success,null))
+                                _enterprise_userAuthResult.postValue(AuthResult(Constants.success,enterprise_userUid))
                             }else{
                                 _enterprise_userAuthResult.postValue(AuthResult(Constants.failure,null))
                             }

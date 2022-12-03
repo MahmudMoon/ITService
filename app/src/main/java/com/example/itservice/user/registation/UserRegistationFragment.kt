@@ -20,6 +20,7 @@ import com.example.itservice.application.TAG
 import com.example.itservice.common.LoginActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.utils.ContextExtentions
+import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.databinding.FragmentUserRegistationBinding
 import com.example.itservice.user.user_dash_board.UserdashboardActivity
 
@@ -125,6 +126,8 @@ class UserRegistationFragment : Fragment(), TextWatcher {
 
         viewModel.userAuthResult.observe(viewLifecycleOwner){
             if(it.isSuccess){
+                val uid = it.resultData as String
+                DbInstance.setUserUid(requireContext(), uid)
                 progressBar?.visibility = View.GONE
                 Toast.makeText(requireContext(), "Registration successful", Toast.LENGTH_SHORT).show()
                 requireActivity().startActivity(Intent(requireContext(), UserdashboardActivity::class.java))

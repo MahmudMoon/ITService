@@ -2,12 +2,10 @@ package com.example.itservice.admin.all_list_display
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.itservice.common.models.*
 import com.example.itservice.databinding.GenericListItemBinding
-import okhttp3.internal.concurrent.Task
 
 class GenericListAdapter(val context: Context, val list: List<Any>): RecyclerView.Adapter<GenericListAdapter.GenericListHolder>(){
     class GenericListHolder(itemBinding: GenericListItemBinding): RecyclerView.ViewHolder(itemBinding.root){
@@ -24,7 +22,7 @@ class GenericListAdapter(val context: Context, val list: List<Any>): RecyclerVie
 
     override fun onBindViewHolder(holder: GenericListHolder, position: Int) {
         val item = list.get(position)
-        if(item is Services){
+        if(item is ServicesTaken){
             //item is for Service modify
 
         }else if(item is Product){

@@ -17,7 +17,9 @@ class UserLoginViewModel : ViewModel() {
             .addOnCompleteListener { task->
                 if(task.isSuccessful){
                     //save data in realtime db
-                    _userAuthResult.postValue(AuthResult(Constants.success,null))
+                     val uid = task.result.user?.uid
+                     //DbInstance.setUserUid(uid)
+                    _userAuthResult.postValue(AuthResult(Constants.success,uid))
                 }else{
                     //failed to register
                     _userAuthResult.postValue(AuthResult(Constants.failure,null))

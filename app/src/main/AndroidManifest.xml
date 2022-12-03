@@ -14,7 +14,56 @@
         android:theme="@style/Theme.ITService"
         tools:targetApi="31">
         <activity
-            android:name=".enterprise_user.enterprise_user_login.engineer.dashboard.EngineerDashBoardActivity"
+            android:name=".common.service_pack.display_service_catagory.display_brand_list.display_service.show_service.ShowServiceActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".common.service_pack.display_service_catagory.display_brand_list.display_service.DisplayServiceListActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".admin.service_pack.add_service.add_brandagories.add_brand.AddBrandActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".common.service_pack.display_service_catagory.display_brand_list.BrandListDisplayActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".common.service_pack.display_service_catagory.DisplayServiceCatagoryActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".common.service_pack.add_catagories.AddCatagoryActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".common.service_pack.add_catagories.add_brand.add_service.AddServiceActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".engineer.dashboard.EngineerDashBoardActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -35,7 +84,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".admin.service_modify.ServiceModifyActivity"
+            android:name=".common.taken_service_catagory.service_list.service_modify.ServiceModifyActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -63,14 +112,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".user.taken_service_catagory.service_list.ServiceListActivity"
+            android:name=".common.taken_service_catagory.service_list.ServiceListActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".user.taken_service_catagory.TakenServiceCatagoryActivity"
+            android:name=".common.taken_service_catagory.TakenServiceCatagoryActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -83,15 +132,9 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
-            android:name=".user.ask_service_catagory.ask_for_service.AskServiceActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".user.ask_service_catagory.SelectServiceCatagoryActivity"
+            android:name=".user.ask_service_catagory.UserServiceActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

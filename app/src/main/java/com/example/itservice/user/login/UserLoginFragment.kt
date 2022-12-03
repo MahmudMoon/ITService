@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,14 +13,15 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatEditText
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.itservice.R
 import com.example.itservice.application.TAG
 import com.example.itservice.common.LoginActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.utils.ContextExtentions
+import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.databinding.FragmentUserLoginBinding
-import com.example.itservice.enterprise_user.enterprise_user_login.engineer.dashboard.EngineerDashBoardActivity
 import com.example.itservice.user.user_dash_board.UserdashboardActivity
 
 // TODO: Rename parameter arguments, choose names that match
@@ -93,6 +93,9 @@ class UserLoginFragment : Fragment(), TextWatcher {
         viewModel.userAuthResult.observe(viewLifecycleOwner){
             if(it.isSuccess){
                 progressBar?.visibility = View.GONE
+                val uid = it.resultData as String
+                Log.d(TAG, "onViewCreated: uid: ${uid}")
+                DbInstance.setUserUid(requireContext(), uid)
                 Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_SHORT).show()
                 requireActivity().startActivity(Intent(requireContext(), UserdashboardActivity::class.java))
             }else{

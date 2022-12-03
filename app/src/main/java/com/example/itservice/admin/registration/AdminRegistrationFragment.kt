@@ -95,6 +95,8 @@ class AdminRegistrationFragment : Fragment(), TextWatcher {
         }
         viewModel.adminAuthResult.observe(viewLifecycleOwner){
             if(it.isSuccess){
+                val uid = it.resultData as String
+                DbInstance.setUserUid(requireContext(), uid)
                 progressBar?.visibility = View.GONE
                 Toast.makeText(requireContext(), "Registaration successful", Toast.LENGTH_SHORT).show()
                 requireActivity().startActivity(Intent

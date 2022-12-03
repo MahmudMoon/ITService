@@ -7,10 +7,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.itservice.common.models.Catagories
+import com.example.itservice.common.models.ProductCatagories
 import com.example.itservice.databinding.ProductCatItemProductBinding
 
-class BuyOurProductCatagoryAdapter(val context: Context, val catagoryItems: List<Catagories>) : RecyclerView.Adapter<BuyOurProductCatagoryAdapter.CatagoryViewHolder>() {
+class BuyOurProductCatagoryAdapter(val context: Context, val catagoryItems: List<ProductCatagories>) : RecyclerView.Adapter<BuyOurProductCatagoryAdapter.CatagoryViewHolder>() {
     class CatagoryViewHolder(binding: ProductCatItemProductBinding): RecyclerView.ViewHolder(binding.root){
         val imageView: ImageView = binding.ivBaseItemView
         val textView: TextView = binding.tvBaseItemName

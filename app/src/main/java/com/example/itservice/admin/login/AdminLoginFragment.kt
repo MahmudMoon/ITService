@@ -21,6 +21,7 @@ import com.example.itservice.application.TAG
 import com.example.itservice.common.LoginActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.utils.ContextExtentions
+import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.databinding.FragmentAdminLoginBinding
 
 private const val ARG_PARAM1 = "param1"
@@ -81,6 +82,8 @@ class AdminLoginFragment : Fragment(), TextWatcher {
         viewModel.adminAuthResult.observe(viewLifecycleOwner){
             if(it.isSuccess){
                 progressBar?.visibility = View.GONE
+                val uid = it.resultData as String
+                DbInstance.setUserUid(requireContext(), uid)
                 Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_SHORT).show()
                 requireActivity().startActivity(Intent(requireContext(), AdminDashBoardActivity::class.java))
             }else{

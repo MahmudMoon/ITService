@@ -35,7 +35,8 @@ class UserRegistationViewModel : ViewModel() {
                         .addOnCompleteListener{task->
                             if(task.isSuccessful){
                                 // stored in db
-                                _userAuthResult.postValue(AuthResult(Constants.success,null))
+
+                                _userAuthResult.postValue(AuthResult(Constants.success,userUid))
                             }else{
                                 _userAuthResult.postValue(AuthResult(Constants.failure,null))
                             }

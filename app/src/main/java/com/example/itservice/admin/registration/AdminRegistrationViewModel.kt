@@ -28,7 +28,7 @@ class AdminRegistrationViewModel: ViewModel() {
                         .addOnCompleteListener{task->
                             if(task.isSuccessful){
                                 // stored in db
-                                _adminAuthResult.postValue(AuthResult(Constants.success,null))
+                                _adminAuthResult.postValue(AuthResult(Constants.success,adminUid))
                             }else{
                                 _adminAuthResult.postValue(AuthResult(Constants.failure,null))
                             }

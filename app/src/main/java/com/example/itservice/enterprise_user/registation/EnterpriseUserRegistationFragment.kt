@@ -20,9 +20,8 @@ import com.example.itservice.application.TAG
 import com.example.itservice.common.LoginActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.utils.ContextExtentions
+import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.databinding.FragmentEnterpriseUserRegistationBinding
-import com.example.itservice.enterprise_user.enterprise_user_login.engineer.dashboard.EngineerDashBoardActivity
-import com.example.itservice.enterprise_user.registation.EnterpriseUserRegistrationViewModel
 import com.example.itservice.user.user_dash_board.UserdashboardActivity
 
 // TODO: Rename parameter arguments, choose names that match
@@ -116,6 +115,8 @@ class EnterpriseenterpriseUserRegistationFragment : Fragment(), TextWatcher {
 
         viewModel.enterprise_userAuthResult.observe(viewLifecycleOwner){
             if(it.isSuccess){
+                val uid = it.resultData as String
+                DbInstance.setUserUid(requireContext(), uid)
                 progressBar?.visibility = View.GONE
                 Toast.makeText(requireContext(), "Registration successful", Toast.LENGTH_SHORT).show()
                 requireActivity().startActivity(Intent(requireContext(), UserdashboardActivity::class.java))

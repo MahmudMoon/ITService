@@ -16,8 +16,9 @@ class EnterpriseUserLoginViewModel : ViewModel() {
         DbInstance.getAuthInstance().signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task->
                 if(task.isSuccessful){
+                    val uid = task.result.user?.uid
                     //save data in realtime db
-                    _enterpriseuserAuthResult.postValue(AuthResult(Constants.success,null))
+                    _enterpriseuserAuthResult.postValue(AuthResult(Constants.success,uid))
                 }else{
                     //failed to register
                     _enterpriseuserAuthResult.postValue(AuthResult(Constants.failure,null))

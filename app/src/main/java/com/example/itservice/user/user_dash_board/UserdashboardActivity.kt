@@ -1,11 +1,11 @@
 package com.example.itservice.user.user_dash_board
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.ViewModelProvider
@@ -16,7 +16,7 @@ import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.Constants.CHANNEL_ID
 import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.databinding.ActivityUserdashboardBinding
-import okhttp3.internal.notify
+import com.example.itservice.user.ask_service_catagory.UserServiceActivity
 
 class UserdashboardActivity : AppCompatActivity() {
     private lateinit var binding: ActivityUserdashboardBinding
@@ -51,7 +51,8 @@ class UserdashboardActivity : AppCompatActivity() {
         }
 
         llyTakeOurService.setOnClickListener {
-
+            val intent = Intent(this@UserdashboardActivity, UserServiceActivity::class.java)
+            startActivity(intent)
         }
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

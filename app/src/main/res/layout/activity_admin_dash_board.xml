@@ -26,97 +26,31 @@
         app:layout_constraintRight_toRightOf="parent"
         />
 
-
     <LinearLayout
-        android:id="@+id/lly_pending_tasks_view"
+        android:id="@+id/lly_check_services_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/fake_guide_center_horizontal"
+        app:layout_constraintRight_toLeftOf="@+id/fake_guide_center_vertical"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="@+id/fake_guide_center_vertical">
+        app:layout_constraintBottom_toTopOf="@id/fake_guide_center_horizontal_center">
 
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/enterprise"
             android:layout_gravity="center"
-            />
+            android:src="@drawable/enterprise" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Task Pending"
-            android:textStyle="bold"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
-
-
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/lly_assigned_tasks_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/fake_guide_center_horizontal"
-        app:layout_constraintLeft_toRightOf="@+id/fake_guide_center_vertical"
-        app:layout_constraintRight_toRightOf="parent">
-
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/enterprise"
-            android:layout_gravity="center"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Task Assigned"
+            android:text="Check Services"
             android:textStyle="bold"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
 
     </LinearLayout>
-
-    <View
-        android:id="@+id/fake_guide_center_horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.25"
-        />
-
-    <LinearLayout
-        android:id="@+id/lly_completed_tasks_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintVertical_bias="0.1"
-        app:layout_constraintTop_toBottomOf="@id/fake_guide_center_horizontal"
-        app:layout_constraintBottom_toBottomOf="@id/fake_guide_center_horizontal_center"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="@id/fake_guide_center_vertical">
-
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/enterprise"
-            android:layout_gravity="center"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Task Completed"
-            android:textStyle="bold"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
-
-
-    </LinearLayout>
-
 
     <View
         android:id="@+id/fake_guide_center_horizontal_center"
@@ -124,7 +58,7 @@
         android:layout_height="2dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.45"
+        app:layout_constraintVertical_bias="0.28"
         />
 
 
@@ -142,7 +76,7 @@
 
 
     <LinearLayout
-        android:id="@+id/lly_edit_service"
+        android:id="@+id/lly_edit_product"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -169,7 +103,7 @@
 
 
     <LinearLayout
-        android:id="@+id/lly_edit_product"
+        android:id="@+id/lly_edit_service"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -201,7 +135,7 @@
         android:layout_height="2dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.70"
+        app:layout_constraintVertical_bias="0.56"
         />
 
     <TextView
@@ -226,7 +160,7 @@
         android:orientation="vertical"
         app:layout_constraintVertical_bias="0.4"
         app:layout_constraintTop_toBottomOf="@id/fake_guide_center_horizontal_bottom"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/fake_guide_center_horizontal_bottom_lower"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/fake_guide_center_vertical">
 
@@ -266,7 +200,7 @@
         android:orientation="vertical"
         app:layout_constraintVertical_bias="0.4"
         app:layout_constraintTop_toBottomOf="@id/fake_guide_center_horizontal_bottom"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/fake_guide_center_horizontal_bottom_lower"
         app:layout_constraintLeft_toRightOf="@id/fake_guide_center_vertical"
         app:layout_constraintRight_toRightOf="parent">
 
@@ -284,5 +218,14 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
     </LinearLayout>
+
+    <View
+        android:id="@+id/fake_guide_center_horizontal_bottom_lower"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.84"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

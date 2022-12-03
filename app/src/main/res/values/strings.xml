@@ -39,4 +39,9 @@
     <string name="part_price">Part Price</string>
     <string name="offer_name">Offer Title</string>
     <string name="offer_price">Offer Price</string>
+    <string name="catagory_name">catagory Name</string>
+    <string name="brand_name">Brand Name</string>
+    <string name="service_id">Service ID</string>
+    <string name="service_name">Service Name</string>
+    <string name="service_catagory">Service Catagory</string>
 </resources>
