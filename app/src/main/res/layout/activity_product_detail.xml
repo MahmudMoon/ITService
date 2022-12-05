@@ -34,6 +34,13 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tv_product_quantity_product_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Quantity: 24 piece" />
+
+            <TextView
                 android:id="@+id/tv_product_quantity_product_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

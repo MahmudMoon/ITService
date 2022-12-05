@@ -17,6 +17,7 @@ import com.example.itservice.common.utils.Constants.CHANNEL_ID
 import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.databinding.ActivityUserdashboardBinding
 import com.example.itservice.user.ask_service_catagory.UserServiceActivity
+import com.example.itservice.user.product_catagory.BuyOurProductsCatagoryDisplayActivity
 
 class UserdashboardActivity : AppCompatActivity() {
     private lateinit var binding: ActivityUserdashboardBinding
@@ -29,16 +30,6 @@ class UserdashboardActivity : AppCompatActivity() {
         binding = ActivityUserdashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        var builder = NotificationCompat.Builder(this, CHANNEL_ID)
-//            .setSmallIcon(R.drawable.admin)
-//            .setContentTitle("My notification")
-//            .setContentText("Much longer text that cannot fit one line...")
-//            .setStyle(NotificationCompat.BigTextStyle()
-//                .bigText("Much longer text that cannot fit one line..."))
-//            .setPriority(NotificationCompat.PRIORITY_HIGH)
-//
-//       val notificationManagerCompat =  NotificationManagerCompat.from(this)
-//        notificationManagerCompat.notify(123, builder.build())
 
         viewModel = ViewModelProvider(this, ViewModelProviderFactory()).get(UserdashboardViewModel::class.java)
         DbInstance.setLastLoginAs(this@UserdashboardActivity, Constants.user)
@@ -47,7 +38,8 @@ class UserdashboardActivity : AppCompatActivity() {
         llyTakeOurService = binding.llyTakeOutService
 
         llyBuyOurProducts.setOnClickListener {
-
+            val intent = Intent(this@UserdashboardActivity, BuyOurProductsCatagoryDisplayActivity::class.java)
+            startActivity(intent)
         }
 
         llyTakeOurService.setOnClickListener {

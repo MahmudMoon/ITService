@@ -69,12 +69,15 @@ class AddProductActivity : AppCompatActivity(), TextWatcher {
         btnAddImage = binding.btnSelectImageAddProduct
         btnAddProduct = binding.btnSubmitProductAddProduct
         progressBar = binding.pbAddProduct
+        etServiceCatagory = binding.etProductCatagoryAddProduct
 
         //cat id, cat name, brand id, brand name
         val bundle = intent?.extras
         if(bundle!=null){
             catId = bundle.getString(Constants.CatagoryId,"")
             catName = bundle.getString(Constants.CatagoryName,"")
+            etServiceCatagory.setText(catName)
+            disableEditText(etServiceCatagory)
            // etServiceCatagory.setText(catName)
         }
 
@@ -103,7 +106,7 @@ class AddProductActivity : AppCompatActivity(), TextWatcher {
                             name = productName,
                             catID = catId,
                             catName = catName,
-                            Image = filePath.toString(),
+                            Image = path,
                             description = productDescription,
                             quantity = productQuantity?.toIntOrNull(),
                             price = productPrice?.toIntOrNull())

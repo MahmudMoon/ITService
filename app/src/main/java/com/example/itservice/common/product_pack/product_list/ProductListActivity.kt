@@ -84,9 +84,17 @@ class ProductListActivity : AppCompatActivity(), ProductsSelected {
     }
 
     override fun onProductItemClicked(product: Product) {
-        startActivity(Intent(this@ProductListActivity, ProductDetailActivity::class.java)
-            .putExtra(Constants.CatagoryId, catId )
-            .putExtra(Constants.CatagoryName, catName))
+        if(DbInstance.getLastLoginAs(this@ProductListActivity).equals(Constants.admin)){
+            //go for update product
+
+        }else if (DbInstance.getLastLoginAs(this@ProductListActivity).equals(Constants.user)) {
+            //go for product detail
+            startActivity(
+                Intent(this@ProductListActivity, ProductDetailActivity::class.java)
+                    .putExtra(Constants.CatagoryId, catId)
+                    .putExtra(Constants.productID, product.id)
+            )
+        }
     }
 }
 

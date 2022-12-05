@@ -30,6 +30,7 @@ object Constants {
     const val NotificationFor = "NotificationFor"
     const val ProductCatagories = "ProductCatagories"
     const val ProductsList = "productsList"
+    const val productID = "productID"
 
     enum class ServiceStatus{
         Pending,

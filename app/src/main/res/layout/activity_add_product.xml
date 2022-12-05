@@ -82,25 +82,20 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="  Select Catagory"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/spn_layer_select_catagory_product_modify"
+                android:id="@+id/et_layer_product_catagory_product_modify"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/select_catagory"
-                android:minHeight="60dp">
+                android:layout_marginTop="16dp">
 
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/spn_select_catagory_product_modify"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_product_catagory_add_product"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp" />
+                    android:layout_height="wrap_content"
+                    android:hint="Product Cataogory"
+                    android:inputType="numberSigned" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
