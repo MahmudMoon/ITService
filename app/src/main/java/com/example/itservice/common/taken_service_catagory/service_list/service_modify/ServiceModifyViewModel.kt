@@ -1,22 +1,17 @@
 package com.example.itservice.common.taken_service_catagory.service_list.service_modify
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.itservice.application.TAG
-import com.example.itservice.common.models.DbUpdateResult
-import com.example.itservice.common.models.Engineer
-import com.example.itservice.common.models.Parts
-import com.example.itservice.common.models.ServicesTaken
+import com.example.itservice.common.models.*
 import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.Constants.partQuantity
 import com.example.itservice.common.utils.DbInstance
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.getValue
-import kotlin.math.log
 
 class ServiceModifyViewModel: ViewModel() {
     private var _takenObject = MutableLiveData<ServicesTaken>()
@@ -115,7 +110,51 @@ class ServiceModifyViewModel: ViewModel() {
            })
 
         }
+        _dataUpdateCheck.postValue(DbUpdateResult(true, null))
+    }
 
+    fun sendNotificationFor(assignedEngineerID: String?, createdByID: String?, notifications: Notifications) {
+        val notificationRootRef = DbInstance.getDbInstance().reference.child(Constants.Notifications)
+        sendNotificationForEng(notificationRootRef, assignedEngineerID, notifications)
+        sendNotificationForUser(notificationRootRef, createdByID, notifications)
+        sendNotificationForAdmin(notificationRootRef = notificationRootRef, notifications =  notifications)
+    }
+
+    private fun sendNotificationForAdmin(notificationRootRef: DatabaseReference, createdByID: String? = null, notifications: Notifications) {
+        val userRoot =  notificationRootRef.child(Constants.admin)
+        val userNotificationId = userRoot.push().key
+        notifications.notificationId = userNotificationId
+        userRoot.child(Constants.NotificationFor)
+            .child(userNotificationId!!)
+            .setValue(notifications)
+    }
+
+    private fun sendNotificationForUser(
+        notificationRootRef: DatabaseReference,
+        createdByID: String?,
+        notifications: Notifications
+    ) {
+        val userRoot =  notificationRootRef.child(Constants.user)
+            .child(createdByID!!)
+        val userNotificationId = userRoot.push().key
+        notifications.notificationId = userNotificationId
+        userRoot.child(Constants.NotificationFor)
+            .child(userNotificationId!!)
+            .setValue(notifications)
+    }
+
+    private fun sendNotificationForEng(
+        notificationRootRef: DatabaseReference,
+        assignedEngineerID: String?,
+        notifications: Notifications
+    ) {
+        val engRoot =  notificationRootRef.child(Constants.engineer)
+            .child(assignedEngineerID!!)
+        val engNotificationId = engRoot.push().key
+        notifications.notificationId = engNotificationId
+        engRoot.child(Constants.NotificationFor)
+            .child(engNotificationId!!)
+            .setValue(notifications)
     }
 
 }

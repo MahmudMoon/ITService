@@ -16,6 +16,7 @@ import com.example.itservice.common.taken_service_catagory.TakenServiceCatagoryA
 import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.databinding.ActivityAdminDashBoardBinding
+import com.example.itservice.user.product_catagory.BuyOurProductsCatagoryDisplayActivity
 
 class AdminDashBoardActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAdminDashBoardBinding
@@ -40,7 +41,7 @@ class AdminDashBoardActivity : AppCompatActivity() {
         llyPartsModify = binding.llyEditParts
 
         viewModel = ViewModelProvider(this, ViewModelProviderFactory()).get(AdminDashBoradViewModel::class.java)
-
+       // viewModel.listenforNotifications()
         llyAnalysisServiceTakenTasks.setOnClickListener {
             startActivity(Intent(this@AdminDashBoardActivity, TakenServiceCatagoryActivity::class.java))
         }
@@ -51,7 +52,7 @@ class AdminDashBoardActivity : AppCompatActivity() {
             startActivity(Intent(this@AdminDashBoardActivity, DisplayServiceCatagoryActivity::class.java))
         }
         llyProductsModify.setOnClickListener {
-
+            startActivity(Intent(this@AdminDashBoardActivity, BuyOurProductsCatagoryDisplayActivity::class.java))
         }
 
         llyPartsModify.setOnClickListener {

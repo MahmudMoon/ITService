@@ -29,16 +29,16 @@ class UserdashboardActivity : AppCompatActivity() {
         binding = ActivityUserdashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var builder = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setSmallIcon(R.drawable.admin)
-            .setContentTitle("My notification")
-            .setContentText("Much longer text that cannot fit one line...")
-            .setStyle(NotificationCompat.BigTextStyle()
-                .bigText("Much longer text that cannot fit one line..."))
-            .setPriority(NotificationCompat.PRIORITY_HIGH)
-
-       val notificationManagerCompat =  NotificationManagerCompat.from(this)
-        notificationManagerCompat.notify(123, builder.build())
+//        var builder = NotificationCompat.Builder(this, CHANNEL_ID)
+//            .setSmallIcon(R.drawable.admin)
+//            .setContentTitle("My notification")
+//            .setContentText("Much longer text that cannot fit one line...")
+//            .setStyle(NotificationCompat.BigTextStyle()
+//                .bigText("Much longer text that cannot fit one line..."))
+//            .setPriority(NotificationCompat.PRIORITY_HIGH)
+//
+//       val notificationManagerCompat =  NotificationManagerCompat.from(this)
+//        notificationManagerCompat.notify(123, builder.build())
 
         viewModel = ViewModelProvider(this, ViewModelProviderFactory()).get(UserdashboardViewModel::class.java)
         DbInstance.setLastLoginAs(this@UserdashboardActivity, Constants.user)

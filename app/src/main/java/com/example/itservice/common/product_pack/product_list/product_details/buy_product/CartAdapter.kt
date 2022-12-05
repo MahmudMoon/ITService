@@ -30,7 +30,7 @@ class CartAdapter(val context: Context, private val cartItems: List<Product>)  :
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
         holder.tvProductName.text = cartItems[position].name
         holder.imageView.load(cartItems[position].Image)
-        holder.tvBaseItemQuantity.text = cartItems.get(position).quantity
+        holder.tvBaseItemQuantity.text = cartItems.get(position).quantity.toString()
         holder.btnAddCount.setOnClickListener {
 
         }

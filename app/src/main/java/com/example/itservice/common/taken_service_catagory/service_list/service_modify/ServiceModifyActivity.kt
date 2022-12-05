@@ -2,9 +2,13 @@ package com.example.itservice.common.taken_service_catagory.service_list.service
 
 import android.graphics.Color
 import android.os.Bundle
+import android.text.Editable
 import android.text.InputType
+import android.text.TextWatcher
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
+import android.view.View.OnTouchListener
 import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.itservice.R
 import com.example.itservice.application.TAG
 import com.example.itservice.common.factory.ViewModelProviderFactory
+import com.example.itservice.common.models.Notifications
 import com.example.itservice.common.models.Parts
 import com.example.itservice.common.models.ServicesTaken
 import com.example.itservice.common.utils.Constants
@@ -27,7 +32,7 @@ import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.databinding.ActivityServiceModifyBinding
 
 
-class ServiceModifyActivity : AppCompatActivity(), EngineerSelection, OnItemSelectedListener, PartsSelection, PartQueryItemSelected {
+class ServiceModifyActivity : AppCompatActivity(), EngineerSelection, OnItemSelectedListener, PartsSelection, PartQueryItemSelected, TextWatcher {
     private lateinit var binding: ActivityServiceModifyBinding
     private lateinit var viewModel: ServiceModifyViewModel
    // private lateinit var etServiceName: AppCompatEditText
@@ -131,6 +136,7 @@ class ServiceModifyActivity : AppCompatActivity(), EngineerSelection, OnItemSele
         disableEditText(etServicePrice)
         disableEditText(etServiceCreatedBy)
         disableEditText(etServiceAssignedTo)
+       // hideAView(btnModifyService)
 
         if(DbInstance.getLastLoginAs(this).equals(Constants.user)){
             enableEditText(etServiceProblemStatement)
@@ -138,13 +144,11 @@ class ServiceModifyActivity : AppCompatActivity(), EngineerSelection, OnItemSele
             statusSpinner.isEnabled = false
             hideAView(btnAskForAPart)
         }else if(DbInstance.getLastLoginAs(this).equals(Constants.admin)){
-            enableEditText(etServiceProblemStatement)
             hideAView(btnAskForAPart)
             binding.tvAcceptIfAdmin.visibility = View.VISIBLE
             binding.tvDeclineIfAdmin.visibility = View.VISIBLE
         }else if(DbInstance.getLastLoginAs(this).equals(Constants.engineer)){
             hideAView(ibtnSearchEng)
-           // statusSpinner.isEnabled = false
         }
 
         val bundle = intent?.extras
@@ -181,6 +185,8 @@ class ServiceModifyActivity : AppCompatActivity(), EngineerSelection, OnItemSele
             }
 
         }
+
+
 
         ibtnSearchEng.setOnClickListener {
             Log.d(TAG, "onCreate: Clicked")
@@ -223,6 +229,8 @@ class ServiceModifyActivity : AppCompatActivity(), EngineerSelection, OnItemSele
             Log.d(TAG, "onCreate: Data update completed")
             progressBar.visibility = View.GONE
             if(it.isSuccess){
+                var notifications = Notifications(notificationId = null, takenServiceId = takenService.id, createdById = takenService.createdByID)
+                viewModel.sendNotificationFor(takenService.assignedEngineerID, takenService.createdByID, notifications)
                 Toast.makeText(this, "Successfully modified service", Toast.LENGTH_SHORT).show()
                 if(DbInstance.getLastLoginAs(this@ServiceModifyActivity).equals(Constants.engineer)) takenService.parts = null
             }else{
@@ -279,6 +287,10 @@ class ServiceModifyActivity : AppCompatActivity(), EngineerSelection, OnItemSele
         view.visibility = View.GONE
     }
 
+    private fun unHideAView(view: View) {
+        if(view.visibility != View.VISIBLE) view.visibility = View.VISIBLE
+    }
+
     fun disableEditText(view: AppCompatEditText){
         view.isEnabled = false
         view.inputType = InputType.TYPE_NULL
@@ -302,7 +314,11 @@ class ServiceModifyActivity : AppCompatActivity(), EngineerSelection, OnItemSele
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
         val item: String = p0?.getItemAtPosition(p2).toString()
         Toast.makeText(this, "Selected: $item", Toast.LENGTH_LONG).show()
-        takenService.status = item
+        try {
+            takenService.status = item
+        }catch (e: java.lang.Exception){
+            Log.e(TAG, "onItemSelected: ${e.localizedMessage}")
+        }
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -347,6 +363,19 @@ class ServiceModifyActivity : AppCompatActivity(), EngineerSelection, OnItemSele
         val updatedCost = ((_part.partQuantity!!) * (_part.partPrice!!) + previousCost )
         etServicePrice.setText(updatedCost.toString())
         takenService.serviceCost = updatedCost.toString()
+    }
+
+
+    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+    }
+
+    override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+    }
+
+    override fun afterTextChanged(p0: Editable?) {
+         unHideAView(btnModifyService)
     }
 }
 

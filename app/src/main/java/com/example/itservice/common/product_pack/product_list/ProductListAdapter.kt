@@ -24,6 +24,9 @@ class ProductListAdapter(val context: Context, private val productItems: List<Pr
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         holder.textView.text = productItems[position].name
         holder.imageView.load(productItems[position].Image)
+        holder.itemView.setOnClickListener {
+            (context as ProductListActivity).onProductItemClicked(product = productItems.get(position))
+        }
     }
 
     override fun getItemCount(): Int {

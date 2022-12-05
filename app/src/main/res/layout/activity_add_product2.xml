@@ -4,11 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".user.product_catagory.BuyOurProductsCatagoryDisplayActivity">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_catagory_buy_our_product"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+    tools:context=".admin.products_pack.add_product.AddProductActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>
