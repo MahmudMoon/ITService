@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.itservice.R
+import com.example.itservice.admin.users_and_engineers_list.UsersAndEngineersListActivity
 import com.example.itservice.common.LoginActivity
 import com.example.itservice.common.display_parts.DisplayPartsActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
@@ -26,6 +27,8 @@ class AdminDashBoardActivity : AppCompatActivity() {
     private lateinit var llyServiceModify: LinearLayout
     private lateinit var llyOffersModify: LinearLayout
     private lateinit var llyPartsModify: LinearLayout
+    private lateinit var llyUsersList: LinearLayout
+    private lateinit var llyEngineerList: LinearLayout
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +42,8 @@ class AdminDashBoardActivity : AppCompatActivity() {
         llyProductsModify = binding.llyEditProduct
         llyServiceModify = binding.llyEditService
         llyPartsModify = binding.llyEditParts
+        llyUsersList = binding.llyEditUsersList
+        llyEngineerList = binding.llyEditEngineersList
 
         viewModel = ViewModelProvider(this, ViewModelProviderFactory()).get(AdminDashBoradViewModel::class.java)
        // viewModel.listenforNotifications()
@@ -57,6 +62,16 @@ class AdminDashBoardActivity : AppCompatActivity() {
 
         llyPartsModify.setOnClickListener {
             startActivity(Intent(this@AdminDashBoardActivity, DisplayPartsActivity::class.java))
+        }
+
+        llyEngineerList.setOnClickListener {
+            startActivity(Intent(this@AdminDashBoardActivity, UsersAndEngineersListActivity::class.java)
+                .putExtra(Constants.userType, Constants.UsersType.engineer.name))
+        }
+
+        llyUsersList.setOnClickListener {
+            startActivity(Intent(this@AdminDashBoardActivity, UsersAndEngineersListActivity::class.java)
+                .putExtra(Constants.userType, Constants.UsersType.user.name))
         }
 
     }

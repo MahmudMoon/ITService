@@ -7,23 +7,14 @@
     tools:context=".admin.admin_dashboard.AdminDashBoardActivity">
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Task Analysis"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:background="@color/purple_700"
-        android:textColor="@color/white"
-        app:layout_constraintTop_toTopOf="parent"/>
-
     <View
         android:id="@+id/fake_guide_center_vertical"
         android:layout_width="2dp"
         android:layout_height="match_parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        android:background="@color/black"
+        android:alpha="0.2"
         />
 
     <LinearLayout
@@ -40,12 +31,13 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
-            android:src="@drawable/enterprise" />
+            android:src="@drawable/check_tasks"
+            android:background="@null"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Check Services"
+            android:text="@string/check_tasks"
             android:textStyle="bold"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
@@ -58,21 +50,12 @@
         android:layout_height="2dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.28"
+        app:layout_constraintVertical_bias="0.25"
+        android:background="@color/black"
+        android:alpha="0.2"
         />
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Products /  Services"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_marginTop="6dp"
-        android:background="@color/purple_700"
-        android:textColor="@color/white"
-        app:layout_constraintTop_toTopOf="@id/fake_guide_center_horizontal_center"/>
 
 
     <LinearLayout
@@ -88,13 +71,13 @@
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/enterprise"
+            android:src="@drawable/products"
             android:layout_gravity="center"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Modify Products"
+            android:text="@string/add_products"
             android:textStyle="bold"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
@@ -107,8 +90,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/fake_guide_center_horizontal_center"
-        app:layout_constraintBottom_toTopOf="@id/fake_guide_center_horizontal_bottom"
+        app:layout_constraintBottom_toTopOf="@id/fake_guide_center_horizontal_center"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/fake_guide_center_vertical"
         app:layout_constraintRight_toRightOf="parent">
 
@@ -116,13 +99,13 @@
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/enterprise"
+            android:src="@drawable/service_provide"
             android:layout_gravity="center"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Task Services"
+            android:text="@string/crete_services"
             android:textStyle="bold"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
@@ -135,22 +118,10 @@
         android:layout_height="2dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.56"
+        app:layout_constraintVertical_bias="0.50"
+        android:background="@color/black"
+        android:alpha="0.2"
         />
-
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Parts"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_marginTop="6dp"
-        android:background="@color/purple_700"
-        android:textColor="@color/white"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/fake_guide_center_vertical"
-        app:layout_constraintTop_toBottomOf="@id/fake_guide_center_horizontal_bottom"/>
 
 
     <LinearLayout
@@ -167,53 +138,67 @@
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/enterprise"
+            android:src="@drawable/parts"
             android:layout_gravity="center"
+            android:background="@null"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Modify Parts"
+            android:text="@string/add_parts"
             android:textStyle="bold"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Offers"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_marginTop="6dp"
-        android:background="@color/purple_700"
-        android:textColor="@color/white"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/fake_guide_center_vertical"
-        app:layout_constraintTop_toBottomOf="@id/fake_guide_center_horizontal_bottom"/>
 
     <LinearLayout
         android:id="@+id/lly_edit_offer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintVertical_bias="0.4"
-        app:layout_constraintTop_toBottomOf="@id/fake_guide_center_horizontal_bottom"
-        app:layout_constraintBottom_toBottomOf="@id/fake_guide_center_horizontal_bottom_lower"
+        app:layout_constraintTop_toTopOf="@id/fake_guide_center_horizontal_center"
+        app:layout_constraintBottom_toTopOf="@id/fake_guide_center_horizontal_bottom"
         app:layout_constraintLeft_toRightOf="@id/fake_guide_center_vertical"
         app:layout_constraintRight_toRightOf="parent">
 
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/enterprise"
+            android:src="@drawable/offers"
             android:layout_gravity="center"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Modify offers"
+            android:text="@string/add_offers"
+            android:textStyle="bold"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/lly_edit_users_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintVertical_bias="0.4"
+        app:layout_constraintTop_toBottomOf="@id/fake_guide_center_horizontal_bottom"
+        app:layout_constraintBottom_toBottomOf="@id/fake_guide_center_horizontal_bottom_lower"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/fake_guide_center_vertical">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/users_icon"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/users_list"
             android:textStyle="bold"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
@@ -225,7 +210,35 @@
         android:layout_height="2dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.84"
+        app:layout_constraintVertical_bias="0.75"
+        android:background="@color/black"
+        android:alpha="0.2"
         />
+
+    <LinearLayout
+        android:id="@+id/lly_edit_engineers_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintVertical_bias="0.4"
+        app:layout_constraintTop_toBottomOf="@id/fake_guide_center_horizontal_bottom_lower"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/fake_guide_center_vertical">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/engineer"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Engineers List"
+            android:textStyle="bold"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

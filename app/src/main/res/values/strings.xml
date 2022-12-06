@@ -45,4 +45,11 @@
     <string name="service_name">Service Name</string>
     <string name="service_catagory">Service Catagory</string>
     <string name="quantity">Quantity</string>
+    <string name="tin_optional">TIN (Optional)</string>
+    <string name="crete_services">Crete Services</string>
+    <string name="check_tasks">Check Tasks</string>
+    <string name="add_products">Add Products</string>
+    <string name="add_offers">Add offers</string>
+    <string name="add_parts">Add Parts</string>
+    <string name="users_list">Users List</string>
 </resources>

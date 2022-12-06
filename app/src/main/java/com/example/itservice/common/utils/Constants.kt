@@ -1,6 +1,7 @@
 package com.example.itservice.common.utils
 
 object Constants {
+    const val userType = "userType"
     const val AppName = "IT SERVICE"
     const val CHANNEL_ID = "125347"
     const val admin = "Admin"
@@ -38,4 +39,8 @@ object Constants {
         Completed
     }
 
+    enum class UsersType{
+        user,
+        engineer
+    }
 }

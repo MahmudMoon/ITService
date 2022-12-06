@@ -103,12 +103,12 @@ class UserRegistationFragment : Fragment(), TextWatcher {
             userPassword = setErrorMessage(etuserPassword, "Valid Password must be more than 7 characters")
             userCompanyName = setErrorMessage(etuserCompanyName, "Enter valid company Name")
             userCompanyAddress = setErrorMessage(etuserCompanyAddress, "Enter valid company Address")
-            userTIN = setErrorMessage(etuserTIN, "Enter valid TIN")
+            userTIN = etuserTIN?.text.toString()
             userContactNumber = setErrorMessage(etuserContactNumber, "Enter valid contact number")
             userNID = setErrorMessage(etuserNID, "Enter valid NID")
 
             if (userName != "" && userEmail != ""
-                && userPassword != "" && userCompanyName != "" && userCompanyAddress != null && userTIN != ""
+                && userPassword != "" && userCompanyName != "" && userCompanyAddress != null
                 && userContactNumber != "" && userNID != ""
             ) {
                 progressBar?.visibility = View.VISIBLE
