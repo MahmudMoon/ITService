@@ -5,21 +5,18 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.LinearLayout
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.itservice.R
+import com.example.itservice.base.BaseActivity
 import com.example.itservice.common.LoginActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.utils.Constants
-import com.example.itservice.common.utils.Constants.CHANNEL_ID
 import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.databinding.ActivityUserdashboardBinding
 import com.example.itservice.user.ask_service_catagory.UserServiceActivity
 import com.example.itservice.user.product_catagory.BuyOurProductsCatagoryDisplayActivity
 
-class UserdashboardActivity : AppCompatActivity() {
+class UserdashboardActivity : BaseActivity() {
     private lateinit var binding: ActivityUserdashboardBinding
     private lateinit var viewModel: UserdashboardViewModel
     private lateinit var llyBuyOurProducts: LinearLayout
@@ -30,7 +27,6 @@ class UserdashboardActivity : AppCompatActivity() {
         binding = ActivityUserdashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         viewModel = ViewModelProvider(this, ViewModelProviderFactory()).get(UserdashboardViewModel::class.java)
         DbInstance.setLastLoginAs(this@UserdashboardActivity, Constants.user)
 
@@ -40,11 +36,13 @@ class UserdashboardActivity : AppCompatActivity() {
         llyBuyOurProducts.setOnClickListener {
             val intent = Intent(this@UserdashboardActivity, BuyOurProductsCatagoryDisplayActivity::class.java)
             startActivity(intent)
+            moveWithAnimationToAnotherActivity()
         }
 
         llyTakeOurService.setOnClickListener {
             val intent = Intent(this@UserdashboardActivity, UserServiceActivity::class.java)
             startActivity(intent)
+            moveWithAnimationToAnotherActivity()
         }
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

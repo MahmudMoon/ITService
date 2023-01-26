@@ -11,13 +11,14 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.itservice.R
 import com.example.itservice.admin.products_pack.add_product_catagories.AddProductCatagoryActivity
+import com.example.itservice.base.BaseActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.models.ProductCatagories
 import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.databinding.ActivityBuyOurProductsBinding
 
-class BuyOurProductsCatagoryDisplayActivity : AppCompatActivity() {
+class BuyOurProductsCatagoryDisplayActivity : BaseActivity() {
     private lateinit var binding: ActivityBuyOurProductsBinding
     private lateinit var viewModel: BuyOurProductCatagoryDisplayViewModel
     private var proCatList = ArrayList<ProductCatagories>()
@@ -64,4 +65,5 @@ class BuyOurProductsCatagoryDisplayActivity : AppCompatActivity() {
         }
         return true
     }
+
 }
