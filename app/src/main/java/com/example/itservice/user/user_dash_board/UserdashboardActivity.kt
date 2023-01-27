@@ -10,10 +10,10 @@ import com.example.itservice.R
 import com.example.itservice.base.BaseActivity
 import com.example.itservice.common.LoginActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
+import com.example.itservice.common.taken_service_catagory.TakenServiceCatagoryActivity
 import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.databinding.ActivityUserdashboardBinding
-import com.example.itservice.user.ask_service_catagory.UserServiceActivity
 import com.example.itservice.user.product_catagory.BuyOurProductsCatagoryDisplayActivity
 
 class UserdashboardActivity : BaseActivity() {
@@ -40,8 +40,7 @@ class UserdashboardActivity : BaseActivity() {
         }
 
         llyTakeOurService.setOnClickListener {
-            val intent = Intent(this@UserdashboardActivity, UserServiceActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this@UserdashboardActivity, TakenServiceCatagoryActivity::class.java))
             moveWithAnimationToAnotherActivity()
         }
     }

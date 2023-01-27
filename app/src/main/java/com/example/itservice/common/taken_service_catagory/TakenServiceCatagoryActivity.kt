@@ -4,11 +4,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.LinearLayout
 import androidx.lifecycle.ViewModelProvider
 import com.example.itservice.R
 import com.example.itservice.application.TAG
+import com.example.itservice.base.BaseActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
+import com.example.itservice.common.service_pack.display_service_catagory.DisplayServiceCatagoryActivity
 import com.example.itservice.common.taken_service_catagory.service_list.ServiceListActivity
 import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.DbInstance
@@ -20,12 +23,14 @@ import com.example.itservice.databinding.ActivityTakenServiceCatagoryBinding
 2. admin
 3. engineer
  */
-class TakenServiceCatagoryActivity : AppCompatActivity() {
+class TakenServiceCatagoryActivity : BaseActivity() {
     private lateinit var binding: ActivityTakenServiceCatagoryBinding
     private lateinit var viewModel: TakenServiceCatagoryViewModel
     private lateinit var llyPendingService: LinearLayout
     private lateinit var llyAssignedService: LinearLayout
     private lateinit var llyCompletedService: LinearLayout
+    private lateinit var askForService: LinearLayout
+    private var isFromAdmin: Boolean? = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +42,7 @@ class TakenServiceCatagoryActivity : AppCompatActivity() {
         llyPendingService = binding.llyPendingService
         llyAssignedService = binding.llyAssignedServices
         llyCompletedService = binding.llyCompletedServices
+        askForService = binding.llyAskForService
 
         llyPendingService.setOnClickListener {
             startActivity(Intent(this@TakenServiceCatagoryActivity, ServiceListActivity::class.java)
@@ -53,5 +59,18 @@ class TakenServiceCatagoryActivity : AppCompatActivity() {
                 .putExtra(Constants.statusType, Constants.ServiceStatus.Completed.name))
         }
 
+        askForService.setOnClickListener {
+            startActivity(Intent(this@TakenServiceCatagoryActivity, DisplayServiceCatagoryActivity::class.java))
+        }
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val bundle = intent?.extras
+        isFromAdmin = bundle?.getBoolean("fromAdmin", false)
+        if(isFromAdmin == true){
+            askForService.visibility = View.GONE
+        }
     }
 }

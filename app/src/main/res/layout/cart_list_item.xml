@@ -10,23 +10,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="4dp">
+        android:layout_margin="8dp">
 
+        <CheckBox
+            android:layout_width="30dp"
+            android:layout_height="50dp"
+            android:checked="false"
+            android:layout_gravity="center_vertical"
+            />
         <ImageView
             android:id="@+id/iv_base_item_view"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="10dp"
             android:layout_gravity="center"
             android:scaleType="fitCenter"
             android:src="@drawable/admin" />
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="0.7"
-            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp">
+            android:layout_marginRight="5dp"
+            android:gravity="center_vertical">
 
             <TextView
                 android:id="@+id/tv_base_item_name"
@@ -42,38 +50,27 @@
                 android:gravity="center"
                 android:text="Seleted Quantity: 25"
                 android:textStyle="bold" />
-            <Button
-                android:id="@+id/btnConfirmBuy"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Buy now"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp"/>
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="0.35"
+            android:layout_width="80dp"
             android:layout_height="match_parent">
-
-            <Button
+            <ImageButton
                 android:id="@+id/btn_add_count_cart"
-                android:layout_width="0dp"
-                android:layout_weight="0.5"
+                android:layout_width="30dp"
                 android:layout_gravity="center"
+                android:background="@drawable/plus"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:layout_height="wrap_content"
-                android:text="+"/>
+                android:layout_height="30dp"
+                />
             <View
                 android:layout_width="10dp"
                 android:layout_height="5dp"/>
-            <Button
+            <ImageButton
                 android:id="@+id/btn_substract_count_cart"
-                android:layout_width="0dp"
-                android:layout_weight="0.5"
-                android:layout_height="wrap_content"
-                android:text="-"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/minus"
                 android:layout_gravity="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
 

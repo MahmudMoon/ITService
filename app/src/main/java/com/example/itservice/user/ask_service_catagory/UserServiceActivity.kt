@@ -23,11 +23,9 @@ class UserServiceActivity : BaseActivity() {
         viewModel = ViewModelProvider(this, ViewModelProviderFactory()).get(UserServiceViewModel::class.java)
 
         binding.llyAskForService.setOnClickListener {
-            startActivity(Intent(this@UserServiceActivity, DisplayServiceCatagoryActivity::class.java))
         }
 
         binding.llyTakenService.setOnClickListener {
-            startActivity(Intent(this@UserServiceActivity, TakenServiceCatagoryActivity::class.java))
         }
     }
 }

@@ -17,6 +17,7 @@ import com.example.itservice.common.models.ProductCatagories
 import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.databinding.ActivityBuyOurProductsBinding
+import com.example.itservice.user.product_catagory.product_list.product_details.buy_product.CartActivity
 
 class BuyOurProductsCatagoryDisplayActivity : BaseActivity() {
     private lateinit var binding: ActivityBuyOurProductsBinding
@@ -59,9 +60,12 @@ class BuyOurProductsCatagoryDisplayActivity : BaseActivity() {
         super.onOptionsItemSelected(item)
         if(item.itemId == R.id.go_to_cart){
             Toast.makeText(applicationContext, "Moving to cart", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this@BuyOurProductsCatagoryDisplayActivity, CartActivity::class.java))
+            moveWithAnimationToAnotherActivity()
         }else if(item.itemId == R.id.menu_add_catagory){
             Toast.makeText(applicationContext, "Moving to Add catagory", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this@BuyOurProductsCatagoryDisplayActivity, AddProductCatagoryActivity::class.java))
+            moveWithAnimationToAnotherActivity()
         }
         return true
     }

@@ -17,9 +17,9 @@ class CartAdapter(val context: Context, private val cartItems: List<Product>)  :
         val imageView: ImageView = binding.ivBaseItemView
         val tvProductName: TextView = binding.tvBaseItemName
         val tvBaseItemQuantity: TextView = binding.tvBaseItemQuantity
-        val btnAddCount: Button = binding.btnAddCountCart
-        val btnSubstractCount: Button = binding.btnSubstractCountCart
-        val btnBuyConfirm: Button = binding.btnConfirmBuy
+//        val btnAddCount: Button = binding.btnAddCountCart
+//        val btnSubstractCount: Button = binding.btnSubstractCountCart
+//        val btnBuyConfirm: Button = binding.btnConfirmBuy
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
@@ -31,17 +31,17 @@ class CartAdapter(val context: Context, private val cartItems: List<Product>)  :
         holder.tvProductName.text = cartItems[position].name
         holder.imageView.load(cartItems[position].Image)
         holder.tvBaseItemQuantity.text = cartItems.get(position).quantity.toString()
-        holder.btnAddCount.setOnClickListener {
-
-        }
-
-        holder.btnSubstractCount.setOnClickListener {
-
-        }
-
-        holder.btnBuyConfirm.setOnClickListener {
-
-        }
+//        holder.btnAddCount.setOnClickListener {
+//
+//        }
+//
+//        holder.btnSubstractCount.setOnClickListener {
+//
+//        }
+//
+//        holder.btnBuyConfirm.setOnClickListener {
+//
+//        }
     }
 
     override fun getItemCount(): Int {

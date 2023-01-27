@@ -36,6 +36,7 @@ import com.example.itservice.user.registation.UserRegistationViewModel
 import com.example.itservice.common.taken_service_catagory.TakenServiceCatagoryViewModel
 import com.example.itservice.common.taken_service_catagory.service_list.ServiceListViewModel
 import com.example.itservice.common.taken_service_catagory.service_list.service_modify.search_eng_frag.SearchForViewModel
+import com.example.itservice.user.product_catagory.product_list.product_details.buy_product.CartViewModel
 import com.example.itservice.user.user_dash_board.UserdashboardViewModel
 import javax.inject.Inject
 
@@ -76,6 +77,7 @@ class ViewModelProviderFactory @Inject constructor(): ViewModelProvider.Factory 
         if(modelClass.isAssignableFrom(AddProductViewModel::class.java)) return AddProductViewModel() as T
         if(modelClass.isAssignableFrom(AddProductCatagoryViewModel::class.java)) return AddProductCatagoryViewModel() as T
         if(modelClass.isAssignableFrom(UserAndEngineersListViewModel::class.java)) return UserAndEngineersListViewModel() as T
+        if(modelClass.isAssignableFrom(CartViewModel::class.java)) return CartViewModel() as T
         return super.create(modelClass)
     }
 }

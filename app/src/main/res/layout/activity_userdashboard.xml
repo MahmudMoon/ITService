@@ -20,7 +20,7 @@
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/enterprise"
+            android:src="@drawable/take_our_service"
             android:layout_gravity="center"
             />
         <TextView
@@ -55,7 +55,7 @@
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/admin"
+            android:src="@drawable/buy_our_product"
             android:layout_gravity="center"
             />
         <TextView

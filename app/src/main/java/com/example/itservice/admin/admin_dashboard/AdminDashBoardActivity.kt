@@ -48,7 +48,8 @@ class AdminDashBoardActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this, ViewModelProviderFactory()).get(AdminDashBoradViewModel::class.java)
        // viewModel.listenforNotifications()
         llyAnalysisServiceTakenTasks.setOnClickListener {
-            startActivity(Intent(this@AdminDashBoardActivity, TakenServiceCatagoryActivity::class.java))
+            startActivity(Intent(this@AdminDashBoardActivity, TakenServiceCatagoryActivity::class.java)
+                .putExtra("fromAdmin", true))
         }
         llyOffersModify.setOnClickListener {
 
