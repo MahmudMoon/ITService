@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.lifecycle.ViewModelProvider
 import com.example.itservice.application.TAG
+import com.example.itservice.base.BaseActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.models.ServiceCatagory
 import com.example.itservice.common.utils.ContextExtentions
@@ -22,7 +23,7 @@ import com.example.itservice.databinding.ActivityAddCatagoryBinding
 import com.google.android.material.textview.MaterialTextView
 import kotlin.math.log
 
-class AddCatagoryActivity : AppCompatActivity() , TextWatcher{
+class AddCatagoryActivity : BaseActivity() , TextWatcher{
     private lateinit var binding: ActivityAddCatagoryBinding
     private lateinit var viewModel: AddCatagoryViewModel
     private var catagoryName: String? = null

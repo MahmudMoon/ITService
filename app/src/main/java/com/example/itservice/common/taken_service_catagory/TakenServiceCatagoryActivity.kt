@@ -47,20 +47,24 @@ class TakenServiceCatagoryActivity : BaseActivity() {
         llyPendingService.setOnClickListener {
             startActivity(Intent(this@TakenServiceCatagoryActivity, ServiceListActivity::class.java)
                 .putExtra(Constants.statusType, Constants.ServiceStatus.Pending.name))
+            moveWithAnimationToAnotherActivity()
         }
 
         llyAssignedService.setOnClickListener {
             startActivity(Intent(this@TakenServiceCatagoryActivity, ServiceListActivity::class.java)
                 .putExtra(Constants.statusType, Constants.ServiceStatus.Assigned.name))
+            moveWithAnimationToAnotherActivity()
         }
 
         llyCompletedService.setOnClickListener {
             startActivity(Intent(this@TakenServiceCatagoryActivity, ServiceListActivity::class.java)
                 .putExtra(Constants.statusType, Constants.ServiceStatus.Completed.name))
+            moveWithAnimationToAnotherActivity()
         }
 
         askForService.setOnClickListener {
             startActivity(Intent(this@TakenServiceCatagoryActivity, DisplayServiceCatagoryActivity::class.java))
+            moveWithAnimationToAnotherActivity()
         }
 
     }

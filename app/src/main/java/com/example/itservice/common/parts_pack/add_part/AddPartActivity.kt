@@ -12,13 +12,14 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.lifecycle.ViewModelProvider
 import com.example.itservice.R
+import com.example.itservice.base.BaseActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.models.Parts
 import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.ContextExtentions
 import com.example.itservice.databinding.ActivityAddPartBinding
 
-class AddPartActivity : AppCompatActivity(), TextWatcher {
+class AddPartActivity : BaseActivity(), TextWatcher {
     private lateinit var binding: ActivityAddPartBinding
     private lateinit var viewModel: AddPartViewModel
     private lateinit var etPartName: AppCompatEditText

@@ -11,11 +11,12 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import coil.load
 import com.example.itservice.R
+import com.example.itservice.base.BaseActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.utils.Constants
 import com.example.itservice.databinding.ActivityProductDetailBinding
 
-class ProductDetailActivity : AppCompatActivity() {
+class ProductDetailActivity : BaseActivity() {
     private lateinit var binding: ActivityProductDetailBinding
     private lateinit var viewModel: ProductDetailViewModel
     private lateinit var ivProductImage: ImageView

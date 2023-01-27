@@ -12,6 +12,7 @@ import com.example.itservice.R
 import com.example.itservice.admin.admin_dashboard.AdminDashBoardActivity
 import com.example.itservice.application.ITApplication
 import com.example.itservice.application.TAG
+import com.example.itservice.base.BaseActivity
 import com.example.itservice.common.LoginActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.utils.Constants
@@ -26,7 +27,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
-class SplashActivity : AppCompatActivity() {
+class SplashActivity : BaseActivity() {
     private lateinit var binding: ActivitySlpashBinding
 
     private lateinit var viewModel: SplashViewModel
@@ -56,23 +57,28 @@ class SplashActivity : AppCompatActivity() {
             if (userLogin == null) {
                 closeThread = 1
                 startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+                moveWithAnimationToAnotherActivity()
             } else {
                 closeThread = 1
                 when(DbInstance.getLastLoginAs(this@SplashActivity)){
                     Constants.admin ->{
                         startActivity(Intent(this@SplashActivity, AdminDashBoardActivity::class.java))
+                        moveWithAnimationToAnotherActivity()
                     }
 
                     Constants.engineer ->{
                         startActivity(Intent(this@SplashActivity, EngineerDashBoardActivity::class.java))
+                        moveWithAnimationToAnotherActivity()
                     }
 
                     Constants.user ->{
                         startActivity(Intent(this@SplashActivity, UserdashboardActivity::class.java))
+                        moveWithAnimationToAnotherActivity()
                     }
 
                     else ->{
                         startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+                        moveWithAnimationToAnotherActivity()
                     }
                 }
             }
@@ -107,6 +113,7 @@ class SplashActivity : AppCompatActivity() {
         object : DialogInterface.OnClickListener {
             override fun onClick(p0: DialogInterface?, p1: Int) {
                 startActivity(Intent(this@SplashActivity, SplashActivity::class.java))
+                moveWithAnimationToAnotherActivity()
             }
         }
     private val negativeBtnListener: DialogInterface.OnClickListener =

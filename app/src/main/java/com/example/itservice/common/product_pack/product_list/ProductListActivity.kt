@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.itservice.R
 import com.example.itservice.admin.products_pack.add_product.AddProductActivity
+import com.example.itservice.base.BaseActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.models.Product
 import com.example.itservice.common.service_pack.display_service_catagory.display_brand_list.display_service.ServiceDisplayAdapter
@@ -18,8 +19,9 @@ import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.databinding.ActivityProductListBinding
 import com.example.itservice.user.product_catagory.product_list.product_details.ProductDetailActivity
+import com.example.itservice.user.product_catagory.product_list.product_details.buy_product.CartActivity
 
-class ProductListActivity : AppCompatActivity(), ProductsSelected {
+class ProductListActivity : BaseActivity(), ProductsSelected {
     lateinit var binding: ActivityProductListBinding
     lateinit var viewModel: ProductListViewModel
 
@@ -74,11 +76,14 @@ class ProductListActivity : AppCompatActivity(), ProductsSelected {
         super.onOptionsItemSelected(item)
         if(item.itemId == R.id.go_to_cart){
             Toast.makeText(applicationContext, "Moving to cart", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this@ProductListActivity, CartActivity::class.java))
+            moveWithAnimationToAnotherActivity()
         }else if(item.itemId == R.id.menu_add_catagory){
             Toast.makeText(applicationContext, "Moving to Add catagory", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this@ProductListActivity, AddProductActivity::class.java)
                 .putExtra(Constants.CatagoryId, catId)
                 .putExtra(Constants.CatagoryName, catName))
+            moveWithAnimationToAnotherActivity()
         }
         return true
     }
@@ -94,6 +99,7 @@ class ProductListActivity : AppCompatActivity(), ProductsSelected {
                     .putExtra(Constants.CatagoryId, catId)
                     .putExtra(Constants.productID, product.id)
             )
+            moveWithAnimationToAnotherActivity()
         }
     }
 }

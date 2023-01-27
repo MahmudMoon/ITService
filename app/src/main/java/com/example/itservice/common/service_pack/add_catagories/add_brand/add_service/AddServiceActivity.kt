@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.lifecycle.ViewModelProvider
 import com.example.itservice.application.TAG
+import com.example.itservice.base.BaseActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.models.Brand
 import com.example.itservice.common.models.Service
@@ -22,7 +23,7 @@ import com.example.itservice.common.utils.PhotoUpload
 import com.example.itservice.databinding.ActivityAddSericeBinding
 import com.google.android.material.textview.MaterialTextView
 
-class AddServiceActivity : AppCompatActivity(), TextWatcher {
+class AddServiceActivity : BaseActivity(), TextWatcher {
     private lateinit var binding: ActivityAddSericeBinding
     private lateinit var viewModel: AddServiceViewModel
     private lateinit var etServiceName: AppCompatEditText

@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
 import com.example.itservice.R
+import com.example.itservice.base.BaseActivity
 import com.example.itservice.common.LoginActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.taken_service_catagory.service_list.ServiceListActivity
@@ -14,7 +15,7 @@ import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.databinding.ActivityEngineerDashBoardBinding
 
-class EngineerDashBoardActivity : AppCompatActivity() {
+class EngineerDashBoardActivity : BaseActivity() {
     private lateinit var binding: ActivityEngineerDashBoardBinding
     private lateinit var viewModel: EngineerDashBoradViewModel
 
@@ -29,11 +30,13 @@ class EngineerDashBoardActivity : AppCompatActivity() {
         binding.llyAssignedTasksView.setOnClickListener {
             startActivity(Intent(this@EngineerDashBoardActivity, ServiceListActivity::class.java)
                 .putExtra(Constants.statusType, Constants.ServiceStatus.Assigned.name))
+            moveWithAnimationToAnotherActivity()
         }
 
         binding.llyCompletedTasksView.setOnClickListener {
             startActivity(Intent(this@EngineerDashBoardActivity, ServiceListActivity::class.java)
                 .putExtra(Constants.statusType, Constants.ServiceStatus.Completed.name))
+            moveWithAnimationToAnotherActivity()
         }
 
     }
@@ -49,6 +52,7 @@ class EngineerDashBoardActivity : AppCompatActivity() {
             viewModel.logoutuser()
             finish()
             startActivity(Intent(this@EngineerDashBoardActivity, LoginActivity::class.java))
+            moveWithAnimationToAnotherActivity()
         }
         return true
     }

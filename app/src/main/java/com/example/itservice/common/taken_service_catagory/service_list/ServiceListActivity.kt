@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.itservice.R
 import com.example.itservice.application.TAG
+import com.example.itservice.base.BaseActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.models.ServicesTaken
 import com.example.itservice.common.taken_service_catagory.TakenServiceCatagoryViewModel
@@ -15,7 +16,7 @@ import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.databinding.ActivityServiceListBinding
 
-class ServiceListActivity : AppCompatActivity() {
+class ServiceListActivity : BaseActivity() {
     private lateinit var binding: ActivityServiceListBinding
     private lateinit var viewModel: ServiceListViewModel
     private lateinit var statusType: String

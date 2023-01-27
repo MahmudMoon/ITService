@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.lifecycle.ViewModelProvider
 import com.example.itservice.application.TAG
+import com.example.itservice.base.BaseActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.models.Product
 import com.example.itservice.common.utils.Constants
@@ -25,7 +26,7 @@ import com.example.itservice.databinding.ActivityAddProductBinding
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.google.android.material.textview.MaterialTextView
 
-class AddProductActivity : AppCompatActivity(), TextWatcher {
+class AddProductActivity : BaseActivity(), TextWatcher {
     private lateinit var binding: ActivityAddProductBinding
     private lateinit var viewModel: AddProductViewModel
 

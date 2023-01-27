@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.itservice.R
 import com.example.itservice.admin.users_and_engineers_list.UsersAndEngineersListActivity
+import com.example.itservice.base.BaseActivity
 import com.example.itservice.common.LoginActivity
 import com.example.itservice.common.display_parts.DisplayPartsActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
@@ -19,7 +20,7 @@ import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.databinding.ActivityAdminDashBoardBinding
 import com.example.itservice.user.product_catagory.BuyOurProductsCatagoryDisplayActivity
 
-class AdminDashBoardActivity : AppCompatActivity() {
+class AdminDashBoardActivity : BaseActivity() {
     private lateinit var binding: ActivityAdminDashBoardBinding
     private lateinit var viewModel: AdminDashBoradViewModel
     private lateinit var llyAnalysisServiceTakenTasks: LinearLayout
@@ -50,29 +51,35 @@ class AdminDashBoardActivity : AppCompatActivity() {
         llyAnalysisServiceTakenTasks.setOnClickListener {
             startActivity(Intent(this@AdminDashBoardActivity, TakenServiceCatagoryActivity::class.java)
                 .putExtra("fromAdmin", true))
+            moveWithAnimationToAnotherActivity()
         }
         llyOffersModify.setOnClickListener {
 
         }
         llyServiceModify.setOnClickListener {
             startActivity(Intent(this@AdminDashBoardActivity, DisplayServiceCatagoryActivity::class.java))
+            moveWithAnimationToAnotherActivity()
         }
         llyProductsModify.setOnClickListener {
             startActivity(Intent(this@AdminDashBoardActivity, BuyOurProductsCatagoryDisplayActivity::class.java))
+            moveWithAnimationToAnotherActivity()
         }
 
         llyPartsModify.setOnClickListener {
             startActivity(Intent(this@AdminDashBoardActivity, DisplayPartsActivity::class.java))
+            moveWithAnimationToAnotherActivity()
         }
 
         llyEngineerList.setOnClickListener {
             startActivity(Intent(this@AdminDashBoardActivity, UsersAndEngineersListActivity::class.java)
                 .putExtra(Constants.userType, Constants.UsersType.engineer.name))
+            moveWithAnimationToAnotherActivity()
         }
 
         llyUsersList.setOnClickListener {
             startActivity(Intent(this@AdminDashBoardActivity, UsersAndEngineersListActivity::class.java)
                 .putExtra(Constants.userType, Constants.UsersType.user.name))
+            moveWithAnimationToAnotherActivity()
         }
 
     }
@@ -89,6 +96,7 @@ class AdminDashBoardActivity : AppCompatActivity() {
             viewModel.logoutuser()
             finish()
             startActivity(Intent(this@AdminDashBoardActivity, LoginActivity::class.java))
+            moveWithAnimationToAnotherActivity()
         }
         return true
 

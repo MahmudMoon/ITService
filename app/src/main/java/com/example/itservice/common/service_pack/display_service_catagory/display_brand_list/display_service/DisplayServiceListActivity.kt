@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.itservice.R
 import com.example.itservice.admin.service_pack.display_service_catagory.display_service_list.display_service.DisplayServiceListViewModel
+import com.example.itservice.base.BaseActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.models.Service
 import com.example.itservice.common.service_pack.add_catagories.add_brand.add_service.AddServiceActivity
@@ -18,7 +19,7 @@ import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.databinding.ActivityDisplayServiceListBinding
 
-class DisplayServiceListActivity : AppCompatActivity(), ClickOnService {
+class DisplayServiceListActivity : BaseActivity(), ClickOnService {
     private lateinit var binding: ActivityDisplayServiceListBinding
     private lateinit var viewModel: DisplayServiceListViewModel
 
@@ -77,6 +78,7 @@ class DisplayServiceListActivity : AppCompatActivity(), ClickOnService {
                 .putExtra(Constants.BrandId, brandId)
                 .putExtra(Constants.BrandName, brandName)
             )
+            moveWithAnimationToAnotherActivity()
             return true
         }else return super.onOptionsItemSelected(item)
     }
@@ -86,5 +88,6 @@ class DisplayServiceListActivity : AppCompatActivity(), ClickOnService {
              .putExtra(Constants.CatagoryId, catId )
              .putExtra(Constants.BrandId, brandId)
              .putExtra(Constants.ServiceId, service.id))
+        moveWithAnimationToAnotherActivity()
     }
 }

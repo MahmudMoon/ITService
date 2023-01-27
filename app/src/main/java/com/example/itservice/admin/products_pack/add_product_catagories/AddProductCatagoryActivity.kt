@@ -15,6 +15,7 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.lifecycle.ViewModelProvider
 import com.example.itservice.R
 import com.example.itservice.application.TAG
+import com.example.itservice.base.BaseActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.models.ProductCatagories
 import com.example.itservice.common.models.ServiceCatagory
@@ -23,7 +24,7 @@ import com.example.itservice.common.utils.PhotoUpload
 import com.example.itservice.databinding.ActivityAddProductCatagoryBinding
 import com.google.android.material.textview.MaterialTextView
 
-class AddProductCatagoryActivity : AppCompatActivity(), TextWatcher {
+class AddProductCatagoryActivity : BaseActivity(), TextWatcher {
     private lateinit var binding: ActivityAddProductCatagoryBinding
     private lateinit var viewModel: AddProductCatagoryViewModel
     private var catagoryName: String? = null

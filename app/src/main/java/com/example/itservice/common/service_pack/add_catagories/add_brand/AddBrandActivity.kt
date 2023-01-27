@@ -15,6 +15,7 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.lifecycle.ViewModelProvider
 import com.example.itservice.admin.service_pack.add_service.add_brandes.add_brand.AddBrandViewModel
 import com.example.itservice.application.TAG
+import com.example.itservice.base.BaseActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.models.Brand
 import com.example.itservice.common.utils.Constants
@@ -23,7 +24,7 @@ import com.example.itservice.common.utils.PhotoUpload
 import com.example.itservice.databinding.ActivityAddBrandBinding
 import com.google.android.material.textview.MaterialTextView
 
-class AddBrandActivity : AppCompatActivity() , TextWatcher{
+class AddBrandActivity : BaseActivity() , TextWatcher{
     private lateinit var binding: ActivityAddBrandBinding
     private lateinit var viewModel: AddBrandViewModel
     private var brandName: String? = null

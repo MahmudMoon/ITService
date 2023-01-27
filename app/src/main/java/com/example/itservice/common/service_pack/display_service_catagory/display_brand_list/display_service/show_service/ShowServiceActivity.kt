@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider
 import coil.load
 import com.example.itservice.R
 import com.example.itservice.application.TAG
+import com.example.itservice.base.BaseActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.models.ServicesTaken
 import com.example.itservice.common.utils.Constants
@@ -27,7 +28,7 @@ import com.example.itservice.databinding.ActivityDisplayServiceListBinding
 import com.example.itservice.databinding.ActivityShowServiceBinding
 import com.google.firebase.database.collection.LLRBNode
 
-class ShowServiceActivity : AppCompatActivity(), TextWatcher {
+class ShowServiceActivity : BaseActivity(), TextWatcher {
     private lateinit var binding: ActivityShowServiceBinding
     private lateinit var viewModel: ShowServiceViewModel
     private lateinit var catID: String

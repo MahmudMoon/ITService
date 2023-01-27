@@ -55,6 +55,7 @@ class UserdashboardActivity : BaseActivity() {
             viewModel.logoutuser()
             finish()
             startActivity(Intent(this@UserdashboardActivity, LoginActivity::class.java))
+            moveWithAnimationToAnotherActivity()
         }
         return true
     }

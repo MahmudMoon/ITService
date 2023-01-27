@@ -11,6 +11,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.itservice.R
 import com.example.itservice.application.TAG
+import com.example.itservice.base.BaseActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.parts_pack.add_part.AddPartActivity
 import com.example.itservice.common.utils.Constants
@@ -18,7 +19,7 @@ import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.databinding.ActivityDisplayPartsBinding
 import kotlin.math.log
 
-class DisplayPartsActivity : AppCompatActivity(), PartUpdateClicked {
+class DisplayPartsActivity : BaseActivity(), PartUpdateClicked {
     private lateinit var binding: ActivityDisplayPartsBinding
     private lateinit var viewModel: DisplayPartViewModel
     lateinit var navController: NavController
@@ -44,6 +45,7 @@ class DisplayPartsActivity : AppCompatActivity(), PartUpdateClicked {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.menu_add_catagory){
             startActivity(Intent(this@DisplayPartsActivity, AddPartActivity::class.java))
+            moveWithAnimationToAnotherActivity()
             return true
         }else return super.onOptionsItemSelected(item)
     }
@@ -52,6 +54,7 @@ class DisplayPartsActivity : AppCompatActivity(), PartUpdateClicked {
         Log.d(TAG, "onPartUpdate: part id: ${partID}")
         startActivity(Intent(this@DisplayPartsActivity, AddPartActivity::class.java)
             .putExtra(Constants.partID, partID))
+        moveWithAnimationToAnotherActivity()
     }
 
 }

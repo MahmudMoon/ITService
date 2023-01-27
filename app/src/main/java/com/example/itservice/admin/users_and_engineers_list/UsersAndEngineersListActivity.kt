@@ -6,11 +6,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.itservice.R
+import com.example.itservice.base.BaseActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.utils.Constants
 import com.example.itservice.databinding.ActivityUsersAndEngineersListBinding
 
-class UsersAndEngineersListActivity : AppCompatActivity() {
+class UsersAndEngineersListActivity : BaseActivity() {
     private lateinit var binding: ActivityUsersAndEngineersListBinding
     private lateinit var viewModel: UserAndEngineersListViewModel
     private lateinit var rvDisplayList: RecyclerView

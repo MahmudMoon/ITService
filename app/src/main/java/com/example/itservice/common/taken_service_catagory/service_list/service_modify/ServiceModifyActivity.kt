@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.itservice.R
 import com.example.itservice.application.TAG
+import com.example.itservice.base.BaseActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.models.Notifications
 import com.example.itservice.common.models.Parts
@@ -32,7 +33,7 @@ import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.databinding.ActivityServiceModifyBinding
 
 
-class ServiceModifyActivity : AppCompatActivity(), EngineerSelection, OnItemSelectedListener, PartsSelection, PartQueryItemSelected, TextWatcher {
+class ServiceModifyActivity : BaseActivity(), EngineerSelection, OnItemSelectedListener, PartsSelection, PartQueryItemSelected, TextWatcher {
     private lateinit var binding: ActivityServiceModifyBinding
     private lateinit var viewModel: ServiceModifyViewModel
    // private lateinit var etServiceName: AppCompatEditText

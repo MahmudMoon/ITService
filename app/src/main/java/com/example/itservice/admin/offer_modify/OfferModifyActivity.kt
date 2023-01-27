@@ -4,10 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.example.itservice.R
+import com.example.itservice.base.BaseActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.databinding.ActivityOfferModifyBinding
 
-class OfferModifyActivity : AppCompatActivity() {
+class OfferModifyActivity : BaseActivity() {
     private lateinit var binding: ActivityOfferModifyBinding
     private lateinit var viewModel: OfferModifyViewModel
 
