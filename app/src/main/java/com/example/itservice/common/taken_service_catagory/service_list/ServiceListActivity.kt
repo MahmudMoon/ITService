@@ -16,7 +16,11 @@ import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.databinding.ActivityServiceListBinding
 
-class ServiceListActivity : BaseActivity() {
+interface iServiceListInterface{
+    fun onServiceSelected()
+}
+
+class ServiceListActivity : BaseActivity(), iServiceListInterface {
     private lateinit var binding: ActivityServiceListBinding
     private lateinit var viewModel: ServiceListViewModel
     private lateinit var statusType: String
@@ -74,5 +78,9 @@ class ServiceListActivity : BaseActivity() {
             rvAdapter.notifyDataSetChanged()
         }
 
+    }
+
+    override fun onServiceSelected() {
+        moveWithAnimationToAnotherActivity()
     }
 }

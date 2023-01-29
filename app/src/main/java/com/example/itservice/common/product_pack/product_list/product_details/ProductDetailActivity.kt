@@ -1,5 +1,6 @@
 package com.example.itservice.user.product_catagory.product_list.product_details
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -13,8 +14,12 @@ import coil.load
 import com.example.itservice.R
 import com.example.itservice.base.BaseActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
+import com.example.itservice.common.models.Product
 import com.example.itservice.common.utils.Constants
 import com.example.itservice.databinding.ActivityProductDetailBinding
+import com.example.itservice.local_db.DatabaseInstance
+import com.example.itservice.local_db.DbHelper
+import com.example.itservice.user.product_catagory.product_list.product_details.buy_product.CartActivity
 
 class ProductDetailActivity : BaseActivity() {
     private lateinit var binding: ActivityProductDetailBinding
@@ -26,8 +31,8 @@ class ProductDetailActivity : BaseActivity() {
     private lateinit var tvProductDetail: TextView
     private lateinit var btnAddToCart: Button
     private lateinit var btnGoToCart: Button
-
-
+    private var dbHelper: DbHelper? = null
+    private lateinit var product: Product
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +46,8 @@ class ProductDetailActivity : BaseActivity() {
         tvProductDetail = binding.tvProductDescriptionProductDetail
         btnAddToCart = binding.btnAddToCartProductDetail
         btnGoToCart = binding.btnGoToCartProductDetail
+        btnAddToCart.isClickable = false
+        dbHelper = DatabaseInstance.getDatabaseReference(this)
 
         val bundle = intent?.extras
         if(bundle!=null){
@@ -50,11 +57,18 @@ class ProductDetailActivity : BaseActivity() {
         }
 
         viewModel.productData.observe(this){ product->
+            this.product = product
             ivProductImage.load(product.Image)
             tvProductName.setText("Name: ${product.name}")
             tvProductPrice.setText("Price: ${product.price} BTD")
             tvProductQuantity.setText("Quantity: ${product.quantity}")
             tvProductDetail.setText("Details: ${product.description}")
+            btnAddToCart.isClickable = true
+        }
+
+        btnAddToCart.setOnClickListener {
+           val status = dbHelper?.addCartItem(product)
+           Toast.makeText(this, status, Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -68,6 +82,8 @@ class ProductDetailActivity : BaseActivity() {
         super.onOptionsItemSelected(item)
         if(item.itemId == R.id.go_to_cart){
             Toast.makeText(applicationContext, "Moving to cart", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this@ProductDetailActivity, CartActivity::class.java))
+            moveWithAnimationToAnotherActivity()
         }
         return true
     }

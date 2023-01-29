@@ -13,6 +13,7 @@
         android:layout_margin="8dp">
 
         <CheckBox
+            android:id="@+id/cb_select_product"
             android:layout_width="30dp"
             android:layout_height="50dp"
             android:checked="false"
@@ -20,8 +21,8 @@
             />
         <ImageView
             android:id="@+id/iv_base_item_view"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
             android:layout_marginLeft="10dp"
             android:layout_gravity="center"
             android:scaleType="fitCenter"
@@ -32,7 +33,7 @@
             android:layout_weight="0.5"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="5dp"
             android:gravity="center_vertical">
 
@@ -40,36 +41,53 @@
                 android:id="@+id/tv_base_item_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:gravity="left"
                 android:text="Demo Name"
                 android:textStyle="bold" />
-            <TextView
-                android:id="@+id/tv_base_item_quantity"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Seleted Quantity: 25"
-                android:textStyle="bold" />
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tv_base_item_quantity"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="Quantity: 25"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/tv_base_item_price"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="0 TK"
+                    android:textStyle="bold"
+                    android:layout_marginRight="10dp"
+                    />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="80dp"
-            android:layout_height="match_parent">
+            android:layout_width="55dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="8dp">
             <ImageButton
                 android:id="@+id/btn_add_count_cart"
-                android:layout_width="30dp"
+                android:layout_width="20dp"
                 android:layout_gravity="center"
                 android:background="@drawable/plus"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:layout_height="30dp"
+                android:layout_height="20dp"
                 />
             <View
-                android:layout_width="10dp"
+                android:layout_width="15dp"
                 android:layout_height="5dp"/>
             <ImageButton
                 android:id="@+id/btn_substract_count_cart"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:background="@drawable/minus"
                 android:layout_gravity="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"/>

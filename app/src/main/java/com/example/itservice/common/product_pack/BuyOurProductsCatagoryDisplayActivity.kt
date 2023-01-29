@@ -19,7 +19,11 @@ import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.databinding.ActivityBuyOurProductsBinding
 import com.example.itservice.user.product_catagory.product_list.product_details.buy_product.CartActivity
 
-class BuyOurProductsCatagoryDisplayActivity : BaseActivity() {
+interface ProductCatagorySelection{
+   fun onItemSelected()
+}
+
+class BuyOurProductsCatagoryDisplayActivity : BaseActivity(), ProductCatagorySelection {
     private lateinit var binding: ActivityBuyOurProductsBinding
     private lateinit var viewModel: BuyOurProductCatagoryDisplayViewModel
     private var proCatList = ArrayList<ProductCatagories>()
@@ -68,6 +72,10 @@ class BuyOurProductsCatagoryDisplayActivity : BaseActivity() {
             moveWithAnimationToAnotherActivity()
         }
         return true
+    }
+
+    override fun onItemSelected() {
+        moveWithAnimationToAnotherActivity()
     }
 
 }

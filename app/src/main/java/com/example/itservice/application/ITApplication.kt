@@ -13,6 +13,7 @@ import com.example.itservice.common.taken_service_catagory.service_list.service_
 import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.Constants.CHANNEL_ID
 import com.example.itservice.common.utils.DbInstance
+import com.example.itservice.local_db.DatabaseInstance
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -28,6 +29,7 @@ class ITApplication: Application() {
         super.onCreate()
         Log.d(TAG, "onCreate: ")
         createNotificationChannel()
+        DatabaseInstance.getDatabaseReference(applicationContext)
         if(DbInstance.getLastLoginAs(applicationContext).equals(Constants.admin))  listenforAdminNotifications()
         if(DbInstance.getLastLoginAs(applicationContext).equals(Constants.user))  listenforUserNotifications()
         if(DbInstance.getLastLoginAs(applicationContext).equals(Constants.engineer))  listenforEngineerNotifications()

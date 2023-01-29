@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.itservice.R
 import com.example.itservice.application.TAG
+import com.example.itservice.base.BaseFragment
 import com.example.itservice.common.LoginActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.utils.ContextExtentions
@@ -34,7 +35,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [EnterpriseenterpriseUserRegistationFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class EnterpriseenterpriseUserRegistationFragment : Fragment(), TextWatcher {
+class EnterpriseenterpriseUserRegistationFragment : BaseFragment(), TextWatcher {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -120,6 +121,7 @@ class EnterpriseenterpriseUserRegistationFragment : Fragment(), TextWatcher {
                 progressBar?.visibility = View.GONE
                 Toast.makeText(requireContext(), "Registration successful", Toast.LENGTH_SHORT).show()
                 requireActivity().startActivity(Intent(requireContext(), UserdashboardActivity::class.java))
+                moveWithAnimationToAnotherActivity()
             }else{
                 progressBar?.visibility = View.GONE
                 Toast.makeText(requireContext(), "Registration failed", Toast.LENGTH_SHORT).show()

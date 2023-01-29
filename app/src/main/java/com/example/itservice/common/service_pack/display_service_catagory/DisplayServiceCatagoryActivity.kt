@@ -17,7 +17,11 @@ import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.databinding.ActivityDisplayServiceCatagoryBinding
 
-class DisplayServiceCatagoryActivity : BaseActivity() {
+interface iDisplayServiceCatagory{
+   fun onServiceSelected()
+}
+
+class DisplayServiceCatagoryActivity : BaseActivity(), iDisplayServiceCatagory {
     private lateinit var binding: ActivityDisplayServiceCatagoryBinding
     private lateinit var viewModel: DisplayServiceCatagoryViewModel
     private var rvDisplayCatagory: RecyclerView? = null
@@ -59,5 +63,9 @@ class DisplayServiceCatagoryActivity : BaseActivity() {
             moveWithAnimationToAnotherActivity()
             return true
         }else return super.onOptionsItemSelected(item)
+    }
+
+    override fun onServiceSelected() {
+       moveWithAnimationToAnotherActivity()
     }
 }

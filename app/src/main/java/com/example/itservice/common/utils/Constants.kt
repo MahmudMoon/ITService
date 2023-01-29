@@ -32,6 +32,15 @@ object Constants {
     const val ProductCatagories = "ProductCatagories"
     const val ProductsList = "productsList"
     const val productID = "productID"
+    const val TABLENAME = "cartTable"
+    const val COL_ONE = "ID"
+    const val COL_ZERO = "PRODUCT_ID"
+    const val COL_TWO = "PRODUCT_NAME"
+    const val COL_THREE = "PRODUCT_PRICE"
+    const val COL_FOUR = "PRODUCT_QUANTITY"
+    const val COL_FIVE = "PRODUCT_AVAILABLE_QUANTITY"
+    const val COL_SIX = "PRODUCT_IMAGE_URL"
+    const val COL_SEVEN = "PRODUCT_IS_CHECKED"
 
     enum class ServiceStatus{
         Pending,
@@ -42,5 +51,10 @@ object Constants {
     enum class UsersType{
         user,
         engineer
+    }
+
+    enum class CartStatus{
+        Selected,
+        Deselected
     }
 }

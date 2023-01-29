@@ -7,5 +7,7 @@ data class Product(var id: String? = null,
                    var Image: String? = null,
                    var description: String? = null,
                    var quantity: Int? = null,
-                   var price: Int? = null
+                   var price: Int? = null,
+                   var purchasedProductQuantity: Int? = null,
+                   var isProductChecked: Boolean? = null
                    )

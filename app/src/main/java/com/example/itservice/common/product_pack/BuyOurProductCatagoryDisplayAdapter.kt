@@ -31,7 +31,9 @@ class BuyOurProductCatagoryDisplayAdapter(val context: Context, val catagoryItem
             context.startActivity(Intent(context, ProductListActivity::class.java)
                 .putExtra(Constants.CatagoryId, catagoryItems.get(position).id)
                 .putExtra(Constants.CatagoryName,catagoryItems.get(position).name ))
+            (context as BuyOurProductsCatagoryDisplayActivity).onItemSelected()
         }
+
     }
 
     override fun getItemCount(): Int {

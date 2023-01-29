@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.itservice.R
 import com.example.itservice.admin.admin_dashboard.AdminDashBoardActivity
 import com.example.itservice.application.TAG
+import com.example.itservice.base.BaseFragment
 import com.example.itservice.common.LoginActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.utils.ContextExtentions
@@ -27,7 +28,7 @@ import com.example.itservice.databinding.FragmentAdminLoginBinding
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class AdminLoginFragment : Fragment(), TextWatcher {
+class AdminLoginFragment : BaseFragment(), TextWatcher {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var binding: FragmentAdminLoginBinding
@@ -86,6 +87,7 @@ class AdminLoginFragment : Fragment(), TextWatcher {
                 DbInstance.setUserUid(requireContext(), uid)
                 Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_SHORT).show()
                 requireActivity().startActivity(Intent(requireContext(), AdminDashBoardActivity::class.java))
+                moveWithAnimationToAnotherActivity()
             }else{
                 progressBar?.visibility = View.GONE
                 Toast.makeText(requireContext(), "Login Failed", Toast.LENGTH_SHORT).show()

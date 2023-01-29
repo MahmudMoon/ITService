@@ -28,7 +28,9 @@ class CatagoryDisplayAdapter(val context: Context, var catList: List<ServiceCata
                 Intent(context, BrandListDisplayActivity::class.java)
                     .putExtra(Constants.CatagoryId, cat.caragoryId)
                     .putExtra(Constants.CatagoryName, cat.catagoryName))
+            (context as DisplayServiceCatagoryActivity).onServiceSelected()
         }
+
     }
 
     override fun getItemCount(): Int {

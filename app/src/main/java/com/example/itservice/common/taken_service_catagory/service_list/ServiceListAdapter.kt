@@ -34,7 +34,9 @@ class ServiceListAdapter(val context: Context, private val productItems: List<Se
             context.startActivity(Intent(context, ServiceModifyActivity::class.java)
                 .putExtra(Constants.takenServiceId, productItems[position].id)
                 .putExtra(Constants.userID, productItems[position].createdByID))
+            (context as ServiceListActivity).onServiceSelected()
         }
+
     }
 
     override fun getItemCount(): Int {
