@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.itservice.R
+import com.example.itservice.admin.addOffers.AddOfferActivity
 import com.example.itservice.admin.offer_modify.OfferModifyActivity
 import com.example.itservice.admin.users_and_engineers_list.UsersAndEngineersListActivity
 import com.example.itservice.base.BaseActivity
@@ -31,6 +32,7 @@ class AdminDashBoardActivity : BaseActivity() {
     private lateinit var llyPartsModify: LinearLayout
     private lateinit var llyUsersList: LinearLayout
     private lateinit var llyEngineerList: LinearLayout
+    private lateinit var llyAddOffer:LinearLayout
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +48,7 @@ class AdminDashBoardActivity : BaseActivity() {
         llyPartsModify = binding.llyEditParts
         llyUsersList = binding.llyEditUsersList
         llyEngineerList = binding.llyEditEngineersList
+        llyAddOffer = binding.llyEditOffer
 
         viewModel = ViewModelProvider(this, ViewModelProviderFactory()).get(AdminDashBoradViewModel::class.java)
        // viewModel.listenforNotifications()
@@ -81,6 +84,11 @@ class AdminDashBoardActivity : BaseActivity() {
         llyUsersList.setOnClickListener {
             startActivity(Intent(this@AdminDashBoardActivity, UsersAndEngineersListActivity::class.java)
                 .putExtra(Constants.userType, Constants.UsersType.user.name))
+            moveWithAnimationToAnotherActivity()
+        }
+
+        llyAddOffer.setOnClickListener {
+            startActivity(Intent(this@AdminDashBoardActivity, AddOfferActivity::class.java))
             moveWithAnimationToAnotherActivity()
         }
 

@@ -2,6 +2,7 @@ package com.example.itservice.common.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.itservice.admin.addOffers.AddOfferViewModel
 import com.example.itservice.admin.admin_dashboard.AdminDashBoradViewModel
 import com.example.itservice.admin.login.AdminLoginViewModel
 import com.example.itservice.common.parts_pack.modify_parts.PartsModifyViewModel
@@ -80,6 +81,7 @@ class ViewModelProviderFactory @Inject constructor(): ViewModelProvider.Factory 
         if(modelClass.isAssignableFrom(UserAndEngineersListViewModel::class.java)) return UserAndEngineersListViewModel() as T
         if(modelClass.isAssignableFrom(CartViewModel::class.java)) return CartViewModel() as T
         if(modelClass.isAssignableFrom(PayementViewModel::class.java)) return PayementViewModel() as T
+        if(modelClass.isAssignableFrom(AddOfferViewModel::class.java)) return AddOfferViewModel() as T
         return super.create(modelClass)
     }
 }

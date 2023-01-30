@@ -1,12 +1,14 @@
 package com.example.itservice.user.product_catagory.product_list
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.itservice.admin.addOffers.AddOfferActivity
 import com.example.itservice.common.models.Product
 import com.example.itservice.databinding.ProductListItemBinding
 
@@ -25,7 +27,12 @@ class ProductListAdapter(val context: Context, private val productItems: List<Pr
         holder.textView.text = productItems[position].name
         holder.imageView.load(productItems[position].Image)
         holder.itemView.setOnClickListener {
-            (context as ProductListActivity).onProductItemClicked(product = productItems.get(position))
+            if(context is ProductListActivity){
+                context.onProductItemClicked(product = productItems.get(position))
+            }else if(context is AddOfferActivity){
+                context.onProductSelected(product = productItems.get(position), position)
+            }
+
         }
     }
 

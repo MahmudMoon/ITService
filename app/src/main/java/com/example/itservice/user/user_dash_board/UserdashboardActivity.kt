@@ -56,9 +56,11 @@ class UserdashboardActivity : BaseActivity(), OfferItemSelected {
 
         viewModel.getAllOffers()
         viewModel.offerLiveData.observe(this){
-            listOfOffers.clear()
-            listOfOffers.addAll(it)
-            offerAdapter.notifyDataSetChanged()
+            if(it.size>0) {
+                listOfOffers.clear()
+                listOfOffers.addAll(it)
+                offerAdapter.notifyDataSetChanged()
+            }
         }
 
 
