@@ -29,6 +29,7 @@ class BrandListDisplayActivity : BaseActivity() , BrandClick{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTitleForActivity("Brands")
         binding = ActivityBrandListDisplayBinding.inflate(layoutInflater)
         setContentView(binding.root)
         viewModel = ViewModelProvider(this, ViewModelProviderFactory()).get(BrandListDisplayViewModel::class.java)

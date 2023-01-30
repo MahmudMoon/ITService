@@ -40,6 +40,7 @@ class AddBrandActivity : BaseActivity() , TextWatcher{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTitleForActivity("Add Brands")
         binding = ActivityAddBrandBinding.inflate(layoutInflater)
         setContentView(binding.root)
         viewModel = ViewModelProvider(this, ViewModelProviderFactory()).get(AddBrandViewModel::class.java)

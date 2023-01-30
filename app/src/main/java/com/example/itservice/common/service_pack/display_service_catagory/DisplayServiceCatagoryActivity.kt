@@ -30,6 +30,7 @@ class DisplayServiceCatagoryActivity : BaseActivity(), iDisplayServiceCatagory {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTitleForActivity("Catagories")
         binding = ActivityDisplayServiceCatagoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

@@ -27,7 +27,7 @@ class UserdashboardActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTitleForActivity("Home")
+        supportActionBar?.title = "Home"
         binding = ActivityUserdashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
         dbHelper = DatabaseInstance.getDatabaseReference(this)

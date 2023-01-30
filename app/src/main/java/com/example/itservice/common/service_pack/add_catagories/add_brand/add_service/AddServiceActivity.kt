@@ -52,6 +52,7 @@ class AddServiceActivity : BaseActivity(), TextWatcher {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTitleForActivity("Add Services")
         binding = ActivityAddSericeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         viewModel = ViewModelProvider(this, ViewModelProviderFactory()).get(AddServiceViewModel::class.java)

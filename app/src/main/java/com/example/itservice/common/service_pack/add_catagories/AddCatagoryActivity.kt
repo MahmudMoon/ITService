@@ -38,6 +38,7 @@ class AddCatagoryActivity : BaseActivity() , TextWatcher{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTitleForActivity("Add Catagories")
         binding = ActivityAddCatagoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
         viewModel = ViewModelProvider(this, ViewModelProviderFactory()).get(AddCatagoryViewModel::class.java)

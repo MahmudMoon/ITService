@@ -33,6 +33,7 @@ class DisplayServiceListActivity : BaseActivity(), ClickOnService {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTitleForActivity("Lists")
         binding = ActivityDisplayServiceListBinding.inflate(layoutInflater)
         setContentView(binding.root)
         viewModel = ViewModelProvider(this, ViewModelProviderFactory()).get(

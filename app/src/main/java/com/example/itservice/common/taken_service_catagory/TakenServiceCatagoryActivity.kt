@@ -34,6 +34,7 @@ class TakenServiceCatagoryActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTitleForActivity("Services")
         binding = ActivityTakenServiceCatagoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

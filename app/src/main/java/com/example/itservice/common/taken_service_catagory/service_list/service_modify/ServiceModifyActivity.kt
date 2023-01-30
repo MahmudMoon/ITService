@@ -74,6 +74,7 @@ class ServiceModifyActivity : BaseActivity(), EngineerSelection, OnItemSelectedL
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTitleForActivity("Modify Service")
         binding = ActivityServiceModifyBinding.inflate(layoutInflater)
         setContentView(binding.root)
         viewModel = ViewModelProvider(this, ViewModelProviderFactory()).get(ServiceModifyViewModel::class.java)

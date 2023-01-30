@@ -48,6 +48,7 @@ class ShowServiceActivity : BaseActivity(), TextWatcher {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTitleForActivity("Details")
         binding = ActivityShowServiceBinding.inflate(layoutInflater)
         setContentView(binding.root)
         viewModel = ViewModelProvider(this, ViewModelProviderFactory()).get(ShowServiceViewModel::class.java)
