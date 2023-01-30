@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.itservice.R
+import com.example.itservice.admin.offer_modify.OfferModifyActivity
 import com.example.itservice.admin.users_and_engineers_list.UsersAndEngineersListActivity
 import com.example.itservice.base.BaseActivity
 import com.example.itservice.common.LoginActivity
@@ -54,7 +55,8 @@ class AdminDashBoardActivity : BaseActivity() {
             moveWithAnimationToAnotherActivity()
         }
         llyOffersModify.setOnClickListener {
-
+            startActivity(Intent(this@AdminDashBoardActivity, OfferModifyActivity::class.java))
+            moveWithAnimationToAnotherActivity()
         }
         llyServiceModify.setOnClickListener {
             startActivity(Intent(this@AdminDashBoardActivity, DisplayServiceCatagoryActivity::class.java))
