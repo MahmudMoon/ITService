@@ -5,11 +5,15 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.itservice.R
 import com.example.itservice.base.BaseActivity
 import com.example.itservice.common.LoginActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
+import com.example.itservice.common.models.Offers
 import com.example.itservice.common.taken_service_catagory.TakenServiceCatagoryActivity
 import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.DbInstance
@@ -18,12 +22,20 @@ import com.example.itservice.local_db.DatabaseInstance
 import com.example.itservice.local_db.DbHelper
 import com.example.itservice.user.product_catagory.BuyOurProductsCatagoryDisplayActivity
 
-class UserdashboardActivity : BaseActivity() {
+
+interface  OfferItemSelected{
+    fun onOfferItemSelected(offer: Offers)
+}
+
+class UserdashboardActivity : BaseActivity(), OfferItemSelected {
     private lateinit var binding: ActivityUserdashboardBinding
     private lateinit var viewModel: UserdashboardViewModel
     private lateinit var llyBuyOurProducts: LinearLayout
     private lateinit var llyTakeOurService: LinearLayout
+    private lateinit var rvOffers: RecyclerView
     private lateinit var dbHelper: DbHelper
+    private lateinit var offerAdapter: OfferAdapter
+    private lateinit var listOfOffers: ArrayList<Offers>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,12 +43,24 @@ class UserdashboardActivity : BaseActivity() {
         binding = ActivityUserdashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
         dbHelper = DatabaseInstance.getDatabaseReference(this)
-
+        listOfOffers = ArrayList()
+        offerAdapter = OfferAdapter(this, listOfOffers)
         viewModel = ViewModelProvider(this, ViewModelProviderFactory()).get(UserdashboardViewModel::class.java)
         DbInstance.setLastLoginAs(this@UserdashboardActivity, Constants.user)
 
         llyBuyOurProducts = binding.llyBuyOutProducts
         llyTakeOurService = binding.llyTakeOutService
+        rvOffers = binding.rvOffers
+        rvOffers.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        rvOffers.adapter = offerAdapter
+
+        viewModel.getAllOffers()
+        viewModel.offerLiveData.observe(this){
+            listOfOffers.clear()
+            listOfOffers.addAll(it)
+            offerAdapter.notifyDataSetChanged()
+        }
+
 
         llyBuyOurProducts.setOnClickListener {
             val intent = Intent(this@UserdashboardActivity, BuyOurProductsCatagoryDisplayActivity::class.java)
@@ -71,4 +95,9 @@ class UserdashboardActivity : BaseActivity() {
         super.onBackPressed()
         finishAffinity()
     }
+
+    override fun onOfferItemSelected(offer: Offers) {
+        Toast.makeText(this, "Offer selected", Toast.LENGTH_SHORT).show()
+    }
+
 }
