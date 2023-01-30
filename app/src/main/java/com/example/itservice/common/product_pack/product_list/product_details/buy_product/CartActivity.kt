@@ -1,5 +1,6 @@
 package com.example.itservice.user.product_catagory.product_list.product_details.buy_product
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -14,6 +15,7 @@ import com.example.itservice.application.TAG
 import com.example.itservice.base.BaseActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.models.Product
+import com.example.itservice.common.product_pack.product_list.product_details.buy_product.payment.PaymentActivity
 import com.example.itservice.common.utils.Constants
 import com.example.itservice.databinding.ActivityCartBinding
 import com.example.itservice.local_db.DatabaseInstance
@@ -40,6 +42,7 @@ class CartActivity : BaseActivity(), iDataUpdated {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTitleForActivity("Cart")
         binding = ActivityCartBinding.inflate(layoutInflater)
         setContentView(binding.root)
         dbHelper = DatabaseInstance.getDatabaseReference(applicationContext)
@@ -58,7 +61,8 @@ class CartActivity : BaseActivity(), iDataUpdated {
         viewModel.getAllCarts()
 
         btnCheckout.setOnClickListener {
-
+            startActivity(Intent(this@CartActivity, PaymentActivity::class.java))
+            moveWithAnimationToAnotherActivity()
         }
 
         viewModel.cartListLive.observe(this){

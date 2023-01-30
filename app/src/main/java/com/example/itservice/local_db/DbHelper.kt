@@ -201,4 +201,11 @@ class DbHelper(
         if (ids.size == 0) deleted = false
         return deleted
     }
+
+    fun deleteAllEntries(){
+        val db = writableDatabase
+        val query = "DELETE FROM "+ Constants.TABLENAME
+        db.execSQL(query)
+        db.close()
+    }
 }

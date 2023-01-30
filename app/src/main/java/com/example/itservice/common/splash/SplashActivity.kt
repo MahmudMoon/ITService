@@ -38,6 +38,7 @@ class SplashActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySlpashBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
 
         viewModel =
             ViewModelProvider(this, ViewModelProviderFactory()).get(SplashViewModel::class.java)

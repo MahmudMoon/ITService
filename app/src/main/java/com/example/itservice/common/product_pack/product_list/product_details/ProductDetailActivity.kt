@@ -36,6 +36,7 @@ class ProductDetailActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTitleForActivity("Details")
         binding = ActivityProductDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         viewModel = ViewModelProvider(this, ViewModelProviderFactory()).get(ProductDetailViewModel::class.java)

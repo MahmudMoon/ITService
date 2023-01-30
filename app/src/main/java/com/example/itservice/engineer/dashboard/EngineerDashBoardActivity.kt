@@ -21,6 +21,7 @@ class EngineerDashBoardActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTitleForActivity("HOME")
         binding = ActivityEngineerDashBoardBinding.inflate(layoutInflater)
         setContentView(binding.root)
         viewModel = ViewModelProvider(this, ViewModelProviderFactory()).get(

@@ -33,6 +33,7 @@ class ProductListActivity : BaseActivity(), ProductsSelected {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTitleForActivity("Products")
         binding = ActivityProductListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

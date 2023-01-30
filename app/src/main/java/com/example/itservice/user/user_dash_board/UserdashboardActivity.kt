@@ -14,6 +14,8 @@ import com.example.itservice.common.taken_service_catagory.TakenServiceCatagoryA
 import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.databinding.ActivityUserdashboardBinding
+import com.example.itservice.local_db.DatabaseInstance
+import com.example.itservice.local_db.DbHelper
 import com.example.itservice.user.product_catagory.BuyOurProductsCatagoryDisplayActivity
 
 class UserdashboardActivity : BaseActivity() {
@@ -21,11 +23,14 @@ class UserdashboardActivity : BaseActivity() {
     private lateinit var viewModel: UserdashboardViewModel
     private lateinit var llyBuyOurProducts: LinearLayout
     private lateinit var llyTakeOurService: LinearLayout
+    private lateinit var dbHelper: DbHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTitleForActivity("Home")
         binding = ActivityUserdashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        dbHelper = DatabaseInstance.getDatabaseReference(this)
 
         viewModel = ViewModelProvider(this, ViewModelProviderFactory()).get(UserdashboardViewModel::class.java)
         DbInstance.setLastLoginAs(this@UserdashboardActivity, Constants.user)
@@ -53,10 +58,17 @@ class UserdashboardActivity : BaseActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.menu_item_logout){
             viewModel.logoutuser()
+            //clear db also
+            viewModel.clearDb(dbHelper)
             finish()
             startActivity(Intent(this@UserdashboardActivity, LoginActivity::class.java))
             moveWithAnimationToAnotherActivity()
         }
         return true
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finishAffinity()
     }
 }

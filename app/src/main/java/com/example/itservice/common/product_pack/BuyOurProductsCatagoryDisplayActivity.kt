@@ -32,6 +32,7 @@ class BuyOurProductsCatagoryDisplayActivity : BaseActivity(), ProductCatagorySel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTitleForActivity("Catagories")
         binding = ActivityBuyOurProductsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         rvProductCat = binding.rvCatagoryBuyOurProduct
