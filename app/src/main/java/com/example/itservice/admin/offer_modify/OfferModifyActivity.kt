@@ -51,6 +51,7 @@ class OfferModifyActivity : BaseActivity(), iOfferSelectedForEdit {
         super.onCreate(savedInstanceState)
         binding = ActivityOfferModifyBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setTitleForActivity("Offer modify")
         viewModel = ViewModelProvider(this, ViewModelProviderFactory()).get(OfferModifyViewModel::class.java)
 
         rvOfferssAdapter = OfferAdapter(this@OfferModifyActivity, offerssList)

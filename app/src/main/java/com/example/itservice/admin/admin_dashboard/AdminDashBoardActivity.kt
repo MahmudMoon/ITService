@@ -39,6 +39,7 @@ class AdminDashBoardActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAdminDashBoardBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.title = "Admin Home"
         DbInstance.setLastLoginAs(this@AdminDashBoardActivity, Constants.admin)
 
         llyAnalysisServiceTakenTasks = binding.llyCheckServicesView
@@ -110,5 +111,10 @@ class AdminDashBoardActivity : BaseActivity() {
         }
         return true
 
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finishAffinity()
     }
 }

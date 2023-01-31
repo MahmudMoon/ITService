@@ -32,7 +32,7 @@ class OfferAdapter(val context: Context,val offers: List<Offers>):
         val offer = offers.get(position)
         holder.ivProductImage.load(offer.imageUrl)
         holder.tvProductName.setText(offer.title)
-        holder.tvProductPrice.setText(offer.newPrice.toString())
+        holder.tvProductPrice.setText(offer.newPrice.toString()+"/=")
         holder.tvProductShortDescription.setText(offer.details)
         holder.itemView.setOnClickListener {
             if(context is UserdashboardActivity) {
