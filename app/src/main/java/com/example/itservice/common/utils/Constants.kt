@@ -41,6 +41,7 @@ object Constants {
     const val COL_FIVE = "PRODUCT_AVAILABLE_QUANTITY"
     const val COL_SIX = "PRODUCT_IMAGE_URL"
     const val COL_SEVEN = "PRODUCT_IS_CHECKED"
+    const val COL_EIGHT = "PRODUCT_CAT_ID"
     const val OFFER_LIST = "offers"
     const val ProductPrice = "price"
     const val ProductOfferPrice = "offeredPrice"

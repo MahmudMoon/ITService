@@ -19,7 +19,7 @@
                 android:id="@+id/iv_product_image_product_detail"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:src="@drawable/enterprise"/>
+                android:src="@drawable/enterprise" />
 
             <View
                 android:layout_width="match_parent"
@@ -38,7 +38,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Quantity: 24 piece" />
+                android:text="Price: 24 TAKA" />
+
+            <TextView
+                android:id="@+id/tv_product_quantity_product_offer_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:visibility="gone"
+                android:text="Offer: 20 TAKA" />
 
             <TextView
                 android:id="@+id/tv_product_quantity_product_detail"
@@ -54,19 +62,7 @@
                 android:layout_marginTop="16dp"
                 android:lineHeight="24dp"
                 android:letterSpacing="0.1"
-                android:text="It isLorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt consectetur felis, non ornare justo lobortis ut. Duis id ex quis est fermentum gravida sit amet at tellus. Fusce rhoncus, neque at lobortis dignissim, dui sapien malesuada nisi, sit amet scelerisque tortor velit sit amet enim. Praesent vitae lacinia lacus. Morbi est dolor, faucibus id lobortis vel, luctus eu diam. Cras et suscipit ligula, vel dapibus odio. Mauris id congue arcu. Duis volutpat lectus ligula, quis interdum ex vulputate a. Phasellus vitae vulputate odio, in consequat lectus. Proin quis nibh urna. Nunc pulvinar, risus vitae volutpat lacinia, risus ante volutpat tellus, in ultrices nulla nisl et nulla. Nunc tempus nec nulla rhoncus efficitur. Curabitur nec eros lorem. Morbi sed tortor vitae turpis eleifend dignissim non quis arcu. Vestibulum ac cursus velit.
-
-Integer lectus mauris, tincidunt iaculis augue ac, fermentum semper odio. Maecenas tempus vel dolor nec fringilla. Proin nec ex tortor. Morbi nec varius ligula. Mauris vitae gravida odio. Nulla pulvinar, ex sit amet porttitor facilisis, quam libero dictum mauris, pharetra lobortis orci nunc ut tortor. Nunc iaculis dolor sit amet sodales venenatis. Maecenas enim justo, porta nec risus at, auctor finibus dolor.
-
-Donec non nisl rutrum, gravida risus vestibulum, malesuada augue. Aenean ultricies pellentesque neque vitae fringilla. Pellentesque tincidunt ligula et ante hendrerit hendrerit. In et cursus odio. Nam ornare cursus nisi. Proin dapibus elementum lectus, sit amet pretium nunc venenatis at. Vestibulum vulputate maximus odio, eget vehicula risus semper quis. Vivamus vehicula at purus sed egestas. Cras quis fringilla justo. Vestibulum magna leo, sagittis quis nisi ac, condimentum ultrices diam.
-
-Maecenas maximus commodo massa, eu condimentum velit venenatis vitae. Suspendisse vulputate elit sapien, mollis elementum turpis pretium at. Nam pretium dui at tellus pellentesque, vel euismod orci auctor. Integer euismod eleifend odio id auctor. Nullam in ultrices magna. Donec accumsan molestie ex, aliquet pellentesque lacus fringilla id. Suspendisse sit amet risus eget orci malesuada bibendum.
-
-Vivamus sit amet volutpat lacus, id semper turpis. Sed vitae ornare nulla. Nullam aliquet odio ut dolor hendrerit, eget varius augue fermentum. Vivamus vitae risus sapien. Etiam ullamcorper quam eu hendrerit porta. Ut eget porttitor sapien. Nunc malesuada ullamcorper posuere. Nullam molestie velit magna, et hendrerit ex posuere non. Quisque mattis est lectus, pharetra imperdiet urna pharetra interdum. Nam bibendum viverra ex non sollicitudin. Nullam sed massa sapien. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-
-In eu dui ut tortor tristique porta. Nullam blandit sagittis sem, ut mattis neque pellentesque sit amet. Fusce tincidunt neque dui, rhoncus finibus orci porta vitae. Donec ultricies lacus vitae scelerisque ultricies. Duis nec metus vel arcu ornare ultricies. Phasellus sed nisl imperdiet dolor malesuada mattis. Donec at orci suscipit, posuere mauris ut, mollis ipsum. Ut lacinia molestie velit, eu scelerisque magna dictum a. Etiam posuere iaculis risus, quis sollicitudin velit fringilla scelerisque.
-
-Phasellus lacinia enim in dictum lacinia. Pellentesque sed lacus ex. Praesent sit amet nulla eget lectus pretium rutrum a vitae nisi. Praesent a turpis arcu. Morbi id mollis urna."/>
+                android:text="sit amet nulla eget lectus pretium rutrum a vitae nisi. Praesent a turpis arcu. Morbi id mollis urna."/>
 
         </LinearLayout>
     </ScrollView>

@@ -20,7 +20,7 @@ class DbHelper(
 
     override fun onCreate(db: SQLiteDatabase?) {
         val tableQuery = "CREATE TABLE IF NOT EXISTS " + Constants.TABLENAME +
-                " ( " + Constants.COL_ONE + " INTEGER PRIMARY KEY AUTOINCREMENT , " + Constants.COL_ZERO + " TEXT , " + Constants.COL_TWO + " TEXT , " + Constants.COL_THREE + " INTEGER , " + Constants.COL_FOUR + " INTEGER , " + Constants.COL_FIVE + " INTEGER , " + Constants.COL_SIX + " TEXT , " + Constants.COL_SEVEN + " INTEGER )"
+                " ( " + Constants.COL_ONE + " INTEGER PRIMARY KEY AUTOINCREMENT , " + Constants.COL_ZERO + " TEXT , " + Constants.COL_TWO + " TEXT , " + Constants.COL_THREE + " INTEGER , " + Constants.COL_FOUR + " INTEGER , " + Constants.COL_FIVE + " INTEGER , " + Constants.COL_SIX + " TEXT , " + Constants.COL_SEVEN + " INTEGER , " + Constants.COL_EIGHT + " TEXT )"
         try {
             db?.execSQL(tableQuery)
         } catch (exception: Exception) {
@@ -41,11 +41,16 @@ class DbHelper(
         val contentValue = ContentValues()
         contentValue.put(Constants.COL_ZERO, product.id)
         contentValue.put(Constants.COL_TWO, product.name)
-        contentValue.put(Constants.COL_THREE, product.price)
+        if(product.offeredPrice!=null){
+            contentValue.put(Constants.COL_THREE, product.offeredPrice)
+        }else{
+            contentValue.put(Constants.COL_THREE, product.price)
+        }
         contentValue.put(Constants.COL_FOUR, 1)
         contentValue.put(Constants.COL_FIVE, product.quantity)
         contentValue.put(Constants.COL_SIX, product.Image)
         contentValue.put(Constants.COL_SEVEN, -1)
+        contentValue.put(Constants.COL_EIGHT, product.catID)
         val isAdded = db.insert(Constants.TABLENAME, null, contentValue)
         db.close()
         if (isAdded > 0) {
@@ -112,11 +117,12 @@ class DbHelper(
         val productQuantity = cursor.getInt(5)
         val productImageURL = cursor.getString(6)
         val isProductChecked = cursor.getInt(7)
+        val catagoryId = cursor.getString(8)
 
         val product = Product(
             id = productID,
             name = productName,
-            catID = null,
+            catID = catagoryId,
             catName = null,
             Image = productImageURL,
             description = null,
@@ -151,6 +157,31 @@ class DbHelper(
             return false
         }
     }
+
+    fun updatePriceColumnInDb(productId: String, price: Int): Boolean {
+        val product = checkForExistance(productId)
+        if (product != null) {
+            product.price = price
+        }
+        val contentValue = ContentValues()
+        contentValue.put(Constants.COL_THREE, price)
+        val db = writableDatabase
+        val updated = db.update(
+            Constants.TABLENAME,
+            contentValue,
+            Constants.COL_ZERO + " = ? ",
+            arrayOf<String>(productId)
+        )
+        db.close()
+        if (updated > 0) {
+            Log.d(TAG, "updatePriceColumnInDb: done")
+            return true
+        } else {
+            Log.d(TAG, "updatePriceColumnInDb: failed")
+            return false
+        }
+    }
+
 
     fun updateProductStatus(productId: String, isChecked: Boolean): Boolean {
         val product = checkForExistance(productId)

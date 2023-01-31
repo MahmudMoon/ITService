@@ -66,6 +66,16 @@ class CartActivity : BaseActivity(), iDataUpdated {
         }
 
         viewModel.cartListLive.observe(this){
+            total = 0
+            cartList.clear()
+            cartList.addAll(it)
+            Log.d(TAG, "onCreate: "+cartList.size)
+            cartAdapter.notifyDataSetChanged()
+            viewModel.checkForPriceUpdate(it)
+        }
+
+        viewModel.priceUpdated.observe(this){
+            total = 0
             cartList.clear()
             cartList.addAll(it)
             Log.d(TAG, "onCreate: "+cartList.size)

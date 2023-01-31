@@ -1,10 +1,13 @@
 package com.example.itservice.user.product_catagory.product_list.product_details
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Spannable
+import android.text.Spanned
+import android.text.style.StrikethroughSpan
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -21,6 +24,7 @@ import com.example.itservice.local_db.DatabaseInstance
 import com.example.itservice.local_db.DbHelper
 import com.example.itservice.user.product_catagory.product_list.product_details.buy_product.CartActivity
 
+
 class ProductDetailActivity : BaseActivity() {
     private lateinit var binding: ActivityProductDetailBinding
     private lateinit var viewModel: ProductDetailViewModel
@@ -29,10 +33,12 @@ class ProductDetailActivity : BaseActivity() {
     private lateinit var tvProductQuantity: TextView
     private lateinit var tvProductPrice: TextView
     private lateinit var tvProductDetail: TextView
+    private lateinit var tvProductOfferPrice: TextView
     private lateinit var btnAddToCart: Button
     private lateinit var btnGoToCart: Button
     private var dbHelper: DbHelper? = null
     private lateinit var product: Product
+    private val STRIKE_THROUGH_SPAN = StrikethroughSpan()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +53,7 @@ class ProductDetailActivity : BaseActivity() {
         tvProductDetail = binding.tvProductDescriptionProductDetail
         btnAddToCart = binding.btnAddToCartProductDetail
         btnGoToCart = binding.btnGoToCartProductDetail
+        tvProductOfferPrice = binding.tvProductQuantityProductOfferPrice
         btnAddToCart.isClickable = false
         dbHelper = DatabaseInstance.getDatabaseReference(this)
 
@@ -61,9 +68,24 @@ class ProductDetailActivity : BaseActivity() {
             this.product = product
             ivProductImage.load(product.Image)
             tvProductName.setText("Name: ${product.name}")
-            tvProductPrice.setText("Price: ${product.price} BTD")
+            //tvProductPrice.setText()
             tvProductQuantity.setText("Quantity: ${product.quantity}")
             tvProductDetail.setText("Details: ${product.description}")
+            if(product.offeredPrice!=null){
+                val priceString = "Price: ${product.price} BTD"
+                tvProductPrice.setText(priceString, TextView.BufferType.SPANNABLE)
+                val spannable = tvProductPrice.getText() as Spannable
+                spannable.setSpan(
+                    STRIKE_THROUGH_SPAN,
+                    0,
+                    priceString.length,
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+                tvProductOfferPrice.visibility = View.VISIBLE
+                tvProductOfferPrice.setText("Offer price: "+product.offeredPrice + " BTD")
+            }else{
+                tvProductOfferPrice.visibility = View.GONE
+            }
             btnAddToCart.isClickable = true
         }
 
