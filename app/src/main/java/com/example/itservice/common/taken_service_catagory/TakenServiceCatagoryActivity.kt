@@ -29,7 +29,6 @@ class TakenServiceCatagoryActivity : BaseActivity() {
     private lateinit var llyPendingService: LinearLayout
     private lateinit var llyAssignedService: LinearLayout
     private lateinit var llyCompletedService: LinearLayout
-    private lateinit var askForService: LinearLayout
     private var isFromAdmin: Boolean? = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,7 +42,6 @@ class TakenServiceCatagoryActivity : BaseActivity() {
         llyPendingService = binding.llyPendingService
         llyAssignedService = binding.llyAssignedServices
         llyCompletedService = binding.llyCompletedServices
-        askForService = binding.llyAskForService
 
         llyPendingService.setOnClickListener {
             startActivity(Intent(this@TakenServiceCatagoryActivity, ServiceListActivity::class.java)
@@ -63,19 +61,9 @@ class TakenServiceCatagoryActivity : BaseActivity() {
             moveWithAnimationToAnotherActivity()
         }
 
-        askForService.setOnClickListener {
-            startActivity(Intent(this@TakenServiceCatagoryActivity, DisplayServiceCatagoryActivity::class.java))
-            moveWithAnimationToAnotherActivity()
-        }
-
     }
 
     override fun onStart() {
         super.onStart()
-        val bundle = intent?.extras
-        isFromAdmin = bundle?.getBoolean("fromAdmin", false)
-        if(isFromAdmin == true){
-            askForService.visibility = View.GONE
-        }
     }
 }

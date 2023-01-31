@@ -12,8 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintBottom_toTopOf="@id/tv_offer_title"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="@id/guide1">
 
@@ -26,7 +25,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Take our service"
+            android:text="Taken service"
             android:textStyle="bold"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
@@ -38,6 +37,7 @@
         android:id="@+id/guide1"
         android:layout_width="1dp"
         android:layout_height="match_parent"
+        app:layout_constraintHorizontal_bias="0.34"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
@@ -47,10 +47,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintBottom_toTopOf="@id/tv_offer_title"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/guide1">
+        app:layout_constraintLeft_toRightOf="@id/guide2"
+       >
 
         <ImageView
             android:layout_width="80dp"
@@ -61,16 +61,76 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Buy our products"
+            android:text="Products"
             android:textStyle="bold"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
     </LinearLayout>
 
+    <View
+        android:id="@+id/guide2"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        app:layout_constraintHorizontal_bias="0.66"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/lly_ask_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_offer_title"
+        app:layout_constraintRight_toLeftOf="@id/guide2"
+        app:layout_constraintLeft_toRightOf="@id/guide1"
+        >
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ask_service"
+            android:background="@null"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ask Service"
+            android:textStyle="bold"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_offer_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OFFERS AVAILABLE"
+        app:layout_constraintBottom_toTopOf="@id/v_tmp_guide_1"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintLeft_toLeftOf="@id/rv_offers"
+        android:textStyle="bold"
+        android:layout_marginLeft="0dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+    <View
+        android:id="@+id/v_tmp_guide_1"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        app:layout_constraintLeft_toLeftOf="@id/rv_offers"
+        app:layout_constraintLeft_toRightOf="@id/rv_offers"
+        app:layout_constraintBottom_toTopOf="@id/rv_offers"
+        android:background="@color/grey_font"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"/>
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_offers"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="300dp"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_margin="20dp"/>
 

@@ -101,41 +101,41 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/lly_ask_for_service_"
-        android:layout_width="match_parent"
-        android:layout_alignParentBottom="true"
-        android:shadowColor="#FF0404"
-        android:shadowDx="30"
-        android:shadowDy="30"
-        android:shadowRadius="100"
-        android:layout_height="wrap_content"
-        android:background="#68F8E8"
-        app:layout_constraintBottom_toBottomOf="parent">
+<!--    <LinearLayout-->
+<!--        android:id="@+id/lly_ask_for_service_"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:shadowColor="#FF0404"-->
+<!--        android:shadowDx="30"-->
+<!--        android:shadowDy="30"-->
+<!--        android:shadowRadius="100"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="#68F8E8"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent">-->
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:elevation="5dp"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="0.0px"
-            android:clipToPadding="false"
-            android:clipChildren="false"
-            app:cardElevation="40dp"
-            android:layout_margin="4dp"
-            app:cardPreventCornerOverlap="false">
+<!--        <com.google.android.material.card.MaterialCardView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="60dp"-->
+<!--            android:elevation="5dp"-->
+<!--            android:divider="@android:color/transparent"-->
+<!--            android:dividerHeight="0.0px"-->
+<!--            android:clipToPadding="false"-->
+<!--            android:clipChildren="false"-->
+<!--            app:cardElevation="40dp"-->
+<!--            android:layout_margin="4dp"-->
+<!--            app:cardPreventCornerOverlap="false">-->
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text=" ASK FOR A SERVICE "
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                />
-            <!--rest of the code-->
-        </com.google.android.material.card.MaterialCardView>
-    </LinearLayout>
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:text=" ASK FOR A SERVICE "-->
+<!--                android:gravity="center"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textAppearance="@style/TextAppearance.AppCompat.Medium"-->
+<!--                />-->
+<!--            &lt;!&ndash;rest of the code&ndash;&gt;-->
+<!--        </com.google.android.material.card.MaterialCardView>-->
+<!--    </LinearLayout>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

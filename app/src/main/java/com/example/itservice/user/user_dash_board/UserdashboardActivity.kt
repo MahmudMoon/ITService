@@ -1,9 +1,11 @@
 package com.example.itservice.user.user_dash_board
 
 import android.content.Intent
+import android.graphics.Rect
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
@@ -14,6 +16,7 @@ import com.example.itservice.base.BaseActivity
 import com.example.itservice.common.LoginActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.models.Offers
+import com.example.itservice.common.service_pack.display_service_catagory.DisplayServiceCatagoryActivity
 import com.example.itservice.common.taken_service_catagory.TakenServiceCatagoryActivity
 import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.DbInstance
@@ -32,6 +35,7 @@ class UserdashboardActivity : BaseActivity(), OfferItemSelected {
     private lateinit var viewModel: UserdashboardViewModel
     private lateinit var llyBuyOurProducts: LinearLayout
     private lateinit var llyTakeOurService: LinearLayout
+    private lateinit var llyAskForService: LinearLayout
     private lateinit var rvOffers: RecyclerView
     private lateinit var dbHelper: DbHelper
     private lateinit var offerAdapter: OfferAdapter
@@ -50,9 +54,11 @@ class UserdashboardActivity : BaseActivity(), OfferItemSelected {
 
         llyBuyOurProducts = binding.llyBuyOutProducts
         llyTakeOurService = binding.llyTakeOutService
+        llyAskForService = binding.llyAskService
         rvOffers = binding.rvOffers
         rvOffers.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         rvOffers.adapter = offerAdapter
+        rvOffers.addItemDecoration(itemDecorator(20))
 
         viewModel.getAllOffers()
         viewModel.offerLiveData.observe(this){
@@ -72,6 +78,11 @@ class UserdashboardActivity : BaseActivity(), OfferItemSelected {
 
         llyTakeOurService.setOnClickListener {
             startActivity(Intent(this@UserdashboardActivity, TakenServiceCatagoryActivity::class.java))
+            moveWithAnimationToAnotherActivity()
+        }
+
+        llyAskForService.setOnClickListener {
+            startActivity(Intent(this@UserdashboardActivity, DisplayServiceCatagoryActivity::class.java))
             moveWithAnimationToAnotherActivity()
         }
     }
@@ -100,6 +111,25 @@ class UserdashboardActivity : BaseActivity(), OfferItemSelected {
 
     override fun onOfferItemSelected(offer: Offers) {
         Toast.makeText(this, "Offer selected", Toast.LENGTH_SHORT).show()
+
     }
 
+}
+
+class itemDecorator(val space: Int): RecyclerView.ItemDecoration() {
+    override fun getItemOffsets(
+        outRect: Rect,
+        view: View,
+        parent: RecyclerView,
+        state: RecyclerView.State
+    ) {
+        outRect.left = space;
+        outRect.right = space;
+        outRect.bottom = space;
+
+        // Add top margin only for the first item to avoid double space between items
+        if(parent.getChildAdapterPosition(view) == 0) {
+            outRect.left = 0;
+        }
+    }
 }
