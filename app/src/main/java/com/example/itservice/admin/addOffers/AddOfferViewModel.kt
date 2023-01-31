@@ -78,12 +78,12 @@ class AddOfferViewModel: ViewModel() {
             }
     }
 
-    fun changeProductPrice(productId: String?, catID: String?, price: Int) {
+    fun addOfferPriceInProductTable(productId: String?, catID: String?, price: Int) {
         DbInstance.getDbInstance().reference.child(Constants.ProductCatagories)
             .child(catID!!)
             .child(Constants.ProductsList)
             .child(productId!!)
-            .child(Constants.ProductPrice)
+            .child(Constants.ProductOfferPrice)
             .setValue(price)
             .addOnCompleteListener {
                 if(it.isSuccessful){

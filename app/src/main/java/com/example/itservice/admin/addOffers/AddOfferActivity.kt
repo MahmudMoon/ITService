@@ -82,7 +82,7 @@ class AddOfferActivity : BaseActivity(), iProductSelected {
                 //change current price to offer price
                 Log.d(TAG, "onCreate: price: "+price)
                 if(price!=null && price!!>=0) {
-                    viewModel.changeProductPrice(product.id, product.catID, price!!)
+                    viewModel.addOfferPriceInProductTable(product.id, product.catID, price!!)
                 }
             }else{
                 Toast.makeText(this@AddOfferActivity, "Failed to add offer", Toast.LENGTH_SHORT).show()

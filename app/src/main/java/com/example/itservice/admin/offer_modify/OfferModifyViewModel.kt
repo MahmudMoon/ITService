@@ -69,23 +69,24 @@ class OfferModifyViewModel: ViewModel() {
             .addOnCompleteListener { 
                 if(it.isSuccessful){
                     Log.d(TAG, "removeOneOffer: Deleted")
-                    _isOfferModified.postValue(true)
+                    _isOfferDeleted.postValue(true)
                 }else{
                     Log.d(TAG, "removeOneOffer: Failed to delete")
-                    _isOfferModified.postValue(false)
+                    _isOfferDeleted.postValue(false)
                 }
             }
     }
 
-    fun changeProductPrice(productId: String?, catID: String?, price: Int) {
+    fun changeOfferPriceInProductTable(productId: String?, catID: String?, price: Int?) {
 
         // this part is not wokring properly....
 
+        Log.d(TAG, "changeOfferPriceInProductTable: changeOfferPriceInProductTable "+ price)
         DbInstance.getDbInstance().reference.child(Constants.ProductCatagories)
             .child(catID!!)
             .child(Constants.ProductsList)
             .child(productId!!)
-            .child(Constants.ProductPrice)
+            .child(Constants.ProductOfferPrice)
             .setValue(price)
             .addOnCompleteListener {
                 if(it.isSuccessful){

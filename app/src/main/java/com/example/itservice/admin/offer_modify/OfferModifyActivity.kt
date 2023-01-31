@@ -2,7 +2,6 @@ package com.example.itservice.admin.offer_modify
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -12,7 +11,6 @@ import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -92,6 +90,7 @@ class OfferModifyActivity : BaseActivity(), iOfferSelectedForEdit {
                 progrssView.visibility = View.VISIBLE
                 Log.d(TAG, "onCreate: "+ "One item deleted at "+it)
                 Toast.makeText(this@OfferModifyActivity, "One item deleted at "+it, Toast.LENGTH_SHORT).show()
+                this.offer = offerssList.get(it)
                 viewModel.removeOneOffer(offerssList.get(it).id!!)
             }else{
                 progrssView.visibility = View.GONE
@@ -105,6 +104,13 @@ class OfferModifyActivity : BaseActivity(), iOfferSelectedForEdit {
                 progrssView.visibility = View.GONE
             }else{
                 progrssView.visibility = View.GONE
+                if(offer?.productID!=null && offer?.catagoryId != null) {
+                    viewModel.changeOfferPriceInProductTable(
+                        offer?.productID,
+                        offer?.catagoryId,
+                        null
+                    )
+                }
             }
         }
 
@@ -117,6 +123,7 @@ class OfferModifyActivity : BaseActivity(), iOfferSelectedForEdit {
                 val offerNewPrice = etOffersPrice.text.toString()
                 val offerDescription = etOffersDescrition.text.toString()
                 val price = offerNewPrice.toIntOrNull()
+                val currentPrice = offerCurrentPrice.toIntOrNull()
 
                 if(offerName.length>0 && offerCurrentPrice.length>0 && offerNewPrice.length>0 && offerDescription.length >0 ) {
                     val newOffer = Offers(
@@ -124,11 +131,12 @@ class OfferModifyActivity : BaseActivity(), iOfferSelectedForEdit {
                         title = offerName,
                         productID = offer?.productID,
                         imageUrl = offer?.imageUrl,
-                        previousPrice = offer?.previousPrice,
+                        previousPrice = currentPrice,
                         newPrice = price,
                         catagoryId = offer?.catagoryId,
                         details = offerDescription
                     )
+                    this.offer = newOffer
                     viewModel.modifyAnOffer(newOffer)
                 }
             }catch (e: Exception){
@@ -139,9 +147,10 @@ class OfferModifyActivity : BaseActivity(), iOfferSelectedForEdit {
         viewModel.isOfferModified.observe(this){
             progrssView.visibility = View.GONE
             if(it){
+                Log.d(TAG, "onCreate: offer new price: observer "+ offer?.newPrice)
                 Toast.makeText(this@OfferModifyActivity, "Offer modified", Toast.LENGTH_SHORT).show()
                 if(offer?.productID!=null && offer?.catagoryId != null && offer?.newPrice!= null) {
-                    viewModel.changeProductPrice(
+                    viewModel.changeOfferPriceInProductTable(
                         offer?.productID,
                         offer?.catagoryId,
                         offer?.newPrice!!

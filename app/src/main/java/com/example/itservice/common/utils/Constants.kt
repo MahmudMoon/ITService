@@ -43,6 +43,7 @@ object Constants {
     const val COL_SEVEN = "PRODUCT_IS_CHECKED"
     const val OFFER_LIST = "offers"
     const val ProductPrice = "price"
+    const val ProductOfferPrice = "offeredPrice"
 
     enum class ServiceStatus{
         Pending,

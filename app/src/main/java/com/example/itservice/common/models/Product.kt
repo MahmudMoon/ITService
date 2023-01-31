@@ -9,5 +9,6 @@ data class Product(var id: String? = null,
                    var quantity: Int? = null,
                    var price: Int? = null,
                    var purchasedProductQuantity: Int? = null,
-                   var isProductChecked: Boolean? = null
+                   var isProductChecked: Boolean? = null,
+                   var offeredPrice: Int? = null
                    )
