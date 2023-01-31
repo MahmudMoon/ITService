@@ -27,7 +27,8 @@
             android:layout_height="wrap_content"
             android:text="Taken service"
             android:textStyle="bold"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+            android:layout_gravity="center"
+            android:textColor="@color/black"/>
 
     </LinearLayout>
 
@@ -63,7 +64,8 @@
             android:layout_height="wrap_content"
             android:text="Products"
             android:textStyle="bold"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+            android:layout_gravity="center"
+            android:textColor="@color/black"/>
 
     </LinearLayout>
 
@@ -98,7 +100,9 @@
             android:layout_height="wrap_content"
             android:text="Ask Service"
             android:textStyle="bold"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            />
 
     </LinearLayout>
 

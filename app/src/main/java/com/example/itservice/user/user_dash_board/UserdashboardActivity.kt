@@ -3,6 +3,7 @@ package com.example.itservice.user.user_dash_board
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.itservice.R
+import com.example.itservice.application.TAG
 import com.example.itservice.base.BaseActivity
 import com.example.itservice.common.LoginActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
@@ -20,10 +22,12 @@ import com.example.itservice.common.service_pack.display_service_catagory.Displa
 import com.example.itservice.common.taken_service_catagory.TakenServiceCatagoryActivity
 import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.DbInstance
+import com.example.itservice.common.utils.itemDecorator
 import com.example.itservice.databinding.ActivityUserdashboardBinding
 import com.example.itservice.local_db.DatabaseInstance
 import com.example.itservice.local_db.DbHelper
 import com.example.itservice.user.product_catagory.BuyOurProductsCatagoryDisplayActivity
+import com.example.itservice.user.product_catagory.product_list.product_details.ProductDetailActivity
 
 
 interface  OfferItemSelected{
@@ -111,25 +115,16 @@ class UserdashboardActivity : BaseActivity(), OfferItemSelected {
 
     override fun onOfferItemSelected(offer: Offers) {
         Toast.makeText(this, "Offer selected", Toast.LENGTH_SHORT).show()
-
-    }
-
-}
-
-class itemDecorator(val space: Int): RecyclerView.ItemDecoration() {
-    override fun getItemOffsets(
-        outRect: Rect,
-        view: View,
-        parent: RecyclerView,
-        state: RecyclerView.State
-    ) {
-        outRect.left = space;
-        outRect.right = space;
-        outRect.bottom = space;
-
-        // Add top margin only for the first item to avoid double space between items
-        if(parent.getChildAdapterPosition(view) == 0) {
-            outRect.left = 0;
+        val catId = offer.catagoryId
+        val productId = offer.productID
+        Log.d(TAG, "onOfferItemSelected: CAT: "+ catId + " PID"+ productId )
+        if(catId!=null && productId !=null) {
+            val intent = Intent(this@UserdashboardActivity, ProductDetailActivity::class.java)
+            intent.putExtra(Constants.CatagoryId, catId)
+            intent.putExtra(Constants.productID, productId)
+            startActivity(intent)
+            moveWithAnimationToAnotherActivity()
         }
     }
+
 }

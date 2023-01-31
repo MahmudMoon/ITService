@@ -48,7 +48,7 @@ class AdminDashBoardActivity : BaseActivity() {
         llyPartsModify = binding.llyEditParts
         llyUsersList = binding.llyEditUsersList
         llyEngineerList = binding.llyEditEngineersList
-        llyAddOffer = binding.llyEditOffer
+        llyAddOffer = binding.llyAddOffer
 
         viewModel = ViewModelProvider(this, ViewModelProviderFactory()).get(AdminDashBoradViewModel::class.java)
        // viewModel.listenforNotifications()

@@ -1,6 +1,5 @@
 package com.example.itservice.admin.addOffers
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -8,11 +7,9 @@ import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.itservice.R
@@ -61,6 +58,9 @@ class AddOfferActivity : BaseActivity(), iProductSelected {
         btnAddOffer = binding.btnAddOffer
         ivCross = binding.ivCross
 
+        etCurrentPrice.keyListener = null
+        etProductTitle.keyListener = null
+
         rvProductsAdapter = ProductListAdapter(this@AddOfferActivity, productsList)
         rvDisplayProducts?.layoutManager = LinearLayoutManager(this)
         rvDisplayProducts?.adapter = rvProductsAdapter
@@ -76,9 +76,10 @@ class AddOfferActivity : BaseActivity(), iProductSelected {
         }
 
         viewModel.isOfferAdded.observe(this){
-            crossClicked()
             if(it){
                 Toast.makeText(this@AddOfferActivity, "Added an offer", Toast.LENGTH_SHORT).show()
+                //change current price to offer price
+
             }else{
                 Toast.makeText(this@AddOfferActivity, "Failed to add offer", Toast.LENGTH_SHORT).show()
             }
@@ -98,16 +99,21 @@ class AddOfferActivity : BaseActivity(), iProductSelected {
                 val price = productNewPrice.toIntOrNull()
 
                 if(productName.length>0 && productCurrentPrice.length>0 && productNewPrice.length>0 && productDescription.length >0 ) {
-                    val offer = Offers(id = null,
+                    val offer = Offers(
+                        id = null,
                         title = productName,
                         productID = product.id,
                         imageUrl = product.Image,
                         previousPrice = product.price,
-                        newPrice = price
+                        newPrice = price,
+                        catagoryId = product.catID,
+                        details = productDescription
                     )
                     viewModel.addAnOffer(offer)
+                    crossClicked()
                 }
             }catch (e: Exception){
+                crossClicked()
                 Toast.makeText(this@AddOfferActivity, "Failed to add offer", Toast.LENGTH_SHORT).show()
             }
 

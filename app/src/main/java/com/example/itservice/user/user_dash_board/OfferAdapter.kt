@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import coil.load
 import com.example.itservice.R
+import com.example.itservice.admin.offer_modify.OfferModifyActivity
 import com.example.itservice.common.models.Offers
 import com.example.itservice.databinding.RvAdapterOfferLayoutBinding
 
@@ -32,9 +33,13 @@ class OfferAdapter(val context: Context,val offers: List<Offers>):
         holder.ivProductImage.load(offer.imageUrl)
         holder.tvProductName.setText(offer.title)
         holder.tvProductPrice.setText(offer.newPrice.toString())
-        holder.tvProductShortDescription.setText(offer.productID)
+        holder.tvProductShortDescription.setText(offer.details)
         holder.itemView.setOnClickListener {
-            (context as UserdashboardActivity).onOfferItemSelected(offer)
+            if(context is UserdashboardActivity) {
+                context.onOfferItemSelected(offer)
+            }else if(context is OfferModifyActivity){
+                context.onOfferClicked(offer)
+            }
         }
     }
 
