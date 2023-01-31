@@ -41,7 +41,7 @@ class OfferModifyActivity : BaseActivity(), iOfferSelectedForEdit {
     private lateinit var etOffersDescrition: EditText
     private lateinit var btnAddOffer: Button
     private lateinit var etCurrentPrice: EditText
-    private lateinit var offer: Offers
+    private  var offer: Offers? = null
     private lateinit var llyAddOfferContainer: CardView
     private lateinit var ivCross: ImageView
     private lateinit var progrssView: ProgressBar
@@ -119,13 +119,13 @@ class OfferModifyActivity : BaseActivity(), iOfferSelectedForEdit {
 
                 if(offerName.length>0 && offerCurrentPrice.length>0 && offerNewPrice.length>0 && offerDescription.length >0 ) {
                     val newOffer = Offers(
-                        id = offer.id,
+                        id = offer?.id,
                         title = offerName,
-                        productID = offer.productID,
-                        imageUrl = offer.imageUrl,
-                        previousPrice = offer.previousPrice,
+                        productID = offer?.productID,
+                        imageUrl = offer?.imageUrl,
+                        previousPrice = offer?.previousPrice,
                         newPrice = price,
-                        catagoryId = offer.catagoryId,
+                        catagoryId = offer?.catagoryId,
                         details = offerDescription
                     )
                     viewModel.modifyAnOffer(newOffer)
@@ -139,6 +139,13 @@ class OfferModifyActivity : BaseActivity(), iOfferSelectedForEdit {
             progrssView.visibility = View.GONE
             if(it){
                 Toast.makeText(this@OfferModifyActivity, "Offer modified", Toast.LENGTH_SHORT).show()
+                if(offer?.productID!=null && offer?.catagoryId != null && offer?.newPrice!= null) {
+                    viewModel.changeProductPrice(
+                        offer?.productID,
+                        offer?.catagoryId,
+                        offer?.newPrice!!
+                    )
+                }
             }else{
                 Toast.makeText(this@OfferModifyActivity, "Modification failed", Toast.LENGTH_SHORT).show()
 

@@ -45,11 +45,11 @@ class SplashActivity : BaseActivity() {
 
         CoroutineScope(Dispatchers.IO).launch {
             for (i in 0..100 step 2) {
-                Log.d(TAG, "onCreate: running in thread + $i")
+               // Log.d(TAG, "onCreate: running in thread + $i")
                 // progressBar.progress = i
                 delay(50)
                 if (closeThread != null) {
-                    Log.d(TAG, "onCreate: break")
+                   // Log.d(TAG, "onCreate: break")
                     break
                 }
             }

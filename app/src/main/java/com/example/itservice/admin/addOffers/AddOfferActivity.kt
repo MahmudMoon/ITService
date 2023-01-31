@@ -40,6 +40,7 @@ class AddOfferActivity : BaseActivity(), iProductSelected {
     private lateinit var product: Product
     private lateinit var llyAddOfferContainer: CardView
     private lateinit var ivCross: ImageView
+    private var price: Int? = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,7 +80,10 @@ class AddOfferActivity : BaseActivity(), iProductSelected {
             if(it){
                 Toast.makeText(this@AddOfferActivity, "Added an offer", Toast.LENGTH_SHORT).show()
                 //change current price to offer price
-
+                Log.d(TAG, "onCreate: price: "+price)
+                if(price!=null && price!!>=0) {
+                    viewModel.changeProductPrice(product.id, product.catID, price!!)
+                }
             }else{
                 Toast.makeText(this@AddOfferActivity, "Failed to add offer", Toast.LENGTH_SHORT).show()
             }
@@ -96,7 +100,7 @@ class AddOfferActivity : BaseActivity(), iProductSelected {
                 val productCurrentPrice = etCurrentPrice.text.toString()
                 val productNewPrice = etProductPrice.text.toString()
                 val productDescription = etProductDescrition.text.toString()
-                val price = productNewPrice.toIntOrNull()
+                price = productNewPrice.toIntOrNull()
 
                 if(productName.length>0 && productCurrentPrice.length>0 && productNewPrice.length>0 && productDescription.length >0 ) {
                     val offer = Offers(

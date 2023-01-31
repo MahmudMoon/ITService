@@ -64,7 +64,7 @@ class AddOfferViewModel: ViewModel() {
 
     fun addAnOffer(offer: Offers){
         val root = DbInstance.getDbInstance().reference.child(Constants.OFFER_LIST)
-        val key = root.push().key
+        val key = offer.productID
         offer.id = key
         root.child(key!!).setValue(offer)
             .addOnCompleteListener {
@@ -74,6 +74,22 @@ class AddOfferViewModel: ViewModel() {
                 }else{
                     Log.d(TAG, "addAnOffer: failure")
                     _isOfferAdded.postValue(false)
+                }
+            }
+    }
+
+    fun changeProductPrice(productId: String?, catID: String?, price: Int) {
+        DbInstance.getDbInstance().reference.child(Constants.ProductCatagories)
+            .child(catID!!)
+            .child(Constants.ProductsList)
+            .child(productId!!)
+            .child(Constants.ProductPrice)
+            .setValue(price)
+            .addOnCompleteListener {
+                if(it.isSuccessful){
+                    Log.d(TAG, "changeProductPrice: success")
+                }else{
+                    Log.d(TAG, "changeProductPrice: failed")
                 }
             }
     }

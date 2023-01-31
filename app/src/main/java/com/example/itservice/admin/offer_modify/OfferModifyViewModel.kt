@@ -76,4 +76,23 @@ class OfferModifyViewModel: ViewModel() {
                 }
             }
     }
+
+    fun changeProductPrice(productId: String?, catID: String?, price: Int) {
+
+        // this part is not wokring properly....
+
+        DbInstance.getDbInstance().reference.child(Constants.ProductCatagories)
+            .child(catID!!)
+            .child(Constants.ProductsList)
+            .child(productId!!)
+            .child(Constants.ProductPrice)
+            .setValue(price)
+            .addOnCompleteListener {
+                if(it.isSuccessful){
+                    Log.d(TAG, "changeProductPrice: success")
+                }else{
+                    Log.d(TAG, "changeProductPrice: failed")
+                }
+            }
+    }
 }
