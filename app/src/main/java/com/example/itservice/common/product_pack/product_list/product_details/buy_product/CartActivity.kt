@@ -61,12 +61,14 @@ class CartActivity : BaseActivity(), iDataUpdated {
         viewModel.getAllCarts()
 
         btnCheckout.setOnClickListener {
-            startActivity(Intent(this@CartActivity, PaymentActivity::class.java))
+            startActivity(Intent(this@CartActivity, PaymentActivity::class.java)
+                .putExtra(Constants.totalPrice, total))
             moveWithAnimationToAnotherActivity()
         }
 
         viewModel.cartListLive.observe(this){
             total = 0
+            tvSubTotal.text = total.toString() + " TAKA"
             cartList.clear()
             cartList.addAll(it)
             Log.d(TAG, "onCreate: "+cartList.size)
@@ -76,6 +78,7 @@ class CartActivity : BaseActivity(), iDataUpdated {
 
         viewModel.priceUpdated.observe(this){
             total = 0
+            tvSubTotal.text = total.toString() + " TAKA"
             cartList.clear()
             cartList.addAll(it)
             Log.d(TAG, "onCreate: "+cartList.size)
@@ -109,6 +112,11 @@ class CartActivity : BaseActivity(), iDataUpdated {
             Log.d(TAG, "updateDatabase: remove "+id)
             viewModel.updateProductCheckStatus(id, false)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.getAllCarts()
     }
 
     override fun updateDatabase(

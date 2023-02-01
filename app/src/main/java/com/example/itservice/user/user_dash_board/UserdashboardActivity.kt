@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,6 +29,7 @@ import com.example.itservice.local_db.DatabaseInstance
 import com.example.itservice.local_db.DbHelper
 import com.example.itservice.user.product_catagory.BuyOurProductsCatagoryDisplayActivity
 import com.example.itservice.user.product_catagory.product_list.product_details.ProductDetailActivity
+import okhttp3.internal.userAgent
 
 
 interface  OfferItemSelected{
@@ -43,6 +45,7 @@ class UserdashboardActivity : BaseActivity(), OfferItemSelected {
     private lateinit var rvOffers: RecyclerView
     private lateinit var dbHelper: DbHelper
     private lateinit var offerAdapter: OfferAdapter
+    private lateinit var tvUserName: TextView
     private lateinit var listOfOffers: ArrayList<Offers>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,6 +62,7 @@ class UserdashboardActivity : BaseActivity(), OfferItemSelected {
         llyBuyOurProducts = binding.llyBuyOutProducts
         llyTakeOurService = binding.llyTakeOutService
         llyAskForService = binding.llyAskService
+        tvUserName = binding.tvUserName
         rvOffers = binding.rvOffers
         rvOffers.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         rvOffers.adapter = offerAdapter
@@ -89,6 +93,13 @@ class UserdashboardActivity : BaseActivity(), OfferItemSelected {
             startActivity(Intent(this@UserdashboardActivity, DisplayServiceCatagoryActivity::class.java))
             moveWithAnimationToAnotherActivity()
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val name = DbInstance.getUserName(this@UserdashboardActivity)
+        Log.d(TAG, "onStart: Name "+ name)
+        tvUserName.setText(name)
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         super.onCreateOptionsMenu(menu)

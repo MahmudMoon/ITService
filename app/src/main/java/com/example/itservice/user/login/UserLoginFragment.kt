@@ -93,16 +93,26 @@ class UserLoginFragment : BaseFragment(), TextWatcher {
 
         viewModel.userAuthResult.observe(viewLifecycleOwner){
             if(it.isSuccess){
-                progressBar?.visibility = View.GONE
                 val uid = it.resultData as String
                 Log.d(TAG, "onViewCreated: uid: ${uid}")
                 DbInstance.setUserUid(requireContext(), uid)
+                viewModel.getUserData(uid)
+            }else{
+                progressBar?.visibility = View.GONE
+                Toast.makeText(requireContext(), "Login failed", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        viewModel.userData.observe(viewLifecycleOwner){
+            if(it!=null){
+                DbInstance.setUserName(requireContext() ,it.fullName!!)
+                progressBar?.visibility = View.GONE
                 Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_SHORT).show()
                 requireActivity().startActivity(Intent(requireContext(), UserdashboardActivity::class.java))
                 moveWithAnimationToAnotherActivity()
             }else{
                 progressBar?.visibility = View.GONE
-                Toast.makeText(requireContext(), "Login failed", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Login Failed", Toast.LENGTH_SHORT).show()
             }
         }
 

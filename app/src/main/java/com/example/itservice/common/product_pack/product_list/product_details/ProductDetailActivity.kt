@@ -90,8 +90,12 @@ class ProductDetailActivity : BaseActivity() {
         }
 
         btnAddToCart.setOnClickListener {
-           val status = dbHelper?.addCartItem(product)
-           Toast.makeText(this, status, Toast.LENGTH_SHORT).show()
+            if(product.quantity!! > 0) {
+                val status = dbHelper?.addCartItem(product)
+                Toast.makeText(this, status, Toast.LENGTH_SHORT).show()
+            }else{
+                Toast.makeText(this@ProductDetailActivity, "Product quantity not available", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
