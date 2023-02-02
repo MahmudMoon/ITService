@@ -59,7 +59,7 @@ class ITApplication: Application() {
             .setPriority(NotificationCompat.PRIORITY_HIGH)
 
         val notificationManagerCompat =  NotificationManagerCompat.from(this)
-        val id = Random().nextInt()
+        val id = 1
 
         notificationManagerCompat.notify(id, builder.build())
     }

@@ -115,8 +115,8 @@ class ServiceModifyViewModel: ViewModel() {
 
     fun sendNotificationFor(assignedEngineerID: String?, createdByID: String?, notifications: Notifications) {
         val notificationRootRef = DbInstance.getDbInstance().reference.child(Constants.Notifications)
-        sendNotificationForEng(notificationRootRef, assignedEngineerID, notifications)
-        sendNotificationForUser(notificationRootRef, createdByID, notifications)
+        if(assignedEngineerID!=null) sendNotificationForEng(notificationRootRef, assignedEngineerID, notifications)
+        if(createdByID != null ) sendNotificationForUser(notificationRootRef, createdByID, notifications)
         sendNotificationForAdmin(notificationRootRef = notificationRootRef, notifications =  notifications)
     }
 

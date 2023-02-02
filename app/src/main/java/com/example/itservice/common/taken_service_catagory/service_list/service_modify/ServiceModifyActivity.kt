@@ -160,30 +160,33 @@ class ServiceModifyActivity : BaseActivity(), EngineerSelection, OnItemSelectedL
             viewModel.getTakenServiceObject(createrId,takeServiceId)
         }
 
-        viewModel.takenObject.observe(this){takenObject ->
-            takenService = takenObject
-            Log.d(TAG, "onCreate: takenObjcet ${takenService.id}")
-           // etServiceName.setText(takenObject.serviceName)
-            takeServiceId = takenService.id!!
-            etServiceID.setText(takenService.id)
-            etServiceAssignedTo.setText(takenService.assignedEngineerName)
-            etServiceCreatedBy.setText(takenService.createdByName)
-            etServiceCatagoryName.setText(takenService.catagoryName)
-            etServiceBrandName.setText(takenService.brandName)
-            etServiceModelName.setText(takenService.modelName)
-            etServicePrice.setText(takenService.serviceCost)
-            etServiceProblemStatement.setText(takenService.problemStatement)
-            //change status
-            val status = takenService.status
-            val statusIndex = tmpStatusHolder.indexOf(status)
-            if(statusIndex>=0)
-                statusSpinner.setSelection(statusIndex)
+        viewModel.takenObject.observe(this){objectValue ->
+            if(objectValue !=null) {
+                takenService = objectValue
+                Log.d(TAG, "onCreate: takenObjcet ${takenService.id}")
+                // etServiceName.setText(takenObject.serviceName)
+                takeServiceId = takenService.id!!
+                etServiceID.setText(takenService.id)
+                etServiceAssignedTo.setText(takenService.assignedEngineerName)
+                etServiceCreatedBy.setText(takenService.createdByName)
+                etServiceCatagoryName.setText(takenService.catagoryName)
+                etServiceBrandName.setText(takenService.brandName)
+                etServiceModelName.setText(takenService.modelName)
+                etServicePrice.setText(takenService.serviceCost)
+                etServiceProblemStatement.setText(takenService.problemStatement)
+                //change status
+                val status = takenService.status
+                val statusIndex = tmpStatusHolder.indexOf(status)
+                if (statusIndex >= 0)
+                    statusSpinner.setSelection(statusIndex)
 
-            val parts = takenObject.parts
-            if(parts!=null){
-                partsList.clear()
-                partsList.addAll(parts!!)
-                partsQueryAdapter.notifyDataSetChanged()
+                val parts = takenService.parts
+                if (parts != null) {
+                    partsList.clear()
+                    partsList.addAll(parts!!)
+                    partsQueryAdapter.notifyDataSetChanged()
+                }
+
             }
 
         }
