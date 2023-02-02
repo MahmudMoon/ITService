@@ -92,6 +92,7 @@ class OfferModifyActivity : BaseActivity(), iOfferSelectedForEdit {
                 Toast.makeText(this@OfferModifyActivity, "One item deleted at "+it, Toast.LENGTH_SHORT).show()
                 this.offer = offerssList.get(it)
                 viewModel.removeOneOffer(offerssList.get(it).id!!)
+                clearAllSeletedFields()
             }else{
                 progrssView.visibility = View.GONE
                 Log.d(TAG, "onCreate: "+ "One item deleted at "+it)
@@ -138,9 +139,13 @@ class OfferModifyActivity : BaseActivity(), iOfferSelectedForEdit {
                     )
                     this.offer = newOffer
                     viewModel.modifyAnOffer(newOffer)
+                }else{
+                    progrssView.visibility = View.GONE
+                    Toast.makeText(this@OfferModifyActivity, "Please provide offer info", Toast.LENGTH_SHORT).show()
                 }
             }catch (e: Exception){
                 Toast.makeText(this@OfferModifyActivity, "Failed to add offer", Toast.LENGTH_SHORT).show()
+                progrssView.visibility = View.GONE
             }
         }
 
@@ -161,6 +166,14 @@ class OfferModifyActivity : BaseActivity(), iOfferSelectedForEdit {
 
             }
         }
+    }
+
+    private fun clearAllSeletedFields() {
+        this.offer = null
+        etOffersTitle.setText("")
+        etOffersPrice.setText("")
+        etCurrentPrice.setText("")
+        etOffersDescrition.setText("")
     }
 
     override fun onOfferClicked(offers: Offers) {

@@ -71,8 +71,9 @@ class ProductDetailActivity : BaseActivity() {
             //tvProductPrice.setText()
             tvProductQuantity.setText("Quantity: ${product.quantity}")
             tvProductDetail.setText("Details: ${product.description}")
+            val priceString = "Price: ${product.price} BTD"
             if(product.offeredPrice!=null){
-                val priceString = "Price: ${product.price} BTD"
+
                 tvProductPrice.setText(priceString, TextView.BufferType.SPANNABLE)
                 val spannable = tvProductPrice.getText() as Spannable
                 spannable.setSpan(
@@ -85,6 +86,7 @@ class ProductDetailActivity : BaseActivity() {
                 tvProductOfferPrice.setText("Offer price: "+product.offeredPrice + " BTD")
             }else{
                 tvProductOfferPrice.visibility = View.GONE
+                tvProductPrice.setText(priceString)
             }
             btnAddToCart.isClickable = true
         }
