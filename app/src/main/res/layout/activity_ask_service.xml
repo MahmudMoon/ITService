@@ -73,6 +73,8 @@
         android:text="@string/submit_problem"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:padding="8dp"
         android:letterSpacing="0.12"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"

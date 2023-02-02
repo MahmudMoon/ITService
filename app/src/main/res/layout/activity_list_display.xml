@@ -19,6 +19,7 @@
         android:background="@color/purple_700"
         android:textColor="@color/white"
         android:gravity="center"
+        android:visibility="gone"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
     <androidx.recyclerview.widget.RecyclerView

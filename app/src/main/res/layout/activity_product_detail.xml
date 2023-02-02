@@ -19,7 +19,7 @@
                 android:id="@+id/iv_product_image_product_detail"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:src="@drawable/enterprise" />
+                />
 
             <View
                 android:layout_width="match_parent"
@@ -29,7 +29,6 @@
                 android:id="@+id/tv_product_name_product_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Iphone 14 max pro"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textStyle="bold" />
 
@@ -38,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Price: 24 TAKA" />
+                />
 
             <TextView
                 android:id="@+id/tv_product_quantity_product_offer_price"
@@ -46,14 +45,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:visibility="gone"
-                android:text="Offer: 20 TAKA" />
+                />
 
             <TextView
                 android:id="@+id/tv_product_quantity_product_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Quantity: 24 piece" />
+                />
 
             <TextView
                 android:id="@+id/tv_product_description_product_detail"
@@ -61,9 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:lineHeight="24dp"
-                android:letterSpacing="0.1"
-                android:text="sit amet nulla eget lectus pretium rutrum a vitae nisi. Praesent a turpis arcu. Morbi id mollis urna."/>
-
+                android:letterSpacing="0.1"/>
         </LinearLayout>
     </ScrollView>
 
