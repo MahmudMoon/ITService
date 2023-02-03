@@ -19,8 +19,8 @@ class UserLoginViewModel : ViewModel() {
     val userAuthResult: LiveData<AuthResult>
         get() = _userAuthResult
 
-    private var _userData = MutableLiveData<User>()
-    val userData: LiveData<User>
+    private var _userData = MutableLiveData<User?>()
+    val userData: LiveData<User?>
         get() = _userData
 
 
@@ -32,6 +32,7 @@ class UserLoginViewModel : ViewModel() {
 
         override fun onCancelled(error: DatabaseError) {
             Log.d(TAG, "onCancelled: error on fatching user")
+            _userData.postValue(null)
         }
 
     }

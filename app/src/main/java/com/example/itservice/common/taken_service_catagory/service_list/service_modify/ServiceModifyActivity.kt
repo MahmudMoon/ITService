@@ -227,6 +227,8 @@ class ServiceModifyActivity : BaseActivity(), EngineerSelection, OnItemSelectedL
                     if(part.partAvailbleAfterRequest!=null) part.partAvailbleAfterRequest = null
                 }
                 viewModel.updateTakenService( takenService)
+            }else{
+                progressBar.visibility = View.GONE
             }
         }
 

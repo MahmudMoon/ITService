@@ -113,6 +113,8 @@ class AddProductActivity : BaseActivity(), TextWatcher {
                 val productID = viewModel.getNewKey()
                 product.id = productID
                 viewModel.storeserviceDataInFirebase(catId, product)
+            }else{
+                progressBar.visibility = View.GONE
             }
         }
 

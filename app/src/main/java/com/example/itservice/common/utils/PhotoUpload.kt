@@ -46,9 +46,6 @@ class PhotoUpload constructor(val activity: AppCompatActivity){
                 }
             }
             ref.downloadUrl
-        }.addOnFailureListener {
-            Log.d(TAG, "uploadImageInFireStore: "+ it.localizedMessage)
-            Log.d(TAG, "uploadImageInFireStore: "+ it.message)
         }.addOnCompleteListener{task->
             if(task.isSuccessful) {
                 Log.d(TAG, "uploadImageInFireStore: success")

@@ -102,6 +102,8 @@ class ShowServiceActivity : BaseActivity(), TextWatcher {
                 val uid = DbInstance.getUserUid(this@ShowServiceActivity)
                 takenService.createdByID = uid
                 viewModel.getUserNameFromUID(uid)
+            }else{
+                progressBar.visibility = View.GONE
             }
         }
 
@@ -116,18 +118,30 @@ class ShowServiceActivity : BaseActivity(), TextWatcher {
         }
 
         viewModel.userName.observe(this){ name ->
-            takenService.createdByName = name
-            viewModel.getCatagoryName(catID)
+            if(name!="") {
+                takenService.createdByName = name
+                viewModel.getCatagoryName(catID)
+            }else{
+                progressBar.visibility = View.GONE
+            }
         }
 
         viewModel.catName.observe(this){catName ->
-            takenService.catagoryName = catName
-            viewModel.getBrandName(catID, brandID)
+            if(catName!=""){
+                takenService.catagoryName = catName
+                viewModel.getBrandName(catID, brandID)
+            }else{
+                progressBar.visibility = View.GONE
+            }
         }
 
         viewModel.brandName.observe(this){brandName ->
-            takenService.brandName = brandName
-            viewModel.addNewServiceTakenRequest(takenService)
+            if(brandName!=null) {
+                takenService.brandName = brandName
+                viewModel.addNewServiceTakenRequest(takenService)
+            }else{
+                progressBar.visibility = View.GONE
+            }
         }
 
     }

@@ -70,6 +70,8 @@ class AddBrandActivity : BaseActivity() , TextWatcher{
             if(path!=""){
                 val brand = Brand(brandID , brandName, path)
                 viewModel.storebrandDataInFirebase(catId, brand)
+            }else{
+                progressBar.visibility = View.GONE
             }
         }
 

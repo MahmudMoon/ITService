@@ -103,6 +103,8 @@ class AddServiceActivity : BaseActivity(), TextWatcher {
             if(path!=""){
                 val service = Service(serviceID ,serviceName , brandName, serviceModel, catName, servicePrice, path)
                 viewModel.storeserviceDataInFirebase(catId, brandId, service)
+            }else{
+                progressBar.visibility = View.GONE
             }
         }
 

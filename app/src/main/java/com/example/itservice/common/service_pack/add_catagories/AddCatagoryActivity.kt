@@ -63,6 +63,8 @@ class AddCatagoryActivity : BaseActivity() , TextWatcher{
             if(path!=""){
                 val serviceCatagory = ServiceCatagory(catID , catagoryName, path)
                viewModel.storeCatagoryDataInFirebase(serviceCatagory)
+            }else{
+                progressBar.visibility = View.GONE
             }
         }
 

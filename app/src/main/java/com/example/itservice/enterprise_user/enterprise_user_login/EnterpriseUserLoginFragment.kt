@@ -95,9 +95,9 @@ class EnterpriseUserFragment : BaseFragment(), TextWatcher {
         }
         viewModel.enterpriseuserAuthResult.observe(viewLifecycleOwner){
             if(it.isSuccess){
+                progressBar?.visibility = View.GONE
                 val uid = it.resultData as String
                 DbInstance.setUserUid(requireContext(), uid)
-                progressBar?.visibility = View.GONE
                 Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_SHORT).show()
                 requireActivity().startActivity(Intent(requireContext(), UserdashboardActivity::class.java))
                 moveWithAnimationToAnotherActivity()

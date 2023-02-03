@@ -172,8 +172,8 @@ class UserRegistationFragment : BaseFragment(), TextWatcher, userRegistrationIma
         }
 
         viewModel.uploadPhoto.observe(viewLifecycleOwner){
-            val path = it
             progressBar?.visibility = View.GONE
+            val path = it
             Toast.makeText(requireContext(), "Registration successful", Toast.LENGTH_SHORT).show()
             requireActivity().startActivity(Intent(requireContext(), LoginActivity::class.java)
                 .putExtra(Constants.email, userEmail)

@@ -44,6 +44,7 @@ class ShowServiceViewModel: ViewModel() {
         }
 
         override fun onCancelled(error: DatabaseError) {
+            _userName.postValue("")
         }
 
     }
@@ -56,6 +57,7 @@ class ShowServiceViewModel: ViewModel() {
         }
 
         override fun onCancelled(error: DatabaseError) {
+            _catName.postValue("")
         }
 
     }
@@ -68,6 +70,7 @@ class ShowServiceViewModel: ViewModel() {
         }
 
         override fun onCancelled(error: DatabaseError) {
+            _brandName.postValue("")
         }
 
     }
@@ -103,7 +106,11 @@ class ShowServiceViewModel: ViewModel() {
         rootRef.child(key!!)
             .setValue(takenService)
             .addOnCompleteListener {
-                _dataAdded.postValue(DbUpdateResult(true, null))
+                if(it.isSuccessful) {
+                    _dataAdded.postValue(DbUpdateResult(true, null))
+                }else{
+                    _dataAdded.postValue(DbUpdateResult(false, null))
+                }
             }
     }
 

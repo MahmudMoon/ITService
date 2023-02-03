@@ -119,9 +119,9 @@ class EnterpriseenterpriseUserRegistationFragment : BaseFragment(), TextWatcher 
 
         viewModel.enterprise_userAuthResult.observe(viewLifecycleOwner){
             if(it.isSuccess){
+                progressBar?.visibility = View.GONE
                 val uid = it.resultData as String
                 DbInstance.setUserUid(requireContext(), uid)
-                progressBar?.visibility = View.GONE
                 Toast.makeText(requireContext(), "Registration successful", Toast.LENGTH_SHORT).show()
                 requireActivity().startActivity(Intent(requireContext(), LoginActivity::class.java)
                     .putExtra(Constants.email, enterpriseUserEmail)
