@@ -19,6 +19,7 @@ import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.engineer.dashboard.EngineerDashBoardActivity
 import com.example.itservice.local_db.DatabaseInstance
 import com.example.itservice.local_db.DbHelper
+import com.example.itservice.user.profile.ProfileActivity
 import com.example.itservice.user.user_dash_board.UserdashboardActivity
 import kotlin.coroutines.Continuation
 
@@ -62,7 +63,10 @@ open class BaseActivity : AppCompatActivity(), initBaseViewModel {
             }
             moveWithAnimationToAnotherActivity()
         }else if(item.itemId == R.id.menu_item_profile){
-
+            if(DbInstance.getLastLoginAs(this).equals(Constants.user)){
+                startActivity(Intent(this, ProfileActivity::class.java))
+                moveWithAnimationToAnotherActivity()
+            }
         }else if(item.itemId == R.id.menu_item_logout_eng_admin || item.itemId == R.id.menu_item_logout){
             baseDBHelper = DatabaseInstance.getDatabaseReference(this)
             if(DbInstance.getLastLoginAs(this).equals(Constants.user)) viewModel.clearDb(baseDBHelper)

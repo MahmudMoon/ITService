@@ -40,6 +40,7 @@ import com.example.itservice.common.taken_service_catagory.TakenServiceCatagoryV
 import com.example.itservice.common.taken_service_catagory.service_list.ServiceListViewModel
 import com.example.itservice.common.taken_service_catagory.service_list.service_modify.search_eng_frag.SearchForViewModel
 import com.example.itservice.user.product_catagory.product_list.product_details.buy_product.CartViewModel
+import com.example.itservice.user.profile.ProfileViewModel
 import com.example.itservice.user.user_dash_board.UserdashboardViewModel
 import javax.inject.Inject
 
@@ -84,6 +85,7 @@ class ViewModelProviderFactory @Inject constructor(): ViewModelProvider.Factory 
         if(modelClass.isAssignableFrom(PayementViewModel::class.java)) return PayementViewModel() as T
         if(modelClass.isAssignableFrom(AddOfferViewModel::class.java)) return AddOfferViewModel() as T
         if(modelClass.isAssignableFrom(BaseViewModel::class.java)) return BaseViewModel() as T
+        if(modelClass.isAssignableFrom(ProfileViewModel::class.java)) return ProfileViewModel() as T
         return super.create(modelClass)
     }
 }
