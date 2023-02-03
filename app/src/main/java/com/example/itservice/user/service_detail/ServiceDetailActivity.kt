@@ -9,5 +9,6 @@ class ServiceDetailActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_service_detail)
+        setTitleForActivity("Service details")
     }
 }

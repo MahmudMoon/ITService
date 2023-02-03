@@ -76,7 +76,7 @@ class UserLoginFragment : BaseFragment(), TextWatcher {
         etuserEmail = binding.etEmailUserLogin
         etuserPassword = binding.etPasswordUserLogin
         progressBar = binding.pbUserLogin
-
+        (requireActivity() as LoginActivity).setTitle("User login")
 
         btnSignIN.setOnClickListener {
             ContextExtentions.hideKeyboard(it, requireContext())

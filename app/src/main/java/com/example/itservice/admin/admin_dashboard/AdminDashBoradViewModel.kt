@@ -11,7 +11,5 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 
 class AdminDashBoradViewModel: ViewModel() {
-    fun logoutuser() {
-        DbInstance.getAuthInstance().signOut()
-    }
+
 }

@@ -128,7 +128,7 @@
                         android:id="@+id/et_employee_id_engineer_registation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textPersonName"
+                        android:inputType="number"
                         android:hint="@string/employee_id" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -144,7 +144,7 @@
                         android:id="@+id/et_contact_number_engineer_registation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textPersonName"
+                        android:inputType="phone"
                         android:hint="@string/contact_number" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -160,7 +160,7 @@
                         android:id="@+id/et_nid_engineer_registation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textPersonName"
+                        android:inputType="number"
                         android:hint="@string/nid" />
 
                 </com.google.android.material.textfield.TextInputLayout>

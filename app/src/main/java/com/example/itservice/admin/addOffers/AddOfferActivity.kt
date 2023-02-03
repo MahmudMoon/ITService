@@ -73,19 +73,18 @@ class AddOfferActivity : BaseActivity(), iProductSelected {
             productsList.clear()
             productsList.addAll(data)
             rvProductsAdapter?.notifyDataSetChanged()
-            Log.d(TAG, "onCreate: productsData -> "+data.size)
         }
 
         viewModel.isOfferAdded.observe(this){
             if(it){
-                Toast.makeText(this@AddOfferActivity, "Added an offer", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@AddOfferActivity, getString(R.string.add_an_offer_toast), Toast.LENGTH_SHORT).show()
                 //change current price to offer price
                 Log.d(TAG, "onCreate: price: "+price)
                 if(price!=null && price!!>=0) {
                     viewModel.addOfferPriceInProductTable(product.id, product.catID, price!!)
                 }
             }else{
-                Toast.makeText(this@AddOfferActivity, "Failed to add offer", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@AddOfferActivity, getString(R.string.failed_to_add_offer), Toast.LENGTH_SHORT).show()
             }
         }
 

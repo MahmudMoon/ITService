@@ -89,6 +89,7 @@ class EnterpriseenterpriseUserRegistationFragment : BaseFragment(), TextWatcher 
         etenterpriseUserTIN = binding.etTinEnterpriseUserRegistation
         etenterpriseUserContactNumber = binding.etContactNumberEnterpriseUserRegistation
         progressBar = binding.pbEnterpriseUserRegistration
+        (requireActivity() as LoginActivity).setTitle("Enterprise user registration")
 
         btnSignUp.setOnClickListener {
             ContextExtentions.hideKeyboard(it, requireContext())

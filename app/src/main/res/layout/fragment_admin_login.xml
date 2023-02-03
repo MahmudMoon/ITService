@@ -102,6 +102,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintHorizontal_bias="0.3"
+            android:visibility="gone"
             android:layout_marginBottom="20dp"/>
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -115,6 +116,7 @@
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="8dp"
             android:textStyle="bold"
+            android:visibility="gone"
             android:textColor="@color/teal_700"
             />
         

@@ -18,6 +18,7 @@ import com.example.itservice.common.service_pack.display_service_catagory.Displa
 import com.example.itservice.common.service_pack.display_service_catagory.display_brand_list.BrandListDisplayViewModel
 import com.example.itservice.admin.service_pack.display_service_catagory.display_service_list.display_service.DisplayServiceListViewModel
 import com.example.itservice.admin.users_and_engineers_list.UserAndEngineersListViewModel
+import com.example.itservice.base.BaseViewModel
 import com.example.itservice.common.display_parts.DisplayPartViewModel
 import com.example.itservice.common.parts_pack.add_part.AddPartViewModel
 import com.example.itservice.common.parts_pack.display_parts.available_parts_fragment.PartsViewModel
@@ -82,6 +83,7 @@ class ViewModelProviderFactory @Inject constructor(): ViewModelProvider.Factory 
         if(modelClass.isAssignableFrom(CartViewModel::class.java)) return CartViewModel() as T
         if(modelClass.isAssignableFrom(PayementViewModel::class.java)) return PayementViewModel() as T
         if(modelClass.isAssignableFrom(AddOfferViewModel::class.java)) return AddOfferViewModel() as T
+        if(modelClass.isAssignableFrom(BaseViewModel::class.java)) return BaseViewModel() as T
         return super.create(modelClass)
     }
 }

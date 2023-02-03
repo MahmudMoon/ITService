@@ -30,7 +30,7 @@ class ServiceListActivity : BaseActivity(), iServiceListInterface {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTitleForActivity("Lists")
+        setTitleForActivity("Services")
         binding = ActivityServiceListBinding.inflate(layoutInflater)
         setContentView(binding.root)
         aryList = ArrayList()

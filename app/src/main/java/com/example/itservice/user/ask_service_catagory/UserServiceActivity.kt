@@ -19,6 +19,7 @@ class UserServiceActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySelectServiceCatagoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setTitleForActivity("User service")
 
         viewModel = ViewModelProvider(this, ViewModelProviderFactory()).get(UserServiceViewModel::class.java)
 

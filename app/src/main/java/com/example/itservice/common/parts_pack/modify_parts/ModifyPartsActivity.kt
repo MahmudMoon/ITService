@@ -14,6 +14,7 @@ class ModifyPartsActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityModifyPartsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setTitleForActivity("Modify parts")
         viewModel = ViewModelProvider(this, ViewModelProviderFactory())
             .get(PartsModifyViewModel::class.java)
     }

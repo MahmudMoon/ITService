@@ -61,6 +61,7 @@ class AdminLoginFragment : BaseFragment(), TextWatcher {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (requireActivity() as LoginActivity).selectTabAt(3)
+        (requireActivity() as LoginActivity).setTitle("Admin Login")
         tvSignUp = binding.tvSignUpAdminLogin
         btnSignIN = binding.btnSignInAdmin
         etadminEmail = binding.etEmailAdminLogin

@@ -39,6 +39,7 @@ class AdminDashBoardActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAdminDashBoardBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        initViewModel()
         supportActionBar?.title = "Admin Home"
         DbInstance.setLastLoginAs(this@AdminDashBoardActivity, Constants.admin)
 
@@ -92,24 +93,6 @@ class AdminDashBoardActivity : BaseActivity() {
             startActivity(Intent(this@AdminDashBoardActivity, AddOfferActivity::class.java))
             moveWithAnimationToAnotherActivity()
         }
-
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        super.onCreateOptionsMenu(menu)
-        menuInflater.inflate(R.menu.dash_board_menu, menu)
-        return true
-
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.menu_item_logout){
-            viewModel.logoutuser()
-            finish()
-            startActivity(Intent(this@AdminDashBoardActivity, LoginActivity::class.java))
-            moveWithAnimationToAnotherActivity()
-        }
-        return true
 
     }
 

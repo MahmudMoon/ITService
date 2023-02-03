@@ -34,8 +34,10 @@ class UsersAndEngineersListActivity : BaseActivity() {
            val type = bundle.getString(Constants.userType, "")
             if(type.equals(Constants.UsersType.user.name)){
                 viewModel.getUsersList()
+                setTitleForActivity("Users")
             }else if (type.equals(Constants.UsersType.engineer.name)){
                 viewModel.getEngineersList()
+                setTitleForActivity("Engineers")
             }
         }
 

@@ -51,6 +51,7 @@ class UserdashboardActivity : BaseActivity(), OfferItemSelected {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.title = "Home"
+        initViewModel()
         binding = ActivityUserdashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
         dbHelper = DatabaseInstance.getDatabaseReference(this)
@@ -101,23 +102,23 @@ class UserdashboardActivity : BaseActivity(), OfferItemSelected {
         Log.d(TAG, "onStart: Name "+ name)
         tvUserName.setText(name)
     }
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        super.onCreateOptionsMenu(menu)
-        menuInflater.inflate(R.menu.dash_board_menu, menu)
-        return true
-    }
+//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        super.onCreateOptionsMenu(menu)
+//       // menuInflater.inflate(R.menu.dash_board_menu, menu)
+//        return true
+//    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.menu_item_logout){
-            viewModel.logoutuser()
-            //clear db also
-            viewModel.clearDb(dbHelper)
-            finish()
-            startActivity(Intent(this@UserdashboardActivity, LoginActivity::class.java))
-            moveWithAnimationToAnotherActivity()
-        }
-        return true
-    }
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        if(item.itemId == R.id.menu_item_logout){
+//            viewModel.logoutuser()
+//            //clear db also
+//            viewModel.clearDb(dbHelper)
+//            finish()
+//            startActivity(Intent(this@UserdashboardActivity, LoginActivity::class.java))
+//            moveWithAnimationToAnotherActivity()
+//        }
+//        return true
+//    }
 
     override fun onBackPressed() {
         super.onBackPressed()

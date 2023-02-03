@@ -59,9 +59,8 @@ class AddProductActivity : BaseActivity(), TextWatcher {
         super.onCreate(savedInstanceState)
         binding = ActivityAddProductBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setTitleForActivity("Add Product")
         viewModel = ViewModelProvider(this, ViewModelProviderFactory()).get(AddProductViewModel::class.java)
-
-
         etProductName = binding.etProductNameAddProduct
         etProductQuantity = binding.etProductQuantityAddProduct
         etProductPrice = binding.etProductPriceAddProduct

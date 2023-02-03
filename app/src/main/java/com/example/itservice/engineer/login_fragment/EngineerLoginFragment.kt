@@ -69,6 +69,7 @@ class EngineerLoginFragment : BaseFragment(), TextWatcher {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (requireActivity() as LoginActivity).selectTabAt(1)
+        (requireActivity() as LoginActivity).setTitle("Engineer login")
         viewModel = ViewModelProvider(
             this,
             ViewModelProviderFactory()

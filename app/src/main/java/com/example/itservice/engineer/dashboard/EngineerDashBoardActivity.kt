@@ -8,6 +8,7 @@ import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
 import com.example.itservice.R
 import com.example.itservice.base.BaseActivity
+import com.example.itservice.base.initBaseViewModel
 import com.example.itservice.common.LoginActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.taken_service_catagory.service_list.ServiceListActivity
@@ -21,7 +22,8 @@ class EngineerDashBoardActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTitleForActivity("HOME")
+        supportActionBar?.title = "Home"
+        initViewModel()
         binding = ActivityEngineerDashBoardBinding.inflate(layoutInflater)
         setContentView(binding.root)
         viewModel = ViewModelProvider(this, ViewModelProviderFactory()).get(
@@ -40,21 +42,5 @@ class EngineerDashBoardActivity : BaseActivity() {
             moveWithAnimationToAnotherActivity()
         }
 
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        super.onCreateOptionsMenu(menu)
-        menuInflater.inflate(R.menu.dash_board_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.menu_item_logout){
-            viewModel.logoutuser()
-            finish()
-            startActivity(Intent(this@EngineerDashBoardActivity, LoginActivity::class.java))
-            moveWithAnimationToAnotherActivity()
-        }
-        return true
     }
 }

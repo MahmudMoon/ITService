@@ -7,6 +7,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.itservice.R
+import com.example.itservice.base.BaseActivity
 import com.example.itservice.databinding.ActivityLoginBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -18,7 +19,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController = navHostFragment.navController
@@ -30,5 +30,15 @@ class LoginActivity : AppCompatActivity() {
         if(!navView.menu[index].isChecked){
             navView.menu.get(index).setChecked(true)
         }
+    }
+
+    override fun onBackPressed() {
+        if(!navController.popBackStack()){
+            finishAffinity()
+        }
+    }
+
+    fun setTitle(title: String){
+        supportActionBar?.title = title
     }
 }

@@ -94,6 +94,7 @@ class EngineerRegistationFragment : BaseFragment(), TextWatcher {
         etengineerContactNumber = binding.etContactNumberEngineerRegistation
         etengineerNID = binding.etNidEngineerRegistation
         progressBar = binding.pbEngineerRegistration
+        (requireActivity() as LoginActivity).setTitle("Engineer registration")
 
         btnSignUp.setOnClickListener {
             ContextExtentions.hideKeyboard(it, requireContext())

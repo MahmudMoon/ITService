@@ -41,6 +41,7 @@ class AddProductCatagoryActivity : BaseActivity(), TextWatcher {
         super.onCreate(savedInstanceState)
         binding = ActivityAddProductCatagoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setTitleForActivity("Add Catagories")
         viewModel = ViewModelProvider(this, ViewModelProviderFactory()).get(AddProductCatagoryViewModel::class.java)
         etCatagoryName = binding.etCatagoryNameAddCatagorys
         tvCatagoryImage = binding.tvCatagoryImageName

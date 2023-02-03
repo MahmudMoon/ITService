@@ -36,6 +36,7 @@ class AddPartActivity : BaseActivity(), TextWatcher {
         super.onCreate(savedInstanceState)
         binding = ActivityAddPartBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setTitleForActivity("Add parts")
         etPartName = binding.etPartNameAddParts
         etPartPrice = binding.etPartPriceAddParts
         etPartQuantity = binding.etPartQuantityPartAdd

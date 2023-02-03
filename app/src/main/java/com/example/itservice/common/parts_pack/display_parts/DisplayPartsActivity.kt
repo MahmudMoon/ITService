@@ -27,6 +27,7 @@ class DisplayPartsActivity : BaseActivity(), PartUpdateClicked {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDisplayPartsBinding.inflate(layoutInflater)
+        setTitleForActivity("Display parts")
         setContentView(binding.root)
 
         viewModel = ViewModelProvider(this, ViewModelProviderFactory()).get(DisplayPartViewModel::class.java)

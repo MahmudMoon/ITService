@@ -111,7 +111,7 @@
                         android:id="@+id/et_tin_user_registation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textPersonName"
+                        android:inputType="number"
                         android:hint="@string/tin_optional" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -127,7 +127,7 @@
                         android:id="@+id/et_nid_user_registation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textPersonName"
+                        android:inputType="number"
                         android:hint="@string/nid" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -175,7 +175,7 @@
                         android:id="@+id/et_contact_number_user_registation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textPersonName"
+                        android:inputType="phone"
                         android:hint="@string/contact_number" />
 
                 </com.google.android.material.textfield.TextInputLayout>
