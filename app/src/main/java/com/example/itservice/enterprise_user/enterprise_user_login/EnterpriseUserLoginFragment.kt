@@ -20,6 +20,7 @@ import com.example.itservice.application.TAG
 import com.example.itservice.base.BaseFragment
 import com.example.itservice.common.LoginActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
+import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.ContextExtentions
 import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.databinding.FragmentEnterpriseUserLoginBinding
@@ -111,6 +112,18 @@ class EnterpriseUserFragment : BaseFragment(), TextWatcher {
             } catch (e: Exception) {
                 Log.e(TAG, "onViewCreated: ${e.localizedMessage}")
             }
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        try {
+            val email = arguments?.getString(Constants.email)
+            val password = arguments?.getString(Constants.password)
+            etenterpriseuserEmail?.setText(email)
+            etenterpriseuserPassword?.setText( password)
+        }catch (e: Exception){
+            Log.e(TAG, "onStart: "+e.localizedMessage)
         }
     }
 

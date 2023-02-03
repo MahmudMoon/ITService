@@ -47,6 +47,9 @@ object Constants {
     const val ProductQuantity = "quantity"
     const val ProductOfferPrice = "offeredPrice"
     const val totalPrice = "TotalPrice"
+    const val email = "email"
+    const val password = "password"
+    const val tabSelection = "tabSelection"
 
     enum class ServiceStatus{
         Pending,

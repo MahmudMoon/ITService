@@ -20,6 +20,7 @@ import com.example.itservice.application.TAG
 import com.example.itservice.base.BaseFragment
 import com.example.itservice.common.LoginActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
+import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.ContextExtentions
 import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.databinding.FragmentUserLoginBinding
@@ -35,7 +36,12 @@ private const val ARG_PARAM2 = "param2"
  * Use the [UserLoginFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class UserLoginFragment : BaseFragment(), TextWatcher {
+
+interface SetData{
+    fun setEmailPassword(email: String, password: String)
+}
+
+class UserLoginFragment : BaseFragment(), TextWatcher, SetData {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -126,6 +132,18 @@ class UserLoginFragment : BaseFragment(), TextWatcher {
 
     }
 
+    override fun onStart() {
+        super.onStart()
+        try {
+            val email = arguments?.getString(Constants.email)
+            val password = arguments?.getString(Constants.password)
+            etuserEmail?.setText(email)
+            etuserPassword?.setText( password)
+        }catch (e: Exception){
+            Log.e(TAG, "onStart: "+e.localizedMessage)
+        }
+    }
+
     fun setErrorMessage(view: AppCompatEditText?, message: String): String? {
         try {
             val data = view?.text.toString()
@@ -166,8 +184,6 @@ class UserLoginFragment : BaseFragment(), TextWatcher {
         }
     }
 
-
-
     companion object {
         /**
          * Use this factory method to create a new instance of
@@ -186,5 +202,10 @@ class UserLoginFragment : BaseFragment(), TextWatcher {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun setEmailPassword(email: String, password: String) {
+        etuserEmail?.setText(email)
+        etuserPassword?.setText(password)
     }
 }

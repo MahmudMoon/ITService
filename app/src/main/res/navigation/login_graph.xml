@@ -39,6 +39,20 @@
         <action
             android:id="@+id/action_userLoginFragment_to_userRegistationFragment"
             app:destination="@id/userRegistationFragment" />
+        <action
+            android:id="@+id/action_userLoginFragment_to_engineerLoginFragment"
+            app:destination="@id/engineerLoginFragment" />
+        <action
+            android:id="@+id/action_userLoginFragment_to_enterpriseUserFragment"
+            app:destination="@id/enterpriseUserFragment" />
+        <argument
+            android:name="email"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="paasword"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/userRegistationFragment"

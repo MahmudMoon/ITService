@@ -21,6 +21,7 @@ import com.example.itservice.application.TAG
 import com.example.itservice.base.BaseFragment
 import com.example.itservice.common.LoginActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
+import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.ContextExtentions
 import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.databinding.FragmentEngineerLoginBinding
@@ -113,8 +114,18 @@ class EngineerLoginFragment : BaseFragment(), TextWatcher {
             }
 
         }
+    }
 
-
+    override fun onStart() {
+        super.onStart()
+        try {
+            val email = arguments?.getString(Constants.email)
+            val password = arguments?.getString(Constants.password)
+            etengineerEmail?.setText(email)
+            etengineerPassword?.setText( password)
+        }catch (e: Exception){
+            Log.e(TAG, "onStart: "+e.localizedMessage)
+        }
     }
 
     fun setErrorMessage(view: AppCompatEditText?, message: String): String? {

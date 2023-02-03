@@ -15,11 +15,13 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.example.itservice.R
 import com.example.itservice.application.TAG
 import com.example.itservice.base.BaseFragment
 import com.example.itservice.common.LoginActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
+import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.ContextExtentions
 import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.databinding.FragmentEnterpriseUserRegistationBinding
@@ -121,7 +123,10 @@ class EnterpriseenterpriseUserRegistationFragment : BaseFragment(), TextWatcher 
                 DbInstance.setUserUid(requireContext(), uid)
                 progressBar?.visibility = View.GONE
                 Toast.makeText(requireContext(), "Registration successful", Toast.LENGTH_SHORT).show()
-                requireActivity().startActivity(Intent(requireContext(), UserdashboardActivity::class.java))
+                requireActivity().startActivity(Intent(requireContext(), LoginActivity::class.java)
+                    .putExtra(Constants.email, enterpriseUserEmail)
+                    .putExtra(Constants.password, enterpriseUserPassword)
+                    .putExtra(Constants.tabSelection, 2))
                 moveWithAnimationToAnotherActivity()
             }else{
                 progressBar?.visibility = View.GONE

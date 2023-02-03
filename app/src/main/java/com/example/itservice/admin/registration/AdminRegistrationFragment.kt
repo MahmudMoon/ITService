@@ -21,6 +21,7 @@ import com.example.itservice.application.TAG
 import com.example.itservice.base.BaseFragment
 import com.example.itservice.common.LoginActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
+import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.ContextExtentions
 import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.databinding.FragmentAdminRegistrationBinding
@@ -100,8 +101,10 @@ class AdminRegistrationFragment : BaseFragment(), TextWatcher {
                 DbInstance.setUserUid(requireContext(), uid)
                 progressBar?.visibility = View.GONE
                 Toast.makeText(requireContext(), "Registaration successful", Toast.LENGTH_SHORT).show()
-                requireActivity().startActivity(Intent
-                    (requireContext(), AdminDashBoardActivity::class.java))
+                requireActivity().startActivity(Intent(requireContext(), LoginActivity::class.java)
+                    .putExtra(Constants.email, adminEmail)
+                    .putExtra(Constants.password, adminPassword)
+                    .putExtra(Constants.tabSelection, 3))
                 moveWithAnimationToAnotherActivity()
             }else{
                 progressBar?.visibility = View.GONE
