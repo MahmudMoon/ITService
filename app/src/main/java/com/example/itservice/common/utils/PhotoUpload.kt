@@ -2,8 +2,10 @@ package com.example.itservice.common.utils
 
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
+import com.example.itservice.application.TAG
 import com.example.itservice.common.utils.DbInstance.getStorageInstance
 
 class PhotoUpload constructor(val activity: AppCompatActivity){
@@ -32,6 +34,7 @@ class PhotoUpload constructor(val activity: AppCompatActivity){
     }
 
     fun uploadImageInFireStore(uid: String, filePath: String?, uploadComplete: MutableLiveData<String>){
+        Log.d(TAG, "uploadImageInFireStore: "+ uid)
         val ref = getStorageInstance().reference.child(uid)
         val uploadTask = ref
             .putFile(Uri.parse(filePath))
@@ -43,10 +46,15 @@ class PhotoUpload constructor(val activity: AppCompatActivity){
                 }
             }
             ref.downloadUrl
+        }.addOnFailureListener {
+            Log.d(TAG, "uploadImageInFireStore: "+ it.localizedMessage)
+            Log.d(TAG, "uploadImageInFireStore: "+ it.message)
         }.addOnCompleteListener{task->
             if(task.isSuccessful) {
+                Log.d(TAG, "uploadImageInFireStore: success")
                 uploadComplete.postValue(task.result.toString())
             }else{
+                Log.d(TAG, "uploadImageInFireStore: failed")
                 uploadComplete.postValue("")
             }
         }

@@ -9,6 +9,8 @@ import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.DbInstance
 
 class UserRegistationViewModel : ViewModel() {
+    var uploadPhoto: MutableLiveData<String> = MutableLiveData()
+
     private var _userAuthResult = MutableLiveData<AuthResult>()
     val userAuthResult: LiveData<AuthResult>
         get() = _userAuthResult

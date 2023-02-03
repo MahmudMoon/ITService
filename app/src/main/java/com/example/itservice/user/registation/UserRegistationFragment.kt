@@ -1,6 +1,7 @@
 package com.example.itservice.user.registation
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -22,6 +23,7 @@ import com.example.itservice.common.LoginActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.utils.ContextExtentions
 import com.example.itservice.common.utils.DbInstance
+import com.example.itservice.common.utils.PhotoUpload
 import com.example.itservice.databinding.FragmentUserRegistationBinding
 import com.example.itservice.user.user_dash_board.UserdashboardActivity
 
@@ -35,7 +37,14 @@ private const val ARG_PARAM2 = "param2"
  * Use the [UserRegistationFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class UserRegistationFragment : BaseFragment(), TextWatcher {
+
+interface userRegistrationImagePicked{
+    fun onImagePicked(filePath: Uri?, imageName: String?)
+}
+
+class UserRegistationFragment : BaseFragment(), TextWatcher, userRegistrationImagePicked {
+    private val IMAGE_PICK_REQUEST: Int = 109
+
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -51,6 +60,7 @@ class UserRegistationFragment : BaseFragment(), TextWatcher {
     private var etuserTIN: AppCompatEditText? = null
     private var etuserNID: AppCompatEditText? = null
     private var etuserContactNumber: AppCompatEditText? = null
+    private lateinit var btnSelectImage: Button
     private var userName: String? = null
     private var userEmail: String? = null
     private var userPassword: String? = null
@@ -60,7 +70,10 @@ class UserRegistationFragment : BaseFragment(), TextWatcher {
     private var userContactNumber: String? = null
     private var userNID: String? = null
     private var progressBar: ProgressBar? = null
-
+    private var tvImageName: TextView? = null
+    private var photoUpload: PhotoUpload? = null
+    private var imageName: String? =null
+    var filePath: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,8 +109,19 @@ class UserRegistationFragment : BaseFragment(), TextWatcher {
         etuserContactNumber = binding.etContactNumberUserRegistation
         etuserNID = binding.etNidUserRegistation
         progressBar = binding.pbUserRegistration
+        btnSelectImage = binding.btnSelectImageAddUser
+        tvImageName = binding.tvSelectImageAddUser
+        tvImageName?.keyListener = null
         (requireActivity() as LoginActivity).setTitle("User registration")
-        
+
+        btnSelectImage.setOnClickListener {
+            // pick an image
+            tvImageName?.setError(null)
+            //pick an image
+            photoUpload = PhotoUpload(this@UserRegistationFragment.requireActivity() as LoginActivity)
+            photoUpload?.selectImage(IMAGE_PICK_REQUEST)
+        }
+
         btnSignUp.setOnClickListener {
             ContextExtentions.hideKeyboard(it, requireContext())
             userName = setErrorMessage(etuserName, "Enter Valid Name")
@@ -108,8 +132,9 @@ class UserRegistationFragment : BaseFragment(), TextWatcher {
             userTIN = etuserTIN?.text.toString()
             userContactNumber = setErrorMessage(etuserContactNumber, "Enter valid contact number")
             userNID = setErrorMessage(etuserNID, "Enter valid NID")
+            imageName = setErrorMessage(tvImageName, "Please select an image")
 
-            if (userName != "" && userEmail != ""
+            if (userName != "" && userEmail != "" && filePath != null
                 && userPassword != "" && userCompanyName != "" && userCompanyAddress != null
                 && userContactNumber != "" && userNID != ""
             ) {
@@ -130,10 +155,7 @@ class UserRegistationFragment : BaseFragment(), TextWatcher {
             if(it.isSuccess){
                 val uid = it.resultData as String
                 DbInstance.setUserUid(requireContext(), uid)
-                progressBar?.visibility = View.GONE
-                Toast.makeText(requireContext(), "Registration successful", Toast.LENGTH_SHORT).show()
-                requireActivity().startActivity(Intent(requireContext(), UserdashboardActivity::class.java))
-                moveWithAnimationToAnotherActivity()
+                photoUpload?.uploadImageInFireStore(uid, filePath.toString(), viewModel.uploadPhoto)
             }else{
                 progressBar?.visibility = View.GONE
                 Toast.makeText(requireContext(), "Registration failed", Toast.LENGTH_SHORT).show()
@@ -147,9 +169,18 @@ class UserRegistationFragment : BaseFragment(), TextWatcher {
                 Log.e(TAG, "onViewCreated: ${e.localizedMessage}")
             }
         }
+
+        viewModel.uploadPhoto.observe(viewLifecycleOwner){
+            val path = it
+            progressBar?.visibility = View.GONE
+            Toast.makeText(requireContext(), "Registration successful", Toast.LENGTH_SHORT).show()
+            requireActivity().startActivity(Intent(requireContext(), UserdashboardActivity::class.java))
+            moveWithAnimationToAnotherActivity()
+            Log.d(TAG, "onViewCreated: USER IMAGE AT "+ path)
+        }
     }
 
-    fun setErrorMessage(view: AppCompatEditText?, message: String): String? {
+    fun setErrorMessage(view: TextView?, message: String): String? {
         try {
             val data = view?.text.toString()
             if (data == "" ) {
@@ -166,7 +197,7 @@ class UserRegistationFragment : BaseFragment(), TextWatcher {
         return null
     }
 
-    fun cleanErrorMessage(view: AppCompatEditText?) {
+    fun cleanErrorMessage(view: TextView?) {
         try {
             view?.error = null
         } catch (exception: Exception) {
@@ -192,9 +223,9 @@ class UserRegistationFragment : BaseFragment(), TextWatcher {
             etuserTIN?.text.hashCode() -> cleanErrorMessage(etuserTIN)
             etuserContactNumber?.text.hashCode() -> cleanErrorMessage(etuserContactNumber)
             etuserNID?.text.hashCode() -> cleanErrorMessage(etuserNID)
+            tvImageName?.text.hashCode() -> cleanErrorMessage(tvImageName)
         }
     }
-
 
     companion object {
         /**
@@ -214,5 +245,14 @@ class UserRegistationFragment : BaseFragment(), TextWatcher {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun onImagePicked(filePath: Uri?, imageName: String?) {
+        Log.d(TAG, "onImagePicked: u_r "+ filePath + "\n" + imageName)
+        if(filePath!=null && imageName != null){
+            this.filePath = filePath
+            this.imageName = imageName
+            tvImageName?.text = imageName
+        }
     }
 }
