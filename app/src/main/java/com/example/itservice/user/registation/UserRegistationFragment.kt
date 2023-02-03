@@ -172,15 +172,23 @@ class UserRegistationFragment : BaseFragment(), TextWatcher, userRegistrationIma
         }
 
         viewModel.uploadPhoto.observe(viewLifecycleOwner){
-            progressBar?.visibility = View.GONE
             val path = it
-            Toast.makeText(requireContext(), "Registration successful", Toast.LENGTH_SHORT).show()
-            requireActivity().startActivity(Intent(requireContext(), LoginActivity::class.java)
-                .putExtra(Constants.email, userEmail)
-                .putExtra(Constants.password, userPassword)
-                .putExtra(Constants.tabSelection, 0))
-            moveWithAnimationToAnotherActivity()
+            viewModel.updateProfileImage(path)
             Log.d(TAG, "onViewCreated: USER IMAGE AT "+ path)
+        }
+
+        viewModel.isProfileImageUpdated.observe(viewLifecycleOwner){
+            progressBar?.visibility = View.GONE
+            if(it){
+                Toast.makeText(requireContext(), "Registration successful", Toast.LENGTH_SHORT).show()
+                requireActivity().startActivity(Intent(requireContext(), LoginActivity::class.java)
+                    .putExtra(Constants.email, userEmail)
+                    .putExtra(Constants.password, userPassword)
+                    .putExtra(Constants.tabSelection, 0))
+                moveWithAnimationToAnotherActivity()
+            }else{
+                Toast.makeText(requireContext(), "Registration failed", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

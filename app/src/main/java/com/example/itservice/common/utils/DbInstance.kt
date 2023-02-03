@@ -84,4 +84,12 @@ object DbInstance {
         SharedPrefUtils.putStringValue(context, Constants.lastLoginAs, lastLogin)
     }
 
+    fun setUserImage(context: Context, profileImage: String) {
+        SharedPrefUtils.putStringValue(context,Constants.profileImage, profileImage)
+    }
+
+    fun getUserImage(context: Context): String {
+       return SharedPrefUtils.getStringValue(context,Constants.profileImage)
+    }
+
 }

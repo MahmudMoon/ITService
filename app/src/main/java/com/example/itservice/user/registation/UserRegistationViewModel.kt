@@ -15,6 +15,10 @@ class UserRegistationViewModel : ViewModel() {
     val userAuthResult: LiveData<AuthResult>
         get() = _userAuthResult
 
+    private var _isProfileImageUpdated = MutableLiveData<Boolean>()
+    val isProfileImageUpdated: LiveData<Boolean>
+        get() = _isProfileImageUpdated
+
     fun registerUserWithEmailPassword(fullname: String, email: String, password: String, tin: String, nid: String, companyName: String, companyAddress: String, contactNumber: String ){
         DbInstance.getAuthInstance().createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task->
@@ -48,5 +52,21 @@ class UserRegistationViewModel : ViewModel() {
                     _userAuthResult.postValue(AuthResult(Constants.failure,null))
                 }
             }
+    }
+
+    fun updateProfileImage(path: String?) {
+        val userUid = DbInstance.getAuthInstance().uid
+        DbInstance.getDbInstance().reference.child(Constants.user)
+            .child(userUid!!)
+            .child(Constants.profileImage)
+            .setValue(path)
+            .addOnCompleteListener {
+                if(it.isSuccessful){
+                    _isProfileImageUpdated.postValue(true)
+                }else{
+                    _isProfileImageUpdated.postValue(false)
+                }
+            }
+
     }
 }

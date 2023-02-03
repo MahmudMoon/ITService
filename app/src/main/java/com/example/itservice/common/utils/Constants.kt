@@ -50,6 +50,7 @@ object Constants {
     const val email = "email"
     const val password = "password"
     const val tabSelection = "tabSelection"
+    const val profileImage = "profileImage"
 
     enum class ServiceStatus{
         Pending,

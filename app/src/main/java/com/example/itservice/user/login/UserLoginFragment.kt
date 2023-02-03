@@ -113,6 +113,8 @@ class UserLoginFragment : BaseFragment(), TextWatcher, SetData {
             if(it!=null){
                 progressBar?.visibility = View.GONE
                 DbInstance.setUserName(requireContext() ,it.fullName!!)
+                if(it.profileImage != null)
+                    DbInstance.setUserImage(requireContext(), it.profileImage)
                 Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_SHORT).show()
                 requireActivity().startActivity(Intent(requireContext(), UserdashboardActivity::class.java))
                 moveWithAnimationToAnotherActivity()

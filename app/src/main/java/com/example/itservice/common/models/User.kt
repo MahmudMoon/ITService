@@ -8,4 +8,5 @@ data class User(val uid: String? = null,
                 val nid: String? = null,
                 val companyName: String? = null,
                 val companyAddress: String? = null,
-                val contactNumber: String? = null)
+                val contactNumber: String? = null,
+                val profileImage: String? = null)

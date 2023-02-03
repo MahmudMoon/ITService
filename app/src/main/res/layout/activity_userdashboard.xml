@@ -17,9 +17,10 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/iv_user_profile"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/plus"
+            android:src="@drawable/pic_profile_demo"
             android:scaleType="centerCrop"/>
 
         <LinearLayout

@@ -2,17 +2,20 @@ package com.example.itservice.user.user_dash_board
 
 import android.content.Intent
 import android.graphics.Rect
+import android.media.Image
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.itservice.R
 import com.example.itservice.application.TAG
 import com.example.itservice.base.BaseActivity
@@ -47,6 +50,7 @@ class UserdashboardActivity : BaseActivity(), OfferItemSelected {
     private lateinit var offerAdapter: OfferAdapter
     private lateinit var tvUserName: TextView
     private lateinit var listOfOffers: ArrayList<Offers>
+    private lateinit var ivProfileImage: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,6 +67,7 @@ class UserdashboardActivity : BaseActivity(), OfferItemSelected {
         llyBuyOurProducts = binding.llyBuyOutProducts
         llyTakeOurService = binding.llyTakeOutService
         llyAskForService = binding.llyAskService
+        ivProfileImage = binding.ivUserProfile
         tvUserName = binding.tvUserName
         rvOffers = binding.rvOffers
         rvOffers.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
@@ -99,26 +104,11 @@ class UserdashboardActivity : BaseActivity(), OfferItemSelected {
     override fun onStart() {
         super.onStart()
         val name = DbInstance.getUserName(this@UserdashboardActivity)
+        val profileImage = DbInstance.getUserImage(this@UserdashboardActivity)
         Log.d(TAG, "onStart: Name "+ name)
         tvUserName.setText(name)
+        if(profileImage!="") ivProfileImage.load(profileImage)
     }
-//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        super.onCreateOptionsMenu(menu)
-//       // menuInflater.inflate(R.menu.dash_board_menu, menu)
-//        return true
-//    }
-
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        if(item.itemId == R.id.menu_item_logout){
-//            viewModel.logoutuser()
-//            //clear db also
-//            viewModel.clearDb(dbHelper)
-//            finish()
-//            startActivity(Intent(this@UserdashboardActivity, LoginActivity::class.java))
-//            moveWithAnimationToAnotherActivity()
-//        }
-//        return true
-//    }
 
     override fun onBackPressed() {
         super.onBackPressed()
