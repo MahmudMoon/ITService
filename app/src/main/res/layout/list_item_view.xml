@@ -20,10 +20,10 @@
             android:layout_weight="0.5"/>
 
         <TextView
-            android:id="@+id/tv_id_engineer_list_adapter"
+            android:id="@+id/tv_catagory_engineer_list_adapter"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:text="ID : "
+            android:text="Catagory : "
             android:layout_weight="0.5"/>
 
         <TextView

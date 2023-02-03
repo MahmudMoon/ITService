@@ -165,6 +165,23 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/et_layer_catagory_engineer_registation"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    >
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_catagory_engineer_registation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:hint="@string/engineer_catagory" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnSingUpengineerRegistation"
                     android:layout_width="wrap_content"

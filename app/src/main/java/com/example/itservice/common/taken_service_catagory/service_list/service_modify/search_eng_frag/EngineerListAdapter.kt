@@ -14,7 +14,7 @@ import com.example.itservice.databinding.ServiceListItemBinding
 
 class EngineerListAdapter(val context: Context, private val engineers: List<Engineer>) : RecyclerView.Adapter<EngineerListAdapter.EngineerDataHolder>() {
     class EngineerDataHolder(binding: EngineerListItemBinding): RecyclerView.ViewHolder(binding.root){
-        val tvID: TextView = binding.tvIdEngineerListAdapter
+        val tvID: TextView = binding.tvCatagoryEngineerListAdapter
         val tvName: TextView = binding.tvNameEngineerListAdapter
         val tvContactNumber: TextView = binding.tvContactNumberEngineerListAdapter
     }
@@ -25,7 +25,11 @@ class EngineerListAdapter(val context: Context, private val engineers: List<Engi
     }
 
     override fun onBindViewHolder(holder: EngineerDataHolder, position: Int) {
-        holder.tvID.text = "ID : "+ engineers[position].uid
+        var catagory = engineers[position].catagory
+        if(catagory==null){
+            catagory = "Catagory: Not found"
+        }
+        holder.tvID.text =  catagory
         holder.tvName.text = "Name : "+ engineers[position].fullName
         holder.tvContactNumber.text = "Phone : " +engineers[position].contactNumber
         holder.itemView.setOnClickListener {

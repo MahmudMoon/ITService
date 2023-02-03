@@ -16,7 +16,6 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.lifecycle.ViewModelProvider
 import com.example.itservice.R
-import com.example.itservice.admin.admin_dashboard.AdminDashBoardActivity
 import com.example.itservice.application.TAG
 import com.example.itservice.base.BaseFragment
 import com.example.itservice.common.LoginActivity
@@ -50,6 +49,7 @@ class EngineerRegistationFragment : BaseFragment(), TextWatcher {
     private var etengineerCompanyName: AppCompatEditText? = null
     private var etengineerEmployeeID: AppCompatEditText? = null
     private var etengineerNID: AppCompatEditText? = null
+    private var etengineerCatagory: AppCompatEditText? = null
     private var etengineerContactNumber: AppCompatEditText? = null
     private var engineerName: String? = null
     private var engineerEmail: String? = null
@@ -57,6 +57,7 @@ class EngineerRegistationFragment : BaseFragment(), TextWatcher {
     private var engineerCompanyName: String? = null
     private var engineerEmployeeID: String? = null
     private var engineerContactNumber: String? = null
+    private var engineerCatagory: String? = null
     private var engineerNID: String? = null
     private var progressBar: ProgressBar? = null
 
@@ -94,6 +95,7 @@ class EngineerRegistationFragment : BaseFragment(), TextWatcher {
         etengineerContactNumber = binding.etContactNumberEngineerRegistation
         etengineerNID = binding.etNidEngineerRegistation
         progressBar = binding.pbEngineerRegistration
+        etengineerCatagory = binding.etCatagoryEngineerRegistation
         (requireActivity() as LoginActivity).setTitle("Engineer registration")
 
         btnSignUp.setOnClickListener {
@@ -105,7 +107,7 @@ class EngineerRegistationFragment : BaseFragment(), TextWatcher {
             engineerEmployeeID = setErrorMessage(etengineerEmployeeID, "Enter valid employee id")
             engineerContactNumber = setErrorMessage(etengineerContactNumber, "Enter valid contact number")
             engineerNID = setErrorMessage(etengineerNID, "Enter valid NID")
-
+            engineerCatagory = setErrorMessage(etengineerCatagory, "Enter valid Catagory")
             if (engineerName != "" && engineerEmail != ""
                 && engineerPassword != "" && engineerCompanyName != "" && engineerEmployeeID != ""
                 && engineerContactNumber != "" && engineerNID != ""
@@ -113,7 +115,7 @@ class EngineerRegistationFragment : BaseFragment(), TextWatcher {
                 Log.d(TAG, "onViewCreated: READY for registation")
                 progressBar?.visibility = View.VISIBLE
                 viewModel.registerUserWithEmailPassword(engineerName!!, engineerEmail!!,
-                    engineerPassword!! , engineerContactNumber!! , engineerCompanyName!!, engineerEmployeeID!!, engineerNID!! )
+                    engineerPassword!! , engineerContactNumber!! , engineerCompanyName!!, engineerEmployeeID!!, engineerNID!!, engineerCatagory!! )
 
             }
         }

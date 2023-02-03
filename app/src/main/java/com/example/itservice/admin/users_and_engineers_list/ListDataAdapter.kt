@@ -12,7 +12,7 @@ import com.example.itservice.databinding.ListItemViewBinding
 
 class ListDataAdapter(val context: Context, private val list: List<Any>) : RecyclerView.Adapter<ListDataAdapter.ListDataHolder>() {
     class ListDataHolder(binding: ListItemViewBinding): RecyclerView.ViewHolder(binding.root){
-        val tvID: TextView = binding.tvIdEngineerListAdapter
+        val tvCatagory: TextView = binding.tvCatagoryEngineerListAdapter
         val tvName: TextView = binding.tvNameEngineerListAdapter
         val tvContactNumber: TextView = binding.tvContactNumberEngineerListAdapter
     }
@@ -25,11 +25,13 @@ class ListDataAdapter(val context: Context, private val list: List<Any>) : Recyc
     override fun onBindViewHolder(holder: ListDataHolder, position: Int) {
         var value = list[position]
         if(value is Engineer){
-            holder.tvID.text = "ID : "+ value.uid
+            var catagory = value.catagory
+            if(catagory==null) catagory = "Not found"
+            holder.tvCatagory.text = "Catagory : "+ catagory
             holder.tvName.text = "Name : "+ value.fullName
             holder.tvContactNumber.text = "Phone : " +value.contactNumber
         }else if(value is User){
-            holder.tvID.text = "ID : "+ value.uid
+            holder.tvCatagory.text = "ID : "+ value.uid
             holder.tvName.text = "Name : "+ value.fullName
             holder.tvContactNumber.text = "Phone : " +value.contactNumber
         }
