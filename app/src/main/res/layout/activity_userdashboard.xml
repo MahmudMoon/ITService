@@ -117,7 +117,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Taken service"
+                    android:text="Service Status"
                     android:textStyle="bold"
                     android:layout_gravity="center"
                     android:textColor="@color/black"/>

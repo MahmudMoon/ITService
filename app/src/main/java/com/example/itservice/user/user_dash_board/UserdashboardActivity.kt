@@ -1,13 +1,8 @@
 package com.example.itservice.user.user_dash_board
 
 import android.content.Intent
-import android.graphics.Rect
-import android.media.Image
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -16,14 +11,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.itservice.R
 import com.example.itservice.application.TAG
 import com.example.itservice.base.BaseActivity
-import com.example.itservice.common.LoginActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.models.Offers
 import com.example.itservice.common.service_pack.display_service_catagory.DisplayServiceCatagoryActivity
 import com.example.itservice.common.taken_service_catagory.TakenServiceCatagoryActivity
+import com.example.itservice.common.taken_service_catagory.service_list.ServiceListActivity
 import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.common.utils.itemDecorator
@@ -32,7 +26,6 @@ import com.example.itservice.local_db.DatabaseInstance
 import com.example.itservice.local_db.DbHelper
 import com.example.itservice.user.product_catagory.BuyOurProductsCatagoryDisplayActivity
 import com.example.itservice.user.product_catagory.product_list.product_details.ProductDetailActivity
-import okhttp3.internal.userAgent
 
 
 interface  OfferItemSelected{
@@ -43,7 +36,7 @@ class UserdashboardActivity : BaseActivity(), OfferItemSelected {
     private lateinit var binding: ActivityUserdashboardBinding
     private lateinit var viewModel: UserdashboardViewModel
     private lateinit var llyBuyOurProducts: LinearLayout
-    private lateinit var llyTakeOurService: LinearLayout
+    private lateinit var llyServiceStatus: LinearLayout
     private lateinit var llyAskForService: LinearLayout
     private lateinit var rvOffers: RecyclerView
     private lateinit var dbHelper: DbHelper
@@ -65,7 +58,7 @@ class UserdashboardActivity : BaseActivity(), OfferItemSelected {
         DbInstance.setLastLoginAs(this@UserdashboardActivity, Constants.user)
 
         llyBuyOurProducts = binding.llyBuyOutProducts
-        llyTakeOurService = binding.llyTakeOutService
+        llyServiceStatus = binding.llyTakeOutService
         llyAskForService = binding.llyAskService
         ivProfileImage = binding.ivUserProfile
         tvUserName = binding.tvUserName
@@ -90,9 +83,13 @@ class UserdashboardActivity : BaseActivity(), OfferItemSelected {
             moveWithAnimationToAnotherActivity()
         }
 
-        llyTakeOurService.setOnClickListener {
-            startActivity(Intent(this@UserdashboardActivity, TakenServiceCatagoryActivity::class.java))
+        llyServiceStatus.setOnClickListener {
+//            startActivity(Intent(this@UserdashboardActivity, TakenServiceCatagoryActivity::class.java))
+//            moveWithAnimationToAnotherActivity()
+
+            startActivity(Intent(this@UserdashboardActivity, ServiceListActivity::class.java))
             moveWithAnimationToAnotherActivity()
+
         }
 
         llyAskForService.setOnClickListener {

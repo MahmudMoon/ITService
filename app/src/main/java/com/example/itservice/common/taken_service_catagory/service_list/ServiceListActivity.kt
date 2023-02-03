@@ -56,24 +56,55 @@ class ServiceListActivity : BaseActivity(), iServiceListInterface {
 
         viewModel.allServiceData.observe(this){
             Log.d(TAG, "onCreate: ${it.size}")
-            val list = viewModel.getDataForList(statusType)
+            val listPending = viewModel.getDataForList(Constants.ServiceStatus.Pending.name)
+            val listAssigned = viewModel.getDataForList(Constants.ServiceStatus.Assigned.name)
+            val listCompleted = viewModel.getDataForList(Constants.ServiceStatus.Completed.name)
             aryList?.clear()
             if(DbInstance.getLastLoginAs(this@ServiceListActivity).equals(Constants.user)){
                 val uid = DbInstance.getUserUid(this@ServiceListActivity)
-               list?.forEach { item ->
+               listPending?.forEach { item ->
                    if(item.createdByID == uid){
                        aryList?.add(item)
                    }
                }
+                listAssigned?.forEach { item ->
+                    if(item.createdByID == uid){
+                        aryList?.add(item)
+                    }
+                }
+                listCompleted?.forEach { item ->
+                    if(item.createdByID == uid){
+                        aryList?.add(item)
+                    }
+                }
             }else if(DbInstance.getLastLoginAs(this@ServiceListActivity).equals(Constants.engineer)) {
                 val uid = DbInstance.getUserUid(this@ServiceListActivity)
-                list?.forEach { item ->
+                if(statusType == Constants.ServiceStatus.Assigned.name)
+                    listAssigned?.forEach { item ->
+                    if(item.assignedEngineerID == uid){
+                        aryList?.add(item)
+                    }
+                 }
+
+                if(statusType == Constants.ServiceStatus.Completed.name)
+                listCompleted?.forEach { item ->
                     if(item.assignedEngineerID == uid){
                         aryList?.add(item)
                     }
                 }
             } else if(DbInstance.getLastLoginAs(this@ServiceListActivity).equals(Constants.admin)){
-                aryList?.addAll(list!!)
+                if(statusType == Constants.ServiceStatus.Pending.name)
+                listPending?.forEach { item ->
+                    aryList?.add(item)
+                }
+                if(statusType == Constants.ServiceStatus.Assigned.name)
+                listAssigned?.forEach { item ->
+                    aryList?.add(item)
+                }
+                if(statusType == Constants.ServiceStatus.Completed.name)
+                listCompleted?.forEach { item ->
+                    aryList?.add(item)
+                }
             }
 
             rvAdapter.notifyDataSetChanged()

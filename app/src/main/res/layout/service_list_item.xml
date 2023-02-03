@@ -27,18 +27,20 @@
             android:layout_weight="0.5"/>
 
         <TextView
+            android:id="@+id/tv_status_service_list_adapter"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="Status: "
+            android:layout_weight="0.5"/>
+
+        <TextView
             android:id="@+id/tv_assigned_to_service_list_adapter"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:text="Assigned To:"
             android:layout_weight="0.5"/>
 
-        <TextView
-            android:id="@+id/tv_status_service_list_adapter"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:text="Status: "
-            android:layout_weight="0.5"/>
+
 
     </LinearLayout>
 
