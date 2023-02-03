@@ -51,6 +51,9 @@ object Constants {
     const val password = "password"
     const val tabSelection = "tabSelection"
     const val profileImage = "profileImage"
+    const val cvLink = "cvLink"
+    const val appliedEngineers = "appliedEngineers"
+    const val CV_PICK_REQUEST: Int = 110
 
     enum class ServiceStatus{
         Pending,

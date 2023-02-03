@@ -101,6 +101,7 @@ class UserdashboardActivity : BaseActivity(), OfferItemSelected {
         }
     }
 
+
     override fun onStart() {
         super.onStart()
         val name = DbInstance.getUserName(this@UserdashboardActivity)

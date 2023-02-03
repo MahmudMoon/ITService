@@ -6,15 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.core.view.get
-import androidx.navigation.NavArgument
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.itservice.R
 import com.example.itservice.application.TAG
-import com.example.itservice.base.BaseActivity
 import com.example.itservice.common.utils.Constants
 import com.example.itservice.databinding.ActivityLoginBinding
+import com.example.itservice.engineer.application.EngineerApplicationFragment
 import com.example.itservice.user.login.UserLoginFragment
 import com.example.itservice.user.registation.UserRegistationFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -86,6 +85,20 @@ class LoginActivity : AppCompatActivity() {
                 val framgent = navHostFragment.childFragmentManager.fragments.get(0)
                 if(framgent is UserRegistationFragment){
                     framgent.onImagePicked(filePath, imageName)
+                }
+            }
+        }else if(requestCode == Constants.CV_PICK_REQUEST
+            && data != null
+            && data.getData() != null){
+            filePath = data.getData();
+            Log.d("TAG", "onActivityResult: $filePath")
+            if(filePath!=null && filePath?.path?.length!! >0){
+                val paths = filePath?.path?.split("/")
+                val cvName = paths?.get(paths.size-1)
+                Log.d(TAG, "onActivityResult: "+cvName)
+                val framgent = navHostFragment.childFragmentManager.fragments.get(0)
+                if(framgent is EngineerApplicationFragment){
+                    framgent.onCVPicked(filePath, cvName)
                 }
             }
         }

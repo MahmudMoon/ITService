@@ -1,4 +1,4 @@
-package com.example.itservice.engineer.registration
+package com.example.itservice.engineer.application
 
 import android.content.Intent
 import android.net.Uri
@@ -24,8 +24,8 @@ import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.ContextExtentions
 import com.example.itservice.common.utils.DbInstance
+import com.example.itservice.common.utils.DocumentUpload
 import com.example.itservice.databinding.FragmentEngineerRegistationBinding
-import com.example.itservice.engineer.dashboard.EngineerDashBoardActivity
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,15 +34,20 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [EngineerRegistationFragment.newInstance] factory method to
+ * Use the [EngineerApplicationFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class EngineerRegistationFragment : BaseFragment(), TextWatcher {
+
+interface engineerRegistrationCVPicked{
+    fun onCVPicked(filePath: Uri?, imageName: String?)
+}
+
+class EngineerApplicationFragment : BaseFragment(), TextWatcher , engineerRegistrationCVPicked{
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var binding: FragmentEngineerRegistationBinding
-    private lateinit var viewModel: EngineerRegistrationViewModel
+    private lateinit var viewModel: EngineerApplicationViewModel
     private lateinit var tvSingIn: TextView
     private lateinit var btnSignUp: Button
     private var etengineerName: AppCompatEditText? = null
@@ -62,6 +67,11 @@ class EngineerRegistationFragment : BaseFragment(), TextWatcher {
     private var engineerCatagory: String? = null
     private var engineerNID: String? = null
     private var progressBar: ProgressBar? = null
+    private lateinit var btnSelectCV: Button
+    private var tvCVName: TextView? = null
+    private var cvUpload: DocumentUpload? = null
+    private var cvName: String? =null
+    var filePath: Uri? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -85,7 +95,7 @@ class EngineerRegistationFragment : BaseFragment(), TextWatcher {
         viewModel = ViewModelProvider(
             this,
             ViewModelProviderFactory()
-        ).get(EngineerRegistrationViewModel::class.java)
+        ).get(EngineerApplicationViewModel::class.java)
         (requireActivity() as LoginActivity).selectTabAt(1)
         tvSingIn = binding.tvSignUpEngineerRegistation
         btnSignUp = binding.btnSingUpengineerRegistation
@@ -98,7 +108,18 @@ class EngineerRegistationFragment : BaseFragment(), TextWatcher {
         etengineerNID = binding.etNidEngineerRegistation
         progressBar = binding.pbEngineerRegistration
         etengineerCatagory = binding.etCatagoryEngineerRegistation
-        (requireActivity() as LoginActivity).setTitle("Engineer registration")
+        btnSelectCV = binding.btnSelectCv
+        tvCVName = binding.tvSelectCv
+        tvCVName?.keyListener = null
+        (requireActivity() as LoginActivity).setTitle("Engineer Application")
+
+        btnSelectCV.setOnClickListener {
+            // pick an image
+            tvCVName?.setError(null)
+            //pick an image
+            cvUpload = DocumentUpload(this@EngineerApplicationFragment.requireActivity() as LoginActivity)
+            cvUpload?.selectPdf(Constants.CV_PICK_REQUEST)
+        }
 
         btnSignUp.setOnClickListener {
             ContextExtentions.hideKeyboard(it, requireContext())
@@ -110,35 +131,52 @@ class EngineerRegistationFragment : BaseFragment(), TextWatcher {
             engineerContactNumber = setErrorMessage(etengineerContactNumber, "Enter valid contact number")
             engineerNID = setErrorMessage(etengineerNID, "Enter valid NID")
             engineerCatagory = setErrorMessage(etengineerCatagory, "Enter valid Catagory")
+            cvName = setErrorMessage(tvCVName, "Please select a CV")
             if (engineerName != "" && engineerEmail != ""
                 && engineerPassword != "" && engineerCompanyName != "" && engineerEmployeeID != ""
-                && engineerContactNumber != "" && engineerNID != ""
+                && engineerContactNumber != "" && engineerNID != "" && filePath != null
             ) {
                 Log.d(TAG, "onViewCreated: READY for registation")
                 progressBar?.visibility = View.VISIBLE
-                viewModel.registerUserWithEmailPassword(engineerName!!, engineerEmail!!,
+                viewModel.applyEngineerWithEmailPassword(engineerName!!, engineerEmail!!,
                     engineerPassword!! , engineerContactNumber!! , engineerCompanyName!!, engineerEmployeeID!!, engineerNID!!, engineerCatagory!! )
 
             }
         }
 
-        viewModel.engineerAuthResult.observe(viewLifecycleOwner){
+        viewModel.engineerApplyDataSave.observe(viewLifecycleOwner){
             if(it.isSuccess){
                 val uid = it.resultData as String
                 DbInstance.setUserUid(requireContext(), uid)
+                cvUpload?.uploadDocumentInFireStore(uid, filePath.toString(), viewModel.uploadCV)
+            }else{
+                Toast.makeText(requireContext(), "Application failed", Toast.LENGTH_SHORT).show()
                 progressBar?.visibility = View.GONE
-                Toast.makeText(requireContext(), "Registration successful", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        viewModel.uploadCV.observe(viewLifecycleOwner){
+            val path = it
+            val userUid = DbInstance.getUserUid(requireContext())
+            viewModel.updateCvLink(userUid ,path)
+            Log.d(TAG, "onViewCreated: USER CV AT "+ path)
+        }
+
+        viewModel.isCVUpdated.observe(viewLifecycleOwner){
+            progressBar?.visibility = View.GONE
+            if(it){
+                progressBar?.visibility = View.GONE
+                Toast.makeText(requireContext(), "Application successful", Toast.LENGTH_SHORT).show()
                 requireActivity().startActivity(Intent(requireContext(), LoginActivity::class.java)
                     .putExtra(Constants.email, engineerEmail)
                     .putExtra(Constants.password, engineerPassword)
                     .putExtra(Constants.tabSelection, 1))
                 moveWithAnimationToAnotherActivity()
             }else{
-                Toast.makeText(requireContext(), "Registration failed", Toast.LENGTH_SHORT).show()
-                progressBar?.visibility = View.GONE
+                Toast.makeText(requireContext(), "Application failed", Toast.LENGTH_SHORT).show()
             }
         }
-        
+
         tvSingIn.setOnClickListener {
             try {
                 (requireActivity() as LoginActivity).navController.navigate(R.id.action_engineerRegistationFragment_to_engineerLoginFragment)
@@ -148,7 +186,7 @@ class EngineerRegistationFragment : BaseFragment(), TextWatcher {
         }
     }
 
-    fun setErrorMessage(view: AppCompatEditText?, message: String): String? {
+    fun setErrorMessage(view: TextView?, message: String): String? {
         try {
             val data = view?.text.toString()
             if (data == "" ) {
@@ -165,7 +203,7 @@ class EngineerRegistationFragment : BaseFragment(), TextWatcher {
         return null
     }
 
-    fun cleanErrorMessage(view: AppCompatEditText?) {
+    fun cleanErrorMessage(view: TextView?) {
         try {
             view?.error = null
         } catch (exception: Exception) {
@@ -190,6 +228,7 @@ class EngineerRegistationFragment : BaseFragment(), TextWatcher {
             etengineerEmployeeID?.text.hashCode() -> cleanErrorMessage(etengineerEmployeeID)
             etengineerContactNumber?.text.hashCode() -> cleanErrorMessage(etengineerContactNumber)
             etengineerNID?.text.hashCode() -> cleanErrorMessage(etengineerNID)
+            tvCVName?.text.hashCode() -> cleanErrorMessage(tvCVName)
         }
     }
 
@@ -206,11 +245,20 @@ class EngineerRegistationFragment : BaseFragment(), TextWatcher {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            EngineerRegistationFragment().apply {
+            EngineerApplicationFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun onCVPicked(filePath: Uri?, imageName: String?) {
+        Log.d(TAG, "onImagePicked: u_r "+ filePath + "\n" + imageName)
+        if(filePath!=null && imageName != null){
+            this.filePath = filePath
+            this.cvName = imageName
+            tvCVName?.text = imageName
+        }
     }
 }

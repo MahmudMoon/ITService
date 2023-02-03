@@ -24,9 +24,8 @@ import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.ContextExtentions
 import com.example.itservice.common.utils.DbInstance
-import com.example.itservice.common.utils.PhotoUpload
+import com.example.itservice.common.utils.DocumentUpload
 import com.example.itservice.databinding.FragmentUserRegistationBinding
-import com.example.itservice.user.user_dash_board.UserdashboardActivity
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -72,7 +71,7 @@ class UserRegistationFragment : BaseFragment(), TextWatcher, userRegistrationIma
     private var userNID: String? = null
     private var progressBar: ProgressBar? = null
     private var tvImageName: TextView? = null
-    private var photoUpload: PhotoUpload? = null
+    private var photoUpload: DocumentUpload? = null
     private var imageName: String? =null
     var filePath: Uri? = null
 
@@ -119,7 +118,7 @@ class UserRegistationFragment : BaseFragment(), TextWatcher, userRegistrationIma
             // pick an image
             tvImageName?.setError(null)
             //pick an image
-            photoUpload = PhotoUpload(this@UserRegistationFragment.requireActivity() as LoginActivity)
+            photoUpload = DocumentUpload(this@UserRegistationFragment.requireActivity() as LoginActivity)
             photoUpload?.selectImage(IMAGE_PICK_REQUEST)
         }
 
@@ -156,7 +155,7 @@ class UserRegistationFragment : BaseFragment(), TextWatcher, userRegistrationIma
             if(it.isSuccess){
                 val uid = it.resultData as String
                 DbInstance.setUserUid(requireContext(), uid)
-                photoUpload?.uploadImageInFireStore(uid, filePath.toString(), viewModel.uploadPhoto)
+                photoUpload?.uploadDocumentInFireStore(uid, filePath.toString(), viewModel.uploadPhoto)
             }else{
                 progressBar?.visibility = View.GONE
                 Toast.makeText(requireContext(), "Registration failed", Toast.LENGTH_SHORT).show()

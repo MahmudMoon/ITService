@@ -67,6 +67,5 @@ class UserRegistationViewModel : ViewModel() {
                     _isProfileImageUpdated.postValue(false)
                 }
             }
-
     }
 }

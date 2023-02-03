@@ -8,7 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.itservice.application.TAG
 import com.example.itservice.common.utils.DbInstance.getStorageInstance
 
-class PhotoUpload constructor(val activity: AppCompatActivity){
+class DocumentUpload constructor(val activity: AppCompatActivity){
 //    companion object{
 //        fun getInstance(activity: AppCompatActivity): PhotoUpload{
 //            if(photoUpload==null){
@@ -33,8 +33,22 @@ class PhotoUpload constructor(val activity: AppCompatActivity){
         );
     }
 
-    fun uploadImageInFireStore(uid: String, filePath: String?, uploadComplete: MutableLiveData<String>){
-        Log.d(TAG, "uploadImageInFireStore: "+ uid)
+    fun selectPdf(PICK_IMAGE_REQUEST: Int) {
+        // Defining Implicit Intent to mobile gallery
+        var intent = Intent();
+        intent.setType("application/pdf");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        activity.startActivityForResult(
+            Intent.createChooser(
+                intent,
+                "Select PDF from here..."
+            ),
+            PICK_IMAGE_REQUEST
+        );
+    }
+
+    fun uploadDocumentInFireStore(uid: String, filePath: String?, uploadComplete: MutableLiveData<String>){
+        Log.d(TAG, "uploadCVInFireStore: "+ uid)
         val ref = getStorageInstance().reference.child(uid)
         val uploadTask = ref
             .putFile(Uri.parse(filePath))

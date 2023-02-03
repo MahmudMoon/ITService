@@ -7,7 +7,6 @@ import com.example.itservice.common.models.DbUpdateResult
 import com.example.itservice.common.models.ServiceCatagory
 import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.DbInstance
-import com.example.itservice.common.utils.PhotoUpload
 import com.google.firebase.database.DatabaseReference
 
 class AddCatagoryViewModel: ViewModel() {

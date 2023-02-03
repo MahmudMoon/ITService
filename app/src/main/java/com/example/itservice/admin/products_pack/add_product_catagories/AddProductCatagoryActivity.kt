@@ -2,7 +2,6 @@ package com.example.itservice.admin.products_pack.add_product_catagories
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -13,14 +12,12 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.lifecycle.ViewModelProvider
-import com.example.itservice.R
 import com.example.itservice.application.TAG
 import com.example.itservice.base.BaseActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.models.ProductCatagories
-import com.example.itservice.common.models.ServiceCatagory
 import com.example.itservice.common.utils.ContextExtentions
-import com.example.itservice.common.utils.PhotoUpload
+import com.example.itservice.common.utils.DocumentUpload
 import com.example.itservice.databinding.ActivityAddProductCatagoryBinding
 import com.google.android.material.textview.MaterialTextView
 
@@ -33,7 +30,7 @@ class AddProductCatagoryActivity : BaseActivity(), TextWatcher {
     private var tvCatagoryImage: MaterialTextView? = null
     private val IMAGE_PICK_REQUEST = 130
     var filePath: Uri? = null
-    private var photoUpload: PhotoUpload? = null
+    private var photoUpload: DocumentUpload? = null
     private lateinit var catID: String
     private lateinit var progressBar: ProgressBar
 
@@ -55,7 +52,7 @@ class AddProductCatagoryActivity : BaseActivity(), TextWatcher {
                 //store data in db first then put in realtime db
                 progressBar.visibility = View.VISIBLE
                 catID =  viewModel.getNewKey()!!
-                photoUpload?.uploadImageInFireStore(catID, filePath.toString(), viewModel.uploadPhoto)
+                photoUpload?.uploadDocumentInFireStore(catID, filePath.toString(), viewModel.uploadPhoto)
             }
         }
 
@@ -83,7 +80,7 @@ class AddProductCatagoryActivity : BaseActivity(), TextWatcher {
         binding.btnAddImage.setOnClickListener {
             tvCatagoryImage?.setError(null)
             //pick an image
-            photoUpload = PhotoUpload(this@AddProductCatagoryActivity)
+            photoUpload = DocumentUpload(this@AddProductCatagoryActivity)
             photoUpload?.selectImage(IMAGE_PICK_REQUEST)
         }
     }

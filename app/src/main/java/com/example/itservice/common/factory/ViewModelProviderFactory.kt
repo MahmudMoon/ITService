@@ -27,7 +27,7 @@ import com.example.itservice.common.service_pack.display_service_catagory.displa
 import com.example.itservice.common.splash.SplashViewModel
 import com.example.itservice.engineer.dashboard.EngineerDashBoradViewModel
 import com.example.itservice.engineer.login_fragment.EngineerLoginViewModel
-import com.example.itservice.engineer.registration.EngineerRegistrationViewModel
+import com.example.itservice.engineer.application.EngineerApplicationViewModel
 import com.example.itservice.enterprise_user.enterprise_user_login.EnterpriseUserLoginViewModel
 import com.example.itservice.enterprise_user.registation.EnterpriseUserRegistrationViewModel
 import com.example.itservice.user.ask_service_catagory.UserServiceViewModel
@@ -52,7 +52,7 @@ class ViewModelProviderFactory @Inject constructor(): ViewModelProvider.Factory 
         if(modelClass.isAssignableFrom(EnterpriseUserLoginViewModel::class.java)) return EnterpriseUserLoginViewModel() as T
         if(modelClass.isAssignableFrom(EnterpriseUserRegistrationViewModel::class.java)) return EnterpriseUserRegistrationViewModel() as T
         if(modelClass.isAssignableFrom(EngineerLoginViewModel::class.java)) return EngineerLoginViewModel() as T
-        if(modelClass.isAssignableFrom(EngineerRegistrationViewModel::class.java)) return EngineerRegistrationViewModel() as T
+        if(modelClass.isAssignableFrom(EngineerApplicationViewModel::class.java)) return EngineerApplicationViewModel() as T
         if(modelClass.isAssignableFrom(AdminRegistrationViewModel::class.java)) return AdminRegistrationViewModel() as T
         if(modelClass.isAssignableFrom(AdminLoginViewModel::class.java)) return AdminLoginViewModel() as T
         if(modelClass.isAssignableFrom(UserdashboardViewModel::class.java)) return UserdashboardViewModel() as T

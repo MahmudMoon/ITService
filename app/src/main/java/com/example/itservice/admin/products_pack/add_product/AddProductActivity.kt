@@ -2,7 +2,6 @@ package com.example.itservice.admin.products_pack.add_product
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.InputType
@@ -21,10 +20,8 @@ import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.models.Product
 import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.ContextExtentions
-import com.example.itservice.common.utils.PhotoUpload
+import com.example.itservice.common.utils.DocumentUpload
 import com.example.itservice.databinding.ActivityAddProductBinding
-import com.google.android.material.textfield.MaterialAutoCompleteTextView
-import com.google.android.material.textview.MaterialTextView
 
 class AddProductActivity : BaseActivity(), TextWatcher {
     private lateinit var binding: ActivityAddProductBinding
@@ -50,7 +47,7 @@ class AddProductActivity : BaseActivity(), TextWatcher {
     private var tvImageName: TextView? = null
     private val IMAGE_PICK_REQUEST = 126
     var filePath: Uri? = null
-    private var photoUpload: PhotoUpload? = null
+    private var photoUpload: DocumentUpload? = null
     private lateinit var productID: String
     private lateinit var progressBar: ProgressBar
     
@@ -94,7 +91,7 @@ class AddProductActivity : BaseActivity(), TextWatcher {
                 //store data in db first then put in realtime db
                 progressBar.visibility = View.VISIBLE
                 productID =  viewModel.getNewKey()!!
-                photoUpload?.uploadImageInFireStore(productID, filePath.toString(), viewModel.uploadPhoto)
+                photoUpload?.uploadDocumentInFireStore(productID, filePath.toString(), viewModel.uploadPhoto)
             }
         }
 
@@ -139,7 +136,7 @@ class AddProductActivity : BaseActivity(), TextWatcher {
         binding.btnSelectImageAddProduct.setOnClickListener {
             tvImageName?.setError(null)
             //pick an image
-            photoUpload = PhotoUpload(this@AddProductActivity)
+            photoUpload = DocumentUpload(this@AddProductActivity)
             photoUpload?.selectImage(IMAGE_PICK_REQUEST)
         }
     }

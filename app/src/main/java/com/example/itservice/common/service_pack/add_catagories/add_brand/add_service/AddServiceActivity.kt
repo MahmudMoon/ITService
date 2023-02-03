@@ -9,17 +9,15 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.lifecycle.ViewModelProvider
 import com.example.itservice.application.TAG
 import com.example.itservice.base.BaseActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
-import com.example.itservice.common.models.Brand
 import com.example.itservice.common.models.Service
 import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.ContextExtentions
-import com.example.itservice.common.utils.PhotoUpload
+import com.example.itservice.common.utils.DocumentUpload
 import com.example.itservice.databinding.ActivityAddSericeBinding
 import com.google.android.material.textview.MaterialTextView
 
@@ -45,7 +43,7 @@ class AddServiceActivity : BaseActivity(), TextWatcher {
     private var tvserviceImage: MaterialTextView? = null
     private val IMAGE_PICK_REQUEST = 126
     var filePath: Uri? = null
-    private var photoUpload: PhotoUpload? = null
+    private var photoUpload: DocumentUpload? = null
     private lateinit var serviceID: String
     private lateinit var progressBar: ProgressBar
 
@@ -94,7 +92,7 @@ class AddServiceActivity : BaseActivity(), TextWatcher {
                 //store data in db first then put in realtime db
                 progressBar.visibility = View.VISIBLE
                 serviceID =  viewModel.getNewKey()!!
-                photoUpload?.uploadImageInFireStore(serviceID, filePath.toString(), viewModel.uploadPhoto)
+                photoUpload?.uploadDocumentInFireStore(serviceID, filePath.toString(), viewModel.uploadPhoto)
             }
         }
 
@@ -127,7 +125,7 @@ class AddServiceActivity : BaseActivity(), TextWatcher {
         binding.btnAddImage.setOnClickListener {
             tvserviceImage?.setError(null)
             //pick an image
-            photoUpload = PhotoUpload(this@AddServiceActivity)
+            photoUpload = DocumentUpload(this@AddServiceActivity)
             photoUpload?.selectImage(IMAGE_PICK_REQUEST)
         }
     }

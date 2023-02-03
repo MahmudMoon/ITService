@@ -74,7 +74,7 @@
     </fragment>
     <fragment
         android:id="@+id/engineerRegistationFragment"
-        android:name="com.example.itservice.engineer.registration.EngineerRegistationFragment"
+        android:name="com.example.itservice.engineer.application.EngineerApplicationFragment"
         android:label="fragment_engineer_registation"
         tools:layout="@layout/fragment_engineer_registation" >
         <action

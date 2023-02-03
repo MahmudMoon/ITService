@@ -10,7 +10,6 @@ import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.lifecycle.ViewModelProvider
 import com.example.itservice.admin.service_pack.add_service.add_brandes.add_brand.AddBrandViewModel
@@ -20,7 +19,7 @@ import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.models.Brand
 import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.ContextExtentions
-import com.example.itservice.common.utils.PhotoUpload
+import com.example.itservice.common.utils.DocumentUpload
 import com.example.itservice.databinding.ActivityAddBrandBinding
 import com.google.android.material.textview.MaterialTextView
 
@@ -33,7 +32,7 @@ class AddBrandActivity : BaseActivity() , TextWatcher{
     private var tvbrandImage: MaterialTextView? = null
     private val IMAGE_PICK_REQUEST = 124
     var filePath: Uri? = null
-    private var photoUpload: PhotoUpload? = null
+    private var photoUpload: DocumentUpload? = null
     private lateinit var brandID: String
     private lateinit var progressBar: ProgressBar
     private lateinit var catId: String
@@ -61,7 +60,7 @@ class AddBrandActivity : BaseActivity() , TextWatcher{
                 //store data in db first then put in realtime db
                 progressBar.visibility = View.VISIBLE
                 brandID =  viewModel.getNewKey()!!
-                photoUpload?.uploadImageInFireStore(brandID, filePath.toString(), viewModel.uploadPhoto)
+                photoUpload?.uploadDocumentInFireStore(brandID, filePath.toString(), viewModel.uploadPhoto)
             }
         }
 
@@ -91,7 +90,7 @@ class AddBrandActivity : BaseActivity() , TextWatcher{
         binding.btnAddImage.setOnClickListener {
             tvbrandImage?.setError(null)
             //pick an image
-            photoUpload = PhotoUpload(this@AddBrandActivity)
+            photoUpload = DocumentUpload(this@AddBrandActivity)
             photoUpload?.selectImage(IMAGE_PICK_REQUEST)
         }
     }

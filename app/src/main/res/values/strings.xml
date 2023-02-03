@@ -5,7 +5,8 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="please_sign_in_to_continue">Please sign in to continue</string>
-    <string name="please_sign_up_to_continue">Please sign up to continue</string>
+    <string name="please_apply_to_continue">Please apply to continue</string>
+    <string name="please_sing_up_to_continue">Please sign up continue</string>
     <string name="enterprise_login">Enterprise Login</string>
     <string name="sign_up">Sign up</string>
     <string name="sign_in">Sign in</string>
@@ -13,8 +14,9 @@
     <string name="engineer_login">Engineer Login</string>
     <string name="login">Login</string>
     <string name="admin_registation">Admin Registration</string>
-    <string name="engineer_registation">Engineer Registration</string>
+    <string name="engineer_apply">Engineer Apply Form</string>
     <string name="registation">Registation</string>
+    <string name="apply">Apply Now</string>
     <string name="fullname">Full Name</string>
     <string name="company_name">Company name</string>
     <string name="employee_id">Employee id</string>

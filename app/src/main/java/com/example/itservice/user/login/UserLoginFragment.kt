@@ -115,6 +115,9 @@ class UserLoginFragment : BaseFragment(), TextWatcher, SetData {
                 DbInstance.setUserName(requireContext() ,it.fullName!!)
                 if(it.profileImage != null)
                     DbInstance.setUserImage(requireContext(), it.profileImage)
+                else
+                    DbInstance.setUserImage(requireContext(), "")
+
                 Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_SHORT).show()
                 requireActivity().startActivity(Intent(requireContext(), UserdashboardActivity::class.java))
                 moveWithAnimationToAnotherActivity()
