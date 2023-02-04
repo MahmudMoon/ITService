@@ -7,268 +7,380 @@
     tools:context=".admin.admin_dashboard.AdminDashBoardActivity">
 
 
-    <View
-        android:id="@+id/fake_guide_center_vertical"
-        android:layout_width="2dp"
-        android:layout_height="match_parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:background="@color/teal_700"
-        android:alpha="0.2"
-        />
+<!--    <View-->
+<!--        android:id="@+id/fake_guide_center_vertical"-->
+<!--        android:layout_width="2dp"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        android:background="@color/teal_700"-->
+<!--        android:alpha="0.0"-->
+<!--        />-->
 
-    <LinearLayout
-        android:id="@+id/lly_check_services_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/fake_guide_center_vertical"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/fake_guide_center_horizontal_center">
+<!--<androidx.cardview.widget.CardView-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    app:layout_constraintTop_toTopOf="parent"-->
+<!--    app:layout_constraintRight_toLeftOf="@+id/fake_guide_center_vertical"-->
+<!--    app:layout_constraintLeft_toLeftOf="parent"-->
+<!--    app:layout_constraintBottom_toTopOf="@id/fake_guide_center_horizontal_center"-->
+<!--    app:cardElevation="10dp"-->
+<!--    app:cardCornerRadius="8dp">-->
 
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center"
-            android:src="@drawable/check_tasks"
-            android:background="@null"/>
+<!--    <LinearLayout-->
+<!--        android:id="@+id/lly_check_services_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:orientation="vertical"-->
+<!--        android:padding="10dp">-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/check_tasks"
-            android:textStyle="bold"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+<!--        <ImageView-->
+<!--            android:layout_width="80dp"-->
+<!--            android:layout_height="80dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:src="@drawable/check_tasks"-->
+<!--            android:background="@null"/>-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/check_tasks"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>-->
 
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
+<!--</androidx.cardview.widget.CardView>-->
 
-    <View
-        android:id="@+id/fake_guide_center_horizontal_center"
+
+
+<!--    <View-->
+<!--        android:id="@+id/fake_guide_center_horizontal_center"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="2dp"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.2"-->
+<!--        android:background="@color/teal_700"-->
+<!--        android:alpha="0.2"-->
+<!--        />-->
+
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:cardElevation="10dp"-->
+<!--        app:cardCornerRadius="8dp">-->
+
+<!--    </androidx.cardview.widget.CardView>-->
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/lly_edit_product"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/fake_guide_center_horizontal_center"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/fake_guide_center_horizontal_bottom"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="@id/fake_guide_center_vertical">-->
+
+<!--        <ImageView-->
+<!--            android:layout_width="80dp"-->
+<!--            android:layout_height="80dp"-->
+<!--            android:src="@drawable/products"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:background="@null"-->
+<!--            />-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/add_products"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>-->
+
+
+<!--    </LinearLayout>-->
+
+
+
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:cardElevation="10dp"-->
+<!--        app:cardCornerRadius="8dp">-->
+
+<!--    </androidx.cardview.widget.CardView>-->
+<!--    <LinearLayout-->
+<!--        android:id="@+id/lly_edit_service"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/fake_guide_center_horizontal_center"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintLeft_toRightOf="@+id/fake_guide_center_vertical"-->
+<!--        app:layout_constraintRight_toRightOf="parent">-->
+
+
+<!--        <ImageView-->
+<!--            android:layout_width="80dp"-->
+<!--            android:layout_height="80dp"-->
+<!--            android:src="@drawable/service_provide"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:background="@null"-->
+<!--            />-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/crete_services"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>-->
+
+<!--    </LinearLayout>-->
+
+
+<!--    <View-->
+<!--        android:id="@+id/fake_guide_center_horizontal_bottom"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="2dp"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.40"-->
+<!--        android:background="@color/teal_700"-->
+<!--        android:alpha="0.2"-->
+<!--        />-->
+
+
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:cardElevation="10dp"-->
+<!--        app:cardCornerRadius="8dp">-->
+
+<!--    </androidx.cardview.widget.CardView>-->
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/lly_edit_parts"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/fake_guide_center_horizontal_bottom"-->
+<!--        app:layout_constraintBottom_toBottomOf="@id/fake_guide_center_horizontal_bottom_lower"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toLeftOf="@id/fake_guide_center_vertical">-->
+
+<!--        <ImageView-->
+<!--            android:layout_width="80dp"-->
+<!--            android:layout_height="80dp"-->
+<!--            android:src="@drawable/parts"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:background="@null"-->
+<!--            />-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/add_parts"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>-->
+
+<!--    </LinearLayout>-->
+
+
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:cardElevation="10dp"-->
+<!--        app:cardCornerRadius="8dp">-->
+
+<!--    </androidx.cardview.widget.CardView>-->
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/lly_add_offer"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        app:layout_constraintTop_toTopOf="@id/fake_guide_center_horizontal_center"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/fake_guide_center_horizontal_bottom"-->
+<!--        app:layout_constraintLeft_toRightOf="@id/fake_guide_center_vertical"-->
+<!--        app:layout_constraintRight_toRightOf="parent">-->
+
+<!--        <ImageView-->
+<!--            android:layout_width="80dp"-->
+<!--            android:layout_height="80dp"-->
+<!--            android:src="@drawable/offers"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:background="@null"-->
+<!--            />-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/add_offers"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>-->
+
+<!--    </LinearLayout>-->
+
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:cardElevation="10dp"-->
+<!--        app:cardCornerRadius="8dp">-->
+
+<!--    </androidx.cardview.widget.CardView>-->
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/lly_edit_users_list"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/fake_guide_center_horizontal_bottom"-->
+<!--        app:layout_constraintBottom_toBottomOf="@id/fake_guide_center_horizontal_bottom_lower"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintLeft_toRightOf="@id/fake_guide_center_vertical">-->
+
+<!--        <ImageView-->
+<!--            android:layout_width="80dp"-->
+<!--            android:layout_height="80dp"-->
+<!--            android:src="@drawable/users_icon"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:background="@null"-->
+<!--            />-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/users_list"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>-->
+
+<!--    </LinearLayout>-->
+
+<!--    <View-->
+<!--        android:id="@+id/fake_guide_center_horizontal_bottom_lower"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="2dp"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.6"-->
+<!--        android:background="@color/teal_700"-->
+<!--        android:alpha="0.2"-->
+<!--        />-->
+
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:cardElevation="10dp"-->
+<!--        app:cardCornerRadius="8dp"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/fake_guide_center_horizontal_bottom_lower"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/fake_guide_center_horizontal_bottom_lowest"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toLeftOf="@id/fake_guide_center_vertical">-->
+<!--        <LinearLayout-->
+<!--            android:id="@+id/lly_edit_engineers_list"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:padding="10dp"-->
+<!--            >-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="80dp"-->
+<!--                android:layout_height="80dp"-->
+<!--                android:src="@drawable/engineer"-->
+<!--                android:layout_gravity="center"-->
+<!--                />-->
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Engineers"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>-->
+
+<!--        </LinearLayout>-->
+<!--    </androidx.cardview.widget.CardView>-->
+<!-- -->
+
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:cardElevation="10dp"-->
+<!--        app:cardCornerRadius="8dp">-->
+
+<!--    </androidx.cardview.widget.CardView>-->
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/lly_edit_offer"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/fake_guide_center_horizontal_bottom_lower"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/fake_guide_center_horizontal_bottom_lowest"-->
+<!--        app:layout_constraintLeft_toRightOf="@id/fake_guide_center_vertical"-->
+<!--        app:layout_constraintRight_toRightOf="parent">-->
+
+<!--        <ImageView-->
+<!--            android:layout_width="80dp"-->
+<!--            android:layout_height="80dp"-->
+<!--            android:src="@drawable/edit_offers"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:background="@null"-->
+<!--            />-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Edit Offers"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>-->
+
+<!--    </LinearLayout>-->
+
+<!--    <View-->
+<!--        android:id="@+id/fake_guide_center_horizontal_bottom_lowest"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="2dp"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.8"-->
+<!--        android:background="@color/teal_700"-->
+<!--        android:alpha="0.0"-->
+<!--        />-->
+
+
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:cardElevation="10dp"-->
+<!--        app:cardCornerRadius="8dp"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/fake_guide_center_horizontal_bottom_lowest"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toLeftOf="@id/fake_guide_center_vertical"-->
+<!--        android:visibility="visible">-->
+<!--        <LinearLayout-->
+<!--            android:id="@+id/lly_register_engineers"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:padding="10dp"-->
+<!--            >-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="80dp"-->
+<!--                android:layout_height="80dp"-->
+<!--                android:src="@drawable/edit_offers"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:background="@null"-->
+<!--                />-->
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Registrations"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>-->
+
+<!--        </LinearLayout>-->
+<!--    </androidx.cardview.widget.CardView>-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_admin_items"
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.25"
-        android:background="@color/teal_700"
-        android:alpha="0.2"
-        />
-
-
-
-
-    <LinearLayout
-        android:id="@+id/lly_edit_product"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/fake_guide_center_horizontal_center"
-        app:layout_constraintBottom_toTopOf="@id/fake_guide_center_horizontal_bottom"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="@id/fake_guide_center_vertical">
-
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/products"
-            android:layout_gravity="center"
-            android:background="@null"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/add_products"
-            android:textStyle="bold"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
-
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/lly_edit_service"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@id/fake_guide_center_horizontal_center"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/fake_guide_center_vertical"
-        app:layout_constraintRight_toRightOf="parent">
-
-
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/service_provide"
-            android:layout_gravity="center"
-            android:background="@null"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/crete_services"
-            android:textStyle="bold"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
-
-    </LinearLayout>
-
-
-    <View
-        android:id="@+id/fake_guide_center_horizontal_bottom"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.50"
-        android:background="@color/teal_700"
-        android:alpha="0.2"
-        />
-
-
-    <LinearLayout
-        android:id="@+id/lly_edit_parts"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintVertical_bias="0.4"
-        app:layout_constraintTop_toBottomOf="@id/fake_guide_center_horizontal_bottom"
-        app:layout_constraintBottom_toBottomOf="@id/fake_guide_center_horizontal_bottom_lower"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/fake_guide_center_vertical">
-
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/parts"
-            android:layout_gravity="center"
-            android:background="@null"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/add_parts"
-            android:textStyle="bold"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/lly_add_offer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="@id/fake_guide_center_horizontal_center"
-        app:layout_constraintBottom_toTopOf="@id/fake_guide_center_horizontal_bottom"
-        app:layout_constraintLeft_toRightOf="@id/fake_guide_center_vertical"
-        app:layout_constraintRight_toRightOf="parent">
-
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/offers"
-            android:layout_gravity="center"
-            android:background="@null"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/add_offers"
-            android:textStyle="bold"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/lly_edit_users_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintVertical_bias="0.4"
-        app:layout_constraintTop_toBottomOf="@id/fake_guide_center_horizontal_bottom"
-        app:layout_constraintBottom_toBottomOf="@id/fake_guide_center_horizontal_bottom_lower"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/fake_guide_center_vertical">
-
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/users_icon"
-            android:layout_gravity="center"
-            android:background="@null"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/users_list"
-            android:textStyle="bold"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
-
-    </LinearLayout>
-
-    <View
-        android:id="@+id/fake_guide_center_horizontal_bottom_lower"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.75"
-        android:background="@color/teal_700"
-        android:alpha="0.2"
-        />
-
-    <LinearLayout
-        android:id="@+id/lly_edit_engineers_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintVertical_bias="0.4"
-        app:layout_constraintTop_toBottomOf="@id/fake_guide_center_horizontal_bottom_lower"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/fake_guide_center_vertical">
-
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/engineer"
-            android:layout_gravity="center"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Engineers List"
-            android:textStyle="bold"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/lly_edit_offer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/fake_guide_center_horizontal_bottom_lower"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/fake_guide_center_vertical"
-        app:layout_constraintRight_toRightOf="parent">
-
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/edit_offers"
-            android:layout_gravity="center"
-            android:background="@null"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Edit Offers"
-            android:textStyle="bold"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
-
-    </LinearLayout>
+        android:layout_height="match_parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

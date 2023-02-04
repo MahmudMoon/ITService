@@ -63,7 +63,7 @@
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/enterprise"
+                    android:src="@drawable/pending_task"
                     android:layout_gravity="center"
                     />
                 <TextView
@@ -101,7 +101,7 @@
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/admin"
+                    android:src="@drawable/assigned_task"
                     android:layout_gravity="center"
                     />
                 <TextView
@@ -137,7 +137,7 @@
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/enterprise"
+                    android:src="@drawable/completed_work"
                     android:layout_gravity="center"
                     />
                 <TextView

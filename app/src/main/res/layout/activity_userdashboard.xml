@@ -109,9 +109,10 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
                 <ImageView
+                    android:layout_marginTop="10dp"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/take_our_service"
+                    android:src="@drawable/service_status"
                     android:layout_gravity="center"
                     />
                 <TextView
@@ -119,6 +120,7 @@
                     android:layout_height="wrap_content"
                     android:text="Service Status"
                     android:textStyle="bold"
+                    android:layout_marginTop="5dp"
                     android:layout_gravity="center"
                     android:textColor="@color/black"/>
 
@@ -144,15 +146,17 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:layout_marginTop="10dp"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/buy_our_product"
+                    android:src="@drawable/buy_product"
                     android:layout_gravity="center"
                     />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Products"
+                    android:layout_marginTop="5dp"
                     android:textStyle="bold"
                     android:layout_gravity="center"
                     android:textColor="@color/black"/>
@@ -180,7 +184,8 @@
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/ask_service"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/our_services"
                     android:background="@null"
                     android:layout_gravity="center"
                     />
@@ -188,6 +193,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Ask Service"
+                    android:layout_marginTop="5dp"
                     android:textStyle="bold"
                     android:layout_gravity="center"
                     android:textColor="@color/black"

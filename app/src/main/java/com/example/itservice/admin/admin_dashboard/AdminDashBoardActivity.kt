@@ -7,6 +7,8 @@ import android.view.MenuItem
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.itservice.R
 import com.example.itservice.admin.addOffers.AddOfferActivity
 import com.example.itservice.admin.offer_modify.OfferModifyActivity
@@ -22,17 +24,11 @@ import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.databinding.ActivityAdminDashBoardBinding
 import com.example.itservice.user.product_catagory.BuyOurProductsCatagoryDisplayActivity
 
-class AdminDashBoardActivity : BaseActivity() {
+class AdminDashBoardActivity : BaseActivity(), iAdminItemClicked {
     private lateinit var binding: ActivityAdminDashBoardBinding
     private lateinit var viewModel: AdminDashBoradViewModel
-    private lateinit var llyAnalysisServiceTakenTasks: LinearLayout
-    private lateinit var llyProductsModify: LinearLayout
-    private lateinit var llyServiceModify: LinearLayout
-    private lateinit var llyOffersModify: LinearLayout
-    private lateinit var llyPartsModify: LinearLayout
-    private lateinit var llyUsersList: LinearLayout
-    private lateinit var llyEngineerList: LinearLayout
-    private lateinit var llyAddOffer:LinearLayout
+    private lateinit var rvItems: RecyclerView
+    private lateinit var adminItemAdapter: AdminListAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,61 +39,91 @@ class AdminDashBoardActivity : BaseActivity() {
         supportActionBar?.title = "Admin Home"
         DbInstance.setLastLoginAs(this@AdminDashBoardActivity, Constants.admin)
 
-        llyAnalysisServiceTakenTasks = binding.llyCheckServicesView
-        llyOffersModify = binding.llyEditOffer
-        llyProductsModify = binding.llyEditProduct
-        llyServiceModify = binding.llyEditService
-        llyPartsModify = binding.llyEditParts
-        llyUsersList = binding.llyEditUsersList
-        llyEngineerList = binding.llyEditEngineersList
-        llyAddOffer = binding.llyAddOffer
-
         viewModel = ViewModelProvider(this, ViewModelProviderFactory()).get(AdminDashBoradViewModel::class.java)
+        val items = viewModel.getDashBoardItems()
+        adminItemAdapter = AdminListAdapter(this@AdminDashBoardActivity, items)
+
+        rvItems = binding.rvAdminItems
+        rvItems.layoutManager = GridLayoutManager(this@AdminDashBoardActivity, 2)
+        rvItems.adapter = adminItemAdapter
+
+
        // viewModel.listenforNotifications()
-        llyAnalysisServiceTakenTasks.setOnClickListener {
-            startActivity(Intent(this@AdminDashBoardActivity, TakenServiceCatagoryActivity::class.java)
-                .putExtra("fromAdmin", true))
-            moveWithAnimationToAnotherActivity()
-        }
-        llyOffersModify.setOnClickListener {
-            startActivity(Intent(this@AdminDashBoardActivity, OfferModifyActivity::class.java))
-            moveWithAnimationToAnotherActivity()
-        }
-        llyServiceModify.setOnClickListener {
-            startActivity(Intent(this@AdminDashBoardActivity, DisplayServiceCatagoryActivity::class.java))
-            moveWithAnimationToAnotherActivity()
-        }
-        llyProductsModify.setOnClickListener {
-            startActivity(Intent(this@AdminDashBoardActivity, BuyOurProductsCatagoryDisplayActivity::class.java))
-            moveWithAnimationToAnotherActivity()
-        }
-
-        llyPartsModify.setOnClickListener {
-            startActivity(Intent(this@AdminDashBoardActivity, DisplayPartsActivity::class.java))
-            moveWithAnimationToAnotherActivity()
-        }
-
-        llyEngineerList.setOnClickListener {
-            startActivity(Intent(this@AdminDashBoardActivity, UsersAndEngineersListActivity::class.java)
-                .putExtra(Constants.userType, Constants.UsersType.engineer.name))
-            moveWithAnimationToAnotherActivity()
-        }
-
-        llyUsersList.setOnClickListener {
-            startActivity(Intent(this@AdminDashBoardActivity, UsersAndEngineersListActivity::class.java)
-                .putExtra(Constants.userType, Constants.UsersType.user.name))
-            moveWithAnimationToAnotherActivity()
-        }
-
-        llyAddOffer.setOnClickListener {
-            startActivity(Intent(this@AdminDashBoardActivity, AddOfferActivity::class.java))
-            moveWithAnimationToAnotherActivity()
-        }
+//        llyAnalysisServiceTakenTasks.setOnClickListener {
+//
+//        }
+//        llyOffersModify.setOnClickListener {
+//
+//            moveWithAnimationToAnotherActivity()
+//        }
+//        llyServiceModify.setOnClickListener {
+//
+//            moveWithAnimationToAnotherActivity()
+//        }
+//        llyProductsModify.setOnClickListener {
+//
+//        }
+//
+//        llyPartsModify.setOnClickListener {
+//            moveWithAnimationToAnotherActivity()
+//        }
+//
+//        llyEngineerList.setOnClickListener {
+//
+//            moveWithAnimationToAnotherActivity()
+//        }
+//
+//        llyUsersList.setOnClickListener {
+//
+//            moveWithAnimationToAnotherActivity()
+//        }
+//
+//        llyAddOffer.setOnClickListener {
+//
+//            moveWithAnimationToAnotherActivity()
+//        }
 
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
         finishAffinity()
+    }
+
+    override fun adminItemClickedAt(position: Int) {
+        when(position){
+            0 -> {
+                startActivity(Intent(this@AdminDashBoardActivity, TakenServiceCatagoryActivity::class.java)
+                .putExtra("fromAdmin", true))
+            }
+            1 -> {
+                startActivity(Intent(this@AdminDashBoardActivity, BuyOurProductsCatagoryDisplayActivity::class.java))
+            }
+            2 -> {
+                startActivity(Intent(this@AdminDashBoardActivity, DisplayServiceCatagoryActivity::class.java))
+            }
+            3 -> {
+                startActivity(Intent(this@AdminDashBoardActivity, DisplayPartsActivity::class.java))
+            }
+            4 -> {
+                startActivity(Intent(this@AdminDashBoardActivity, AddOfferActivity::class.java))
+            }
+            5 -> {
+                startActivity(Intent(this@AdminDashBoardActivity, UsersAndEngineersListActivity::class.java)
+                .putExtra(Constants.userType, Constants.UsersType.user.name))
+            }
+            6 -> {
+                startActivity(Intent(this@AdminDashBoardActivity, UsersAndEngineersListActivity::class.java)
+                .putExtra(Constants.userType, Constants.UsersType.engineer.name))
+            }
+            7 -> {
+                startActivity(Intent(this@AdminDashBoardActivity, OfferModifyActivity::class.java))
+            }
+            8 -> {
+                // need to change this one
+                startActivity(Intent(this@AdminDashBoardActivity, OfferModifyActivity::class.java))
+            }
+        }
+        moveWithAnimationToAnotherActivity()
     }
 }
