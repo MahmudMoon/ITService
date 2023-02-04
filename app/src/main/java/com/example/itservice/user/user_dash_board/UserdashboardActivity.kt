@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import coil.transform.CircleCropTransformation
 import com.example.itservice.application.TAG
 import com.example.itservice.base.BaseActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
@@ -26,6 +27,7 @@ import com.example.itservice.local_db.DatabaseInstance
 import com.example.itservice.local_db.DbHelper
 import com.example.itservice.user.product_catagory.BuyOurProductsCatagoryDisplayActivity
 import com.example.itservice.user.product_catagory.product_list.product_details.ProductDetailActivity
+import com.example.itservice.user.profile.ProfileActivity
 
 
 interface  OfferItemSelected{
@@ -38,6 +40,7 @@ class UserdashboardActivity : BaseActivity(), OfferItemSelected {
     private lateinit var llyBuyOurProducts: LinearLayout
     private lateinit var llyServiceStatus: LinearLayout
     private lateinit var llyAskForService: LinearLayout
+    private lateinit var llyTopContainer: LinearLayout
     private lateinit var rvOffers: RecyclerView
     private lateinit var dbHelper: DbHelper
     private lateinit var offerAdapter: OfferAdapter
@@ -60,12 +63,19 @@ class UserdashboardActivity : BaseActivity(), OfferItemSelected {
         llyBuyOurProducts = binding.llyBuyOutProducts
         llyServiceStatus = binding.llyTakeOutService
         llyAskForService = binding.llyAskService
+        llyTopContainer = binding.llyTopContainer
+
         ivProfileImage = binding.ivUserProfile
         tvUserName = binding.tvUserName
         rvOffers = binding.rvOffers
         rvOffers.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         rvOffers.adapter = offerAdapter
         rvOffers.addItemDecoration(itemDecorator(20))
+
+        llyTopContainer.setOnClickListener {
+            startActivity(Intent(this, ProfileActivity::class.java))
+            moveWithAnimationToAnotherActivity()
+        }
 
         viewModel.getAllOffers()
         viewModel.offerLiveData.observe(this){
@@ -105,7 +115,10 @@ class UserdashboardActivity : BaseActivity(), OfferItemSelected {
         val profileImage = DbInstance.getUserImage(this@UserdashboardActivity)
         Log.d(TAG, "onStart: Name "+ name)
         tvUserName.setText(name)
-        if(profileImage!="") ivProfileImage.load(profileImage)
+        if(profileImage!="") ivProfileImage.load(profileImage){
+            crossfade(true)
+            transformations(CircleCropTransformation())
+        }
     }
 
     override fun onBackPressed() {
