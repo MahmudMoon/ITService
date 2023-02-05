@@ -223,10 +223,10 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnSingUpengineerRegistation"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/apply"
-                    android:layout_marginRight="20dp"
+                    android:layout_margin="20dp"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:letterSpacing="0.15"
@@ -238,6 +238,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    android:visibility="gone"
                     android:layout_marginTop="20dp">
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tv_do_not_have_account"

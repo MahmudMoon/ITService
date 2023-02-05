@@ -146,12 +146,9 @@ class CVCarrierFragment : BaseFragment(), TextWatcher, engineerRegistrationCVPic
                 progressBar?.visibility = View.GONE
                 Toast.makeText(requireContext(), "Application successful", Toast.LENGTH_SHORT).show()
                 clearUI()
-                requireActivity().startActivity(
-                    Intent(requireContext(), LoginActivity::class.java)
-                    .putExtra(Constants.email, engineerEmail)
-                    .putExtra(Constants.password, engineerPassword)
-                    .putExtra(Constants.tabSelection, 1))
-                moveWithAnimationToAnotherActivity()
+//                requireActivity().startActivity(
+//                    Intent(requireContext(), LoginActivity::class.java))
+//                moveWithAnimationToAnotherActivity()
             }else{
                 Toast.makeText(requireContext(), "Application failed", Toast.LENGTH_SHORT).show()
             }

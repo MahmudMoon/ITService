@@ -95,12 +95,9 @@ class EngineerLoginFragment : BaseFragment(), TextWatcher {
         }
         viewModel.engineerAuthResult.observe(viewLifecycleOwner){
             if(it.isSuccess){
-                progressBar?.visibility = View.GONE
                 val uid = it.resultData as String
                 DbInstance.setUserUid(requireContext(), uid)
-                Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_SHORT).show()
-                requireActivity().startActivity(Intent(requireContext(), EngineerDashBoardActivity::class.java))
-                moveWithAnimationToAnotherActivity()
+                viewModel.isEngineerExist(uid)
             }else{
                 progressBar?.visibility = View.GONE
                 Toast.makeText(requireContext(), "Login failed", Toast.LENGTH_SHORT).show()
@@ -112,7 +109,16 @@ class EngineerLoginFragment : BaseFragment(), TextWatcher {
             } catch (e: Exception) {
                 Log.e(TAG, "onViewCreated: ${e.localizedMessage}")
             }
-
+        }
+        viewModel.isEngineerExists.observe(viewLifecycleOwner){
+            progressBar?.visibility = View.GONE
+            if(it){
+                Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_SHORT).show()
+                requireActivity().startActivity(Intent(requireContext(), EngineerDashBoardActivity::class.java))
+                moveWithAnimationToAnotherActivity()
+            }else{
+                Toast.makeText(requireContext(), "Login failed", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

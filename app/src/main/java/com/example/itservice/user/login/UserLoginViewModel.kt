@@ -27,7 +27,11 @@ class UserLoginViewModel : ViewModel() {
     val listener = object : ValueEventListener{
         override fun onDataChange(snapshot: DataSnapshot) {
             val user = snapshot.getValue<User>()
-            _userData.postValue(user!!)
+            if(user!=null) {
+                _userData.postValue(user)
+            }else{
+                _userData.postValue(null)
+            }
         }
 
         override fun onCancelled(error: DatabaseError) {

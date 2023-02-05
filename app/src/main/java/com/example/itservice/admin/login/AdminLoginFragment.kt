@@ -85,15 +85,23 @@ class AdminLoginFragment : BaseFragment(), TextWatcher {
         }
         viewModel.adminAuthResult.observe(viewLifecycleOwner){
             if(it.isSuccess){
-                progressBar?.visibility = View.GONE
                 val uid = it.resultData as String
                 DbInstance.setUserUid(requireContext(), uid)
+                viewModel.isAdminExists(uid)
+            }else{
+                progressBar?.visibility = View.GONE
+                Toast.makeText(requireContext(), "Login Failed", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        viewModel.isAdminExist.observe(viewLifecycleOwner){
+            progressBar?.visibility = View.GONE
+            if(it){
                 Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_SHORT).show()
                 requireActivity().startActivity(Intent(requireContext(), AdminDashBoardActivity::class.java))
                 moveWithAnimationToAnotherActivity()
             }else{
-                progressBar?.visibility = View.GONE
-                Toast.makeText(requireContext(), "Login Failed", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Login failed", Toast.LENGTH_SHORT).show()
             }
         }
 
