@@ -92,4 +92,8 @@ object DbInstance {
        return SharedPrefUtils.getStringValue(context,Constants.profileImage)
     }
 
+    fun getDefaultImage(): String {
+        return Constants.demoPro
+    }
+
 }

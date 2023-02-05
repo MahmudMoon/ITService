@@ -16,6 +16,7 @@ import com.example.itservice.application.TAG
 import com.example.itservice.base.BaseActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.models.Offers
+import com.example.itservice.common.models.User
 import com.example.itservice.common.service_pack.display_service_catagory.DisplayServiceCatagoryActivity
 import com.example.itservice.common.taken_service_catagory.TakenServiceCatagoryActivity
 import com.example.itservice.common.taken_service_catagory.service_list.ServiceListActivity
@@ -30,7 +31,7 @@ import com.example.itservice.user.product_catagory.product_list.product_details.
 import com.example.itservice.user.profile.ProfileActivity
 
 
-interface  OfferItemSelected{
+interface OfferItemSelected {
     fun onOfferItemSelected(offer: Offers)
 }
 
@@ -57,8 +58,13 @@ class UserdashboardActivity : BaseActivity(), OfferItemSelected {
         dbHelper = DatabaseInstance.getDatabaseReference(this)
         listOfOffers = ArrayList()
         offerAdapter = OfferAdapter(this, listOfOffers)
-        viewModel = ViewModelProvider(this, ViewModelProviderFactory()).get(UserdashboardViewModel::class.java)
+        viewModel = ViewModelProvider(
+            this,
+            ViewModelProviderFactory()
+        ).get(UserdashboardViewModel::class.java)
         DbInstance.setLastLoginAs(this@UserdashboardActivity, Constants.user)
+        val uid = DbInstance.getUserUid(this@UserdashboardActivity)
+        viewModel.getUserInfo(uid)
 
         llyBuyOurProducts = binding.llyBuyOutProducts
         llyServiceStatus = binding.llyTakeOutService
@@ -78,8 +84,8 @@ class UserdashboardActivity : BaseActivity(), OfferItemSelected {
         }
 
         viewModel.getAllOffers()
-        viewModel.offerLiveData.observe(this){
-            if(it.size>0) {
+        viewModel.offerLiveData.observe(this) {
+            if (it.size > 0) {
                 listOfOffers.clear()
                 listOfOffers.addAll(it)
                 offerAdapter.notifyDataSetChanged()
@@ -88,7 +94,10 @@ class UserdashboardActivity : BaseActivity(), OfferItemSelected {
 
 
         llyBuyOurProducts.setOnClickListener {
-            val intent = Intent(this@UserdashboardActivity, BuyOurProductsCatagoryDisplayActivity::class.java)
+            val intent = Intent(
+                this@UserdashboardActivity,
+                BuyOurProductsCatagoryDisplayActivity::class.java
+            )
             startActivity(intent)
             moveWithAnimationToAnotherActivity()
         }
@@ -103,22 +112,56 @@ class UserdashboardActivity : BaseActivity(), OfferItemSelected {
         }
 
         llyAskForService.setOnClickListener {
-            startActivity(Intent(this@UserdashboardActivity, DisplayServiceCatagoryActivity::class.java))
+            startActivity(
+                Intent(
+                    this@UserdashboardActivity,
+                    DisplayServiceCatagoryActivity::class.java
+                )
+            )
             moveWithAnimationToAnotherActivity()
+        }
+
+        viewModel.userInfo.observe(this) {
+            if (it != null) {
+                updaeUser(it)
+            }
         }
     }
 
+    fun updaeUser(user: User?) {
+        var fullName = ""
+        var profileImage = ""
+        if (user != null) {
+            if (user.fullName != null) {
+                fullName = user.fullName
 
-    override fun onStart() {
-        super.onStart()
-        val name = DbInstance.getUserName(this@UserdashboardActivity)
-        val profileImage = DbInstance.getUserImage(this@UserdashboardActivity)
-        Log.d(TAG, "onStart: Name "+ name)
-        tvUserName.setText(name)
-        if(profileImage!="") ivProfileImage.load(profileImage){
+            }else{
+                fullName = ""
+            }
+            if (user.profileImage != null) {
+                profileImage = user.profileImage
+            }else{
+                profileImage = ""
+            }
+        } else {
+            fullName = DbInstance.getUserName(this@UserdashboardActivity)
+            profileImage = DbInstance.getUserImage(this@UserdashboardActivity)
+        }
+        tvUserName.setText(fullName)
+        if(profileImage == ""){
+            profileImage = DbInstance.getDefaultImage()
+        }
+        if (profileImage != "") ivProfileImage.load(profileImage) {
             crossfade(true)
             transformations(CircleCropTransformation())
         }
+        DbInstance.setUserName(this@UserdashboardActivity, fullName)
+        DbInstance.setUserImage(this@UserdashboardActivity, profileImage)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        updaeUser(null)
     }
 
     override fun onBackPressed() {
@@ -130,8 +173,8 @@ class UserdashboardActivity : BaseActivity(), OfferItemSelected {
         Toast.makeText(this, "Offer selected", Toast.LENGTH_SHORT).show()
         val catId = offer.catagoryId
         val productId = offer.productID
-        Log.d(TAG, "onOfferItemSelected: CAT: "+ catId + " PID"+ productId )
-        if(catId!=null && productId !=null) {
+        Log.d(TAG, "onOfferItemSelected: CAT: " + catId + " PID" + productId)
+        if (catId != null && productId != null) {
             val intent = Intent(this@UserdashboardActivity, ProductDetailActivity::class.java)
             intent.putExtra(Constants.CatagoryId, catId)
             intent.putExtra(Constants.productID, productId)

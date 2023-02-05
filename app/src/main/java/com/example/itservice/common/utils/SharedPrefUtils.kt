@@ -15,6 +15,6 @@ object SharedPrefUtils {
     }
     fun getStringValue(context: Context, key: String): String{
       return getMySharedPref(context)
-           .getString(key, "").toString()
+           .getString(key, Constants.demoPro).toString()
     }
 }

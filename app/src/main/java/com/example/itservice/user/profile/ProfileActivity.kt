@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import coil.load
@@ -71,7 +72,11 @@ class ProfileActivity : BaseActivity() {
 
         viewModel.userInfo.observe(this){ user ->
             if(user!=null){
-                if(user.profileImage!=null) ivUser.load(user.profileImage){
+                var profileUrl = user.profileImage
+                if(profileUrl == null){
+                    profileUrl = DbInstance.getDefaultImage()
+                }
+                if(profileUrl!="") ivUser.load(profileUrl){
                     crossfade(true)
                     transformations(CircleCropTransformation())
                 }
@@ -89,6 +94,7 @@ class ProfileActivity : BaseActivity() {
         viewModel.uploadPhoto.observe(this){ path->
             if(path!=""){
                 val uid = DbInstance.getUserUid(this@ProfileActivity)
+                DbInstance.setUserImage(this@ProfileActivity, path)
                 ivUser.load(path){
                     crossfade(true)
                     transformations(CircleCropTransformation())
