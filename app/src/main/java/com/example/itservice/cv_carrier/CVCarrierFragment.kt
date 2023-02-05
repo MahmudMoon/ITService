@@ -1,4 +1,4 @@
-package com.example.itservice.engineer.application
+package com.example.itservice.cv_carrier
 
 import android.content.Intent
 import android.net.Uri
@@ -25,29 +25,15 @@ import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.ContextExtentions
 import com.example.itservice.common.utils.DbInstance
 import com.example.itservice.common.utils.DocumentUpload
-import com.example.itservice.databinding.FragmentEngineerRegistationBinding
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [EngineerApplicationFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+import com.example.itservice.databinding.FragmentCVCarrierBinding
 
 interface engineerRegistrationCVPicked{
     fun onCVPicked(filePath: Uri?, imageName: String?)
 }
 
-class EngineerApplicationFragment : BaseFragment(), TextWatcher , engineerRegistrationCVPicked{
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-    private lateinit var binding: FragmentEngineerRegistationBinding
-    private lateinit var viewModel: EngineerApplicationViewModel
+class CVCarrierFragment : BaseFragment(), TextWatcher, engineerRegistrationCVPicked {
+    private lateinit var binding: FragmentCVCarrierBinding
+    private lateinit var viewModel: CVCarrierViewModel
     private lateinit var tvSingIn: TextView
     private lateinit var btnSignUp: Button
     private var etengineerName: AppCompatEditText? = null
@@ -76,27 +62,20 @@ class EngineerApplicationFragment : BaseFragment(), TextWatcher , engineerRegist
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentEngineerRegistationBinding.inflate(layoutInflater, container, false)
+        binding = FragmentCVCarrierBinding.inflate(LayoutInflater.from(requireContext()))
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(
-            this,
-            ViewModelProviderFactory()
-        ).get(EngineerApplicationViewModel::class.java)
-        (requireActivity() as LoginActivity).selectTabAt(1)
+        (requireActivity() as LoginActivity).setTitle("CV Carrier")
+        viewModel = ViewModelProvider(this, ViewModelProviderFactory()).get(CVCarrierViewModel::class.java)
         tvSingIn = binding.tvSignUpEngineerRegistation
         btnSignUp = binding.btnSingUpengineerRegistation
         etengineerName = binding.etFullnameEngineerRegistation
@@ -111,13 +90,12 @@ class EngineerApplicationFragment : BaseFragment(), TextWatcher , engineerRegist
         btnSelectCV = binding.btnSelectCv
         tvCVName = binding.tvSelectCv
         tvCVName?.keyListener = null
-        (requireActivity() as LoginActivity).setTitle("Engineer Application")
 
         btnSelectCV.setOnClickListener {
             // pick an image
             tvCVName?.setError(null)
             //pick an image
-            cvUpload = DocumentUpload(this@EngineerApplicationFragment.requireActivity() as LoginActivity)
+            cvUpload = DocumentUpload(this@CVCarrierFragment.requireActivity() as LoginActivity)
             cvUpload?.selectPdf(Constants.CV_PICK_REQUEST)
         }
 
@@ -167,7 +145,9 @@ class EngineerApplicationFragment : BaseFragment(), TextWatcher , engineerRegist
             if(it){
                 progressBar?.visibility = View.GONE
                 Toast.makeText(requireContext(), "Application successful", Toast.LENGTH_SHORT).show()
-                requireActivity().startActivity(Intent(requireContext(), LoginActivity::class.java)
+                clearUI()
+                requireActivity().startActivity(
+                    Intent(requireContext(), LoginActivity::class.java)
                     .putExtra(Constants.email, engineerEmail)
                     .putExtra(Constants.password, engineerPassword)
                     .putExtra(Constants.tabSelection, 1))
@@ -184,6 +164,19 @@ class EngineerApplicationFragment : BaseFragment(), TextWatcher , engineerRegist
                 Log.e(TAG, "onViewCreated: ${e.localizedMessage}")
             }
         }
+
+    }
+
+    private fun clearUI() {
+        etengineerCatagory?.setText("")
+        etengineerEmail?.setText("")
+        etengineerNID?.setText("")
+        etengineerName?.setText("")
+        etengineerPassword?.setText("")
+        etengineerEmployeeID?.setText("")
+        etengineerCompanyName?.setText("")
+        etengineerContactNumber?.setText("")
+        tvCVName?.setText("")
     }
 
     fun setErrorMessage(view: TextView?, message: String): String? {
@@ -231,28 +224,6 @@ class EngineerApplicationFragment : BaseFragment(), TextWatcher , engineerRegist
             tvCVName?.text.hashCode() -> cleanErrorMessage(tvCVName)
         }
     }
-
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment EngineerRegistationFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            EngineerApplicationFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
-
     override fun onCVPicked(filePath: Uri?, imageName: String?) {
         Log.d(TAG, "onImagePicked: u_r "+ filePath + "\n" + imageName)
         if(filePath!=null && imageName != null){

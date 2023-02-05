@@ -4,6 +4,8 @@ import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import android.os.StrictMode
+import android.os.StrictMode.VmPolicy
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -18,7 +20,7 @@ import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ktx.getValue
-import java.util.*
+
 
 public const val TAG = "ITApplication"
 
@@ -48,7 +50,7 @@ class ITApplication: Application() {
                 PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
         }
 
-        var builder = NotificationCompat.Builder(this, CHANNEL_ID)
+        val builder = NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.drawable.admin)
             .setContentTitle("Notifiation from ${Constants.AppName}")
             .setContentText("Service Updated")

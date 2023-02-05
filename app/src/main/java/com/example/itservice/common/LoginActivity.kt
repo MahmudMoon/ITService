@@ -2,9 +2,9 @@ package com.example.itservice.common
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.get
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -12,8 +12,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.itservice.R
 import com.example.itservice.application.TAG
 import com.example.itservice.common.utils.Constants
+import com.example.itservice.cv_carrier.CVCarrierFragment
 import com.example.itservice.databinding.ActivityLoginBinding
-import com.example.itservice.engineer.application.EngineerApplicationFragment
 import com.example.itservice.user.login.UserLoginFragment
 import com.example.itservice.user.registation.UserRegistationFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -49,8 +49,6 @@ class LoginActivity : AppCompatActivity() {
                 }
             }else if(tab == 1){
                 navController.navigate(R.id.action_userLoginFragment_to_engineerLoginFragment, bundle)
-            }else if(tab == 2){
-                navController.navigate(R.id.action_userLoginFragment_to_enterpriseUserFragment, bundle)
             }
         }
     }
@@ -97,7 +95,7 @@ class LoginActivity : AppCompatActivity() {
                 val cvName = paths?.get(paths.size-1)
                 Log.d(TAG, "onActivityResult: "+cvName)
                 val framgent = navHostFragment.childFragmentManager.fragments.get(0)
-                if(framgent is EngineerApplicationFragment){
+                if(framgent is CVCarrierFragment){
                     framgent.onCVPicked(filePath, cvName)
                 }
             }

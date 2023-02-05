@@ -17,6 +17,8 @@ import com.example.itservice.admin.service_pack.add_service.add_brandes.add_bran
 import com.example.itservice.common.service_pack.display_service_catagory.DisplayServiceCatagoryViewModel
 import com.example.itservice.common.service_pack.display_service_catagory.display_brand_list.BrandListDisplayViewModel
 import com.example.itservice.admin.service_pack.display_service_catagory.display_service_list.display_service.DisplayServiceListViewModel
+import com.example.itservice.admin.show_applications.DisplayApplicationListViewModel
+import com.example.itservice.admin.show_applications.display_form.DisplayFormViewModel
 import com.example.itservice.admin.users_and_engineers_list.UserAndEngineersListViewModel
 import com.example.itservice.base.BaseViewModel
 import com.example.itservice.common.display_parts.DisplayPartViewModel
@@ -27,7 +29,6 @@ import com.example.itservice.common.service_pack.display_service_catagory.displa
 import com.example.itservice.common.splash.SplashViewModel
 import com.example.itservice.engineer.dashboard.EngineerDashBoradViewModel
 import com.example.itservice.engineer.login_fragment.EngineerLoginViewModel
-import com.example.itservice.engineer.application.EngineerApplicationViewModel
 import com.example.itservice.enterprise_user.enterprise_user_login.EnterpriseUserLoginViewModel
 import com.example.itservice.enterprise_user.registation.EnterpriseUserRegistrationViewModel
 import com.example.itservice.user.ask_service_catagory.UserServiceViewModel
@@ -39,6 +40,7 @@ import com.example.itservice.user.registation.UserRegistationViewModel
 import com.example.itservice.common.taken_service_catagory.TakenServiceCatagoryViewModel
 import com.example.itservice.common.taken_service_catagory.service_list.ServiceListViewModel
 import com.example.itservice.common.taken_service_catagory.service_list.service_modify.search_eng_frag.SearchForViewModel
+import com.example.itservice.cv_carrier.CVCarrierViewModel
 import com.example.itservice.user.product_catagory.product_list.product_details.buy_product.CartViewModel
 import com.example.itservice.user.profile.ProfileViewModel
 import com.example.itservice.user.user_dash_board.UserdashboardViewModel
@@ -52,7 +54,6 @@ class ViewModelProviderFactory @Inject constructor(): ViewModelProvider.Factory 
         if(modelClass.isAssignableFrom(EnterpriseUserLoginViewModel::class.java)) return EnterpriseUserLoginViewModel() as T
         if(modelClass.isAssignableFrom(EnterpriseUserRegistrationViewModel::class.java)) return EnterpriseUserRegistrationViewModel() as T
         if(modelClass.isAssignableFrom(EngineerLoginViewModel::class.java)) return EngineerLoginViewModel() as T
-        if(modelClass.isAssignableFrom(EngineerApplicationViewModel::class.java)) return EngineerApplicationViewModel() as T
         if(modelClass.isAssignableFrom(AdminRegistrationViewModel::class.java)) return AdminRegistrationViewModel() as T
         if(modelClass.isAssignableFrom(AdminLoginViewModel::class.java)) return AdminLoginViewModel() as T
         if(modelClass.isAssignableFrom(UserdashboardViewModel::class.java)) return UserdashboardViewModel() as T
@@ -86,6 +87,9 @@ class ViewModelProviderFactory @Inject constructor(): ViewModelProvider.Factory 
         if(modelClass.isAssignableFrom(AddOfferViewModel::class.java)) return AddOfferViewModel() as T
         if(modelClass.isAssignableFrom(BaseViewModel::class.java)) return BaseViewModel() as T
         if(modelClass.isAssignableFrom(ProfileViewModel::class.java)) return ProfileViewModel() as T
+        if(modelClass.isAssignableFrom(CVCarrierViewModel::class.java)) return CVCarrierViewModel() as T
+        if(modelClass.isAssignableFrom(DisplayApplicationListViewModel::class.java)) return DisplayApplicationListViewModel() as T
+        if(modelClass.isAssignableFrom(DisplayFormViewModel::class.java)) return DisplayFormViewModel() as T
         return super.create(modelClass)
     }
 }

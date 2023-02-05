@@ -1,4 +1,4 @@
-package com.example.itservice.engineer.application
+package com.example.itservice.cv_carrier
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,7 +8,7 @@ import com.example.itservice.common.models.Engineer
 import com.example.itservice.common.utils.Constants
 import com.example.itservice.common.utils.DbInstance
 
-class EngineerApplicationViewModel : ViewModel() {
+class CVCarrierViewModel: ViewModel() {
     var uploadCV: MutableLiveData<String> = MutableLiveData()
 
     private var _engineerApplyDataSave = MutableLiveData<AuthResult>()
@@ -41,7 +41,7 @@ class EngineerApplicationViewModel : ViewModel() {
             fullName = fullName,
             companyName = companyName,
             employeeID = employeeID,
-            NID = nid,
+            nid = nid,
             contactNumber = contactNumber,
             catagory = engineerCatagory
         )

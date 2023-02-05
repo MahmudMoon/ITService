@@ -1,20 +1,18 @@
 package com.example.itservice.admin.admin_dashboard
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import android.widget.LinearLayout
-import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.itservice.R
 import com.example.itservice.admin.addOffers.AddOfferActivity
 import com.example.itservice.admin.offer_modify.OfferModifyActivity
+import com.example.itservice.admin.show_applications.DisplayApplicationListActivity
 import com.example.itservice.admin.users_and_engineers_list.UsersAndEngineersListActivity
 import com.example.itservice.base.BaseActivity
-import com.example.itservice.common.LoginActivity
 import com.example.itservice.common.display_parts.DisplayPartsActivity
 import com.example.itservice.common.factory.ViewModelProviderFactory
 import com.example.itservice.common.service_pack.display_service_catagory.DisplayServiceCatagoryActivity
@@ -39,6 +37,7 @@ class AdminDashBoardActivity : BaseActivity(), iAdminItemClicked {
         supportActionBar?.title = "Admin Home"
         DbInstance.setLastLoginAs(this@AdminDashBoardActivity, Constants.admin)
 
+
         viewModel = ViewModelProvider(this, ViewModelProviderFactory()).get(AdminDashBoradViewModel::class.java)
         val items = viewModel.getDashBoardItems()
         adminItemAdapter = AdminListAdapter(this@AdminDashBoardActivity, items)
@@ -47,41 +46,9 @@ class AdminDashBoardActivity : BaseActivity(), iAdminItemClicked {
         rvItems.layoutManager = GridLayoutManager(this@AdminDashBoardActivity, 2)
         rvItems.adapter = adminItemAdapter
 
-
-       // viewModel.listenforNotifications()
-//        llyAnalysisServiceTakenTasks.setOnClickListener {
-//
-//        }
-//        llyOffersModify.setOnClickListener {
-//
-//            moveWithAnimationToAnotherActivity()
-//        }
-//        llyServiceModify.setOnClickListener {
-//
-//            moveWithAnimationToAnotherActivity()
-//        }
-//        llyProductsModify.setOnClickListener {
-//
-//        }
-//
-//        llyPartsModify.setOnClickListener {
-//            moveWithAnimationToAnotherActivity()
-//        }
-//
-//        llyEngineerList.setOnClickListener {
-//
-//            moveWithAnimationToAnotherActivity()
-//        }
-//
-//        llyUsersList.setOnClickListener {
-//
-//            moveWithAnimationToAnotherActivity()
-//        }
-//
-//        llyAddOffer.setOnClickListener {
-//
-//            moveWithAnimationToAnotherActivity()
-//        }
+        if(ContextCompat.checkSelfPermission(this@AdminDashBoardActivity, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE), 123)
+        }
 
     }
 
@@ -121,7 +88,7 @@ class AdminDashBoardActivity : BaseActivity(), iAdminItemClicked {
             }
             8 -> {
                 // need to change this one
-                startActivity(Intent(this@AdminDashBoardActivity, OfferModifyActivity::class.java))
+                startActivity(Intent(this@AdminDashBoardActivity, DisplayApplicationListActivity::class.java))
             }
         }
         moveWithAnimationToAnotherActivity()

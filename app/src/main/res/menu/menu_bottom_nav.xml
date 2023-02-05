@@ -13,9 +13,9 @@
         android:title="Engineer"
         />
     <item
-        android:id="@id/enterpriseUserFragment"
+        android:id="@id/CVCarrierFragment"
         android:icon="@drawable/enterprise"
-        android:title="Enterprise" />
+        android:title="CV Carrier" />
 
     <item
         android:id="@id/adminLoginFragment"

@@ -1,12 +1,21 @@
 package com.example.itservice.common.utils
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Environment
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
 import com.example.itservice.application.TAG
+import com.example.itservice.common.models.AuthResult
 import com.example.itservice.common.utils.DbInstance.getStorageInstance
+import java.io.BufferedInputStream
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.net.URL
+
 
 class DocumentUpload constructor(val activity: AppCompatActivity){
 //    companion object{
@@ -48,7 +57,6 @@ class DocumentUpload constructor(val activity: AppCompatActivity){
     }
 
     fun uploadDocumentInFireStore(uid: String, filePath: String?, uploadComplete: MutableLiveData<String>){
-        Log.d(TAG, "uploadCVInFireStore: "+ uid)
         val ref = getStorageInstance().reference.child(uid)
         val uploadTask = ref
             .putFile(Uri.parse(filePath))
@@ -68,6 +76,35 @@ class DocumentUpload constructor(val activity: AppCompatActivity){
                 Log.d(TAG, "uploadImageInFireStore: failed")
                 uploadComplete.postValue("")
             }
+        }
+    }
+
+    fun downloadFile(context: Context, url: String, fileName: String, downloadCompleted: MutableLiveData<AuthResult>) {
+        Log.d(TAG, "downloadFile: statred for " + fileName)
+        //val path = Environment.getExternalStorageDirectory(Environment.DIRECTORY_DOCUMENTS)
+        val path = context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)
+        val file = File(path, fileName)
+        try {
+            if(!file.exists()){
+                file.createNewFile()
+            }else{
+                file.delete()
+                file.createNewFile()
+            }
+            BufferedInputStream(URL(url).openStream()).use { IN ->
+                FileOutputStream(file).use { fileOutputStream ->
+                    val dataBuffer = ByteArray(1024)
+                    var bytesRead: Int
+                    while (IN.read(dataBuffer, 0, 1024).also { bytesRead = it } != -1) {
+                        fileOutputStream.write(dataBuffer, 0, bytesRead)
+                    }
+                }
+            }
+            downloadCompleted.postValue(AuthResult(true, file.absolutePath))
+        } catch (e: IOException) {
+            // handle exception
+            Log.e(TAG, "downloadFile: failed "+e.localizedMessage )
+            downloadCompleted.postValue(AuthResult(false, null))
         }
     }
 

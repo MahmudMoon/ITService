@@ -1,6 +1,9 @@
 package com.example.itservice.common.utils
 
 object Constants {
+    const val adminPassword: String = "adminPassword"
+    const val adminEmail: String = "adminEmail"
+    const val PACKAGE_NAME = "com.example.itservice"
     const val userType = "userType"
     const val AppName = "IT SERVICE"
     const val CHANNEL_ID = "125347"
@@ -55,7 +58,7 @@ object Constants {
     const val appliedEngineers = "appliedEngineers"
     const val CV_PICK_REQUEST: Int = 110
     const val demoPro: String = "https://firebasestorage.googleapis.com/v0/b/itapplication-ed14e.appspot.com/o/demo_profile_pic%2Fpic_profile_demo.jpeg?alt=media&token=a9494a0a-ebed-47da-85c2-ba3a15e5190e"
-
+    const val engUid: String = "engUid"
 
     enum class ServiceStatus{
         Pending,

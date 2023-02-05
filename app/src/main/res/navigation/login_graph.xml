@@ -42,9 +42,6 @@
         <action
             android:id="@+id/action_userLoginFragment_to_engineerLoginFragment"
             app:destination="@id/engineerLoginFragment" />
-        <action
-            android:id="@+id/action_userLoginFragment_to_enterpriseUserFragment"
-            app:destination="@id/enterpriseUserFragment" />
         <argument
             android:name="email"
             app:argType="string"
@@ -90,4 +87,9 @@
             android:id="@+id/action_enterpriseUserRegistationFragment_to_enterpriseUserFragment"
             app:destination="@id/enterpriseUserFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/CVCarrierFragment"
+        android:name="com.example.itservice.cv_carrier.CVCarrierFragment"
+        android:label="fragment_c_v_carrier"
+        tools:layout="@layout/fragment_c_v_carrier" />
 </navigation>

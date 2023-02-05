@@ -1,6 +1,7 @@
 package com.example.itservice.common.utils
 
 import android.content.Context
+import com.example.itservice.admin.login.AdminLoginFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
@@ -94,6 +95,22 @@ object DbInstance {
 
     fun getDefaultImage(): String {
         return Constants.demoPro
+    }
+
+    fun setAdminLastEmail(context: Context, adminEmail: String?) {
+        SharedPrefUtils.putStringValue(context = context, Constants.adminEmail , adminEmail!! )
+    }
+
+    fun setAdminLastPassword(context: Context, adminPassword: String?) {
+        SharedPrefUtils.putStringValue(context = context, Constants.adminPassword , adminPassword!! )
+    }
+
+    fun getAdminLastEmail(context: Context): String {
+        return SharedPrefUtils.getStringValue(context = context, Constants.adminEmail)
+    }
+
+    fun getAdminLastPassword(context: Context) : String {
+        return SharedPrefUtils.getStringValue(context = context, Constants.adminPassword)
     }
 
 }
