@@ -195,7 +195,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ask Service"
+                    android:text="Servics"
                     android:layout_marginTop="5dp"
                     android:textStyle="bold"
                     android:layout_gravity="center"
